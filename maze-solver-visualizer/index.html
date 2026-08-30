@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maze Solver</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="control-panel" aria-label="Maze controls">
+        <div>
+          <h1>Maze Solver</h1>
+          <p class="summary">
+            Build the walls, set the start and finish, then run the solver to find the end.
+          </p>
+        </div>
+
+        <div class="tools" aria-label="Drawing tools">
+          <button class="tool-button active" data-tool="wall" type="button">Wall</button>
+          <button class="tool-button" data-tool="start" type="button">Start</button>
+          <button class="tool-button" data-tool="end" type="button">Finish</button>
+          <button class="tool-button" data-tool="restart" type="button">Erase</button>
+        </div>
+
+        <div class="actions">
+          <button id="solveButton" class="primary-button" type="button">Solve Maze</button>
+          <button id="randomButton" class="secondary-button" type="button">Random Maze</button>
+          <button id="clearButton" class="secondary-button" type="button">Clear</button>
+        </div>
+
+        <div class="stats" aria-label="Solver statistics">
+          <div>
+            <span id="visitedTiles">0</span>
+            <p>Visited Tiles</p>
+          </div>
+          <div>
+            <span id="pathLength">0</span>
+            <p>Path Length</p>
+          </div>
+        </div>
+
+        <p id="statusMessage" class="status-message">
+          Choose a tool and click the grid to edit the maze.
+        </p>
+      </section>
+
+      <section class="board-panel" aria-label="Maze board">
+        <div class="legend" aria-label="Cell legend">
+          <span><i class="legend-start"></i>Start</span>
+          <span><i class="legend-end"></i>Finish</span>
+          <span><i class="legend-wall"></i>Wall</span>
+          <span><i class="legend-path"></i>Path</span>
+        </div>
+        <div id="grid" class="grid" aria-label="Interactive maze grid"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
