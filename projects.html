@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | Scott Gray</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="logo" href="index.html">SG</a>
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a class="active" href="projects.html">Projects</a>
+        <a href="work.html">Work Experience</a>
+        <a href="about.html">About Me</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">Projects</p>
+        <h1>Projects</h1>
+        <p>
+          A few things I have built or worked on in class and on my own.
+        </p>
+      </section>
+
+      <section id="maze-solver" class="project-detail">
+        <div class="project-copy">
+          <p class="eyebrow">HTML, CSS, JavaScript</p>
+          <h2>Maze Solver Visualizer</h2>
+          <p>
+            I built this to practice JavaScript and algorithms in a more visual
+            way. You can edit the grid, place walls, move the start and end
+            points, and watch the search run.
+          </p>
+          <ul>
+            <li>Made a 16x24 grid that can be edited in the browser.</li>
+            <li>Used click events to place walls and move the start and end cells.</li>
+            <li>Used Breadth-First Search to find the shortest path.</li>
+            <li>Showed basic stats like visited cells and path length.</li>
+          </ul>
+        </div>
+        <div class="embed-shell">
+          <iframe
+            src="../maze-solver-visualizer/index.html"
+            title="Embedded Maze Solver Visualizer"
+          ></iframe>
+        </div>
+      </section>
+
+      <section id="tree-cutter" class="project-detail reverse">
+        <div class="project-copy">
+          <p class="eyebrow">C, robotics, team project</p>
+          <h2>Autonomous Tree Cutter</h2>
+          <p>
+            This was a team robotics project for CPRE 288. The main challenge was
+            writing and testing C control logic, then seeing whether the robot
+            actually behaved the way we expected.
+          </p>
+          <ul>
+            <li>Worked on control logic in C.</li>
+            <li>Tested the robot with teammates and adjusted behavior based on results.</li>
+            <li>Debugged movement issues when the robot did not respond as planned.</li>
+            <li>Learned how different hardware debugging feels compared with normal code debugging.</li>
+          </ul>
+        </div>
+        <div class="image-card">
+          <img
+            class="feature-photo tall"
+            src="assets/robot.jpeg"
+            alt="Autonomous robot used for the CPRE 288 tree-cutting project"
+          />
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+
