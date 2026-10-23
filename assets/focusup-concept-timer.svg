@@ -1,4 +1,4 @@
-<svg viewBox="0 0 200 400" role="img" aria-label="Concept mockup of a focus timer screen">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" role="img" aria-label="Concept mockup of a focus timer screen">
         <rect x="4" y="4" width="192" height="392" rx="28" fill="#0b0e19" stroke="#2a3150" stroke-width="3"/>
         <text x="100" y="52" fill="#9aa3bf" font-size="12" text-anchor="middle" font-family="system-ui">Focus Session</text>
         <circle cx="100" cy="170" r="70" fill="none" stroke="#232a45" stroke-width="12"/>
