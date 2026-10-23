@@ -82,3 +82,8 @@ the selection. Existing projects.html# links redirect to the matching project.
 Screen diagrams open in a zoomable dialog. Only the maze loads an embedded demo,
 and only when its Live demo view is selected. Unknown IDs show a recovery link.
 
+## Optional playground
+
+ambient.js draws a subtle interactive background and adds a signal-hunt game.
+Motion can be paused, starts paused for reduced-motion preferences, and stops
+when the page is hidden. Preference and project discovery use browser storage.

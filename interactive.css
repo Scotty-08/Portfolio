@@ -38,6 +38,21 @@ dialog::backdrop { background:#101b35a8; backdrop-filter:blur(5px); }
 .visual-controls output { min-width:45px; text-align:center; font-size:12px; }
 .visual-scroll { max-height:68vh; overflow:auto; border:1px solid var(--line); border-radius:10px; background:#fff; }
 .visual-scroll img { display:block; max-width:none; height:auto; }
+body { isolation:isolate; }
+.ambient-canvas { position:fixed; inset:0; width:100%; height:100%; z-index:-1; pointer-events:none; }
+.ambient-controls { display:flex; flex-wrap:wrap; align-items:center; gap:8px; width:calc(100% - 64px); max-width:1120px; margin:0 auto 24px; }
+.ambient-controls > span { margin-right:auto; color:var(--muted); font-size:12px; }
+.ambient-controls button { font-size:12px; background:#ffffffd9; }
+#signal-game { width:min(500px,92vw); padding:26px; }
+.game-heading { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.game-heading h2 { font-size:28px; margin:0; }
+.game-instruction { font-size:14px; }
+.signal-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; padding:20px; background:#13213c; border-radius:14px; margin:20px 0; }
+.signal-node { display:grid; place-items:center; aspect-ratio:1; min-height:44px; border:1px solid #597199; border-radius:12px; background:#253754; color:#e7eeff; font:600 20px Consolas,monospace; cursor:pointer; }
+.signal-node:hover { border-color:#a8baff; background:#364e78; }
+.signal-node:disabled { cursor:default; background:#335de8; color:white; opacity:1; }
+.signal-node:focus-visible { outline:3px solid white; outline-offset:2px; }
+.game-status { min-height:24px; font-size:14px; font-weight:600; color:var(--accent-dark); }
 @media(max-width:700px) {
   .project-toolbar { font-size:12px; }
   .detail-heading { padding-top:10px; }
@@ -47,4 +62,6 @@ dialog::backdrop { background:#101b35a8; backdrop-filter:blur(5px); }
   .visual-scroll { max-height:62vh; }
   .flow-preview-card { padding:20px; }
   #view-demo { padding:12px; }
+  .ambient-controls { width:calc(100% - 32px); }
+  .ambient-controls > span { flex-basis:100%; }
 }
