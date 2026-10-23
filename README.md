@@ -72,3 +72,13 @@ No placeholder store links or unprovided private GitLab links were added.
 Project discovery progress is saved in localStorage on the visitor browser.
 Cards and sections animate with reduced-motion support. The timePiece diagram
 uses keyboard-accessible buttons to explain the app, backend, and database.
+
+## Reusable project pages
+
+Home and Projects show the project cards. Each opens project.html?id=PROJECT_ID.
+project.js loads projects.json and renders only that project's content. The
+view query parameter selects overview, screens, or demo; browser Back restores
+the selection. Existing projects.html# links redirect to the matching project.
+Screen diagrams open in a zoomable dialog. Only the maze loads an embedded demo,
+and only when its Live demo view is selected. Unknown IDs show a recovery link.
+

@@ -1,0 +1,136 @@
+[
+  {
+    "id": "focusup",
+    "title": "FocusUp",
+    "eyebrow": "Personal project \u00b7 Co-developed \u00b7 iPhone app",
+    "overviewHtml": "<p>I co-built FocusUp with my roommate to help students stay on top of their work and spend less time on distracting apps. It turns tasks into quests, connects progress to a player profile, and uses app groups to block or limit distractions.</p>\n          <p>This is my first app taken from my own idea to testers. We used SwiftUI for the iPhone interface, Apple\u2019s Screen Time frameworks for app restrictions, and Supabase with PostgreSQL for accounts and shared features. We both receive credit for the project.</p>\n          <div class=\"tags\"><span>SwiftUI</span><span>Screen Time APIs</span><span>Supabase</span><span>PostgreSQL</span><span>TestFlight</span></div>\n          \n          \n          <div class=\"hero-actions\">\n            \n            <a class=\"secondary-link\" href=\"https://github.com/Scotty-08/FocusUp\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub repository &nearr;</a>\n          </div>",
+    "notes": [
+      {
+        "title": "What I worked on with my teammate",
+        "html": "<ul>\n              <li>Built the iPhone interface and used AI development tools while learning Apple\u2019s Screen Time frameworks.</li>\n              <li>Designed and hosted the database on Supabase with PostgreSQL.</li>\n              <li>Added Sign in with Apple and email sign-up, including confirmation links that return to the app.</li>\n              <li>Built Canvas-connected browser extensions for Chrome, Edge, and Firefox with Apple sign-in; submitted the Edge extension to Edge Add-ons.</li>\n              <li>Distributed builds to testers through TestFlight.</li>\n            </ul>"
+      },
+      {
+        "title": "How the current app fits together",
+        "html": "<p>Home manages app groups and their Block or Limit rules. Quests holds tasks and Canvas assignments. Player shows the avatar, level, EXP, coins, and customization. Friends contains requests, cheers, and a leaderboard.</p>\n            <p>Quests and app blocking work locally. Supabase supports accounts, player profiles, friends, and assignments imported through the desktop browser extension. An earlier Node backend remains in the repo, but the current backend notes identify Supabase as its replacement.</p>"
+      }
+    ],
+    "visualHtml": "<figure class=\"project-highlight focusup-showcase\">\n          <div class=\"showcase-label\"><span>FOCUSUP</span><span>EARLY CONCEPT / IOS</span></div>\n          <img src=\"assets/focusup-concept-timer.svg\" alt=\"Early FocusUp timer concept, showing an illustrative 25-minute session\" />\n          <figcaption class=\"small-copy\">An early visual concept. The current app uses quests, player progress, and app groups.</figcaption>\n          \n        </figure>",
+    "flows": [
+      {
+        "title": "First-time setup",
+        "src": "assets/focusup-setup-flow.svg",
+        "description": "Sign-in, player setup, permissions, app groups, and first quests."
+      },
+      {
+        "title": "Everyday navigation",
+        "src": "assets/focusup-main-flow.svg",
+        "description": "Home, Quests, Player, Friends, and quest check-ins."
+      }
+    ],
+    "concepts": [
+      {
+        "title": "Timer concept",
+        "src": "assets/focusup-concept-timer.svg"
+      },
+      {
+        "title": "Planner concept",
+        "src": "assets/focusup-concept-planner.svg"
+      },
+      {
+        "title": "Stats concept",
+        "src": "assets/focusup-concept-stats.svg"
+      }
+    ],
+    "demo": false,
+    "flowNote": "Navigation drawn from the current SwiftUI source. The concept screens below are earlier mockups, not screenshots of the current quest-based app."
+  },
+  {
+    "id": "timepiece",
+    "title": "timePiece",
+    "eyebrow": "COM S 3090 \u00b7 Backend developer",
+    "overviewHtml": "<p>timePiece is a team Android app for browsing, favoriting, and selling watches. Our team had four people: two frontend developers and two backend developers. I worked on the backend.</p>\n          <p>I built the watch catalog backend that supplies data to the Android catalog screen, worked with MariaDB to store catalog and user data, and helped my backend partner deploy the backend JAR to our team VM.</p>\n          <div class=\"tags\"><span>Java</span><span>MariaDB</span><span>Android Studio</span><span>GitLab</span><span>SCRUM</span></div>",
+    "notes": [
+      {
+        "title": "My backend contributions",
+        "html": "<ul>\n              <li>Owned the watch catalog endpoints for Round Trip 2.</li>\n              <li>Worked with a shared MariaDB schema for watch and user data.</li>\n              <li>Deployed the backend JAR to the team VM with my backend partner.</li>\n              <li>Designed the selling model to separate a catalog watch from individual listings, allowing multiple listings for the same watch.</li>\n            </ul>"
+      },
+      {
+        "title": "How the team worked",
+        "html": "<p>We worked in SCRUM sprints, tracked tasks on a GitLab issue board, and reviewed code through merge requests. I coordinated the catalog backend with the frontend developer working on the catalog screen.</p>"
+      },
+      {
+        "title": "App features and demo scope",
+        "html": "<p>The catalog was designed around a two-column watch grid with search. The app uses USER, MODERATOR, and ADMIN roles. Users have profile, favorites, sell, and report features; admins manage catalog watches, and moderators manage account deletion.</p>\n            <p>AR try-on and wrist calibration were outside the demo scope. These are app-level features and plans; my contribution was backend development.</p>"
+      }
+    ],
+    "visualHtml": "<figure class=\"project-highlight timepiece-figure\">\n          <div class=\"architecture-stage\"><img class=\"architecture-image\" src=\"assets/timepiece-architecture.svg\" alt=\"timePiece architecture: the Android app sends requests to the Java backend JAR on the team VM. The backend reads and writes watch and user data in MariaDB. Scott worked on the backend and shared deployment.\" />\n            <div class=\"architecture-hotspots\" hidden>\n              <button class=\"architecture-step architecture-app\" data-architecture=\"app\" aria-label=\"Explain Android app\" aria-pressed=\"false\" aria-controls=\"architecture-explanation\"></button>\n              <button class=\"architecture-step architecture-backend\" data-architecture=\"backend\" aria-label=\"Explain Scott's backend work\" aria-pressed=\"true\" aria-controls=\"architecture-explanation\"></button>\n              <button class=\"architecture-step architecture-database\" data-architecture=\"database\" aria-label=\"Explain MariaDB database\" aria-pressed=\"false\" aria-controls=\"architecture-explanation\"></button>\n            </div>\n          </div>\n          <div class=\"architecture-explorer\" hidden>\n            <p class=\"eyebrow\">Tap a box to explore</p>\n            <p id=\"architecture-explanation\" aria-live=\"polite\">The Java backend receives requests from the app. I built the watch catalog endpoints and helped deploy the backend JAR to our team VM.</p>\n          </div>\n          <figcaption class=\"small-copy\">Architecture overview based on the project handoff. My work focused on the backend and shared deployment.</figcaption>\n          \n        </figure>",
+    "flows": [
+      {
+        "title": "App screen flow",
+        "src": "assets/timepiece-screen-flow.svg",
+        "description": "Sign-in, the catalog, user screens, and role-specific tools."
+      }
+    ],
+    "concepts": [],
+    "demo": false,
+    "flowNote": "Based on the team handoff; exact navigation still needs comparison with the Android source. AR try-on and wrist calibration were outside the demo scope."
+  },
+  {
+    "id": "jeopardy",
+    "title": "ISU Jeopardy",
+    "eyebrow": "3190 \u00b7 HTML, CSS, JavaScript, JSON",
+    "overviewHtml": "<p>I built an Iowa State-themed Jeopardy game with four categories, 16 questions, and score tracking for two teams. As the project grew, I used JSON to supply questions and other page content.</p>\n          <div class=\"tags\"><span>4 categories</span><span>16 questions</span><span>2 teams</span></div>",
+    "notes": [
+      {
+        "title": "How the game hub works",
+        "html": "<p>The hub reads query parameters to choose a game. JSON configuration supplies the available game and board-style choices, and JavaScript renders those choices on the page.</p>"
+      },
+      {
+        "title": "What I built around it",
+        "html": "<p>The larger midterm site included content pages, authors and FAQ pages, images and content rendered from JSON, and a Bootstrap accordion FAQ.</p>"
+      }
+    ],
+    "visualHtml": "<aside class=\"project-highlight\" aria-label=\"Jeopardy project highlights\">\n          <p class=\"eyebrow\">From page layout to game logic</p>\n          <h3>One project. Several moving parts.</h3>\n          <ol class=\"project-steps\">\n            <li><strong>Structure</strong><p>Pages, navigation, and a question board.</p></li>\n            <li><strong>Data</strong><p>JSON questions and game configuration.</p></li>\n            <li><strong>Interaction</strong><p>Game selection and score tracking.</p></li>\n          </ol>\n          <p class=\"small-copy\">Project overview. The original class game is not hosted in this portfolio.</p>\n        </aside>",
+    "flows": [],
+    "concepts": [],
+    "demo": false
+  },
+  {
+    "id": "maze-solver",
+    "title": "Maze Solver Visualizer",
+    "eyebrow": "HTML, CSS, JavaScript",
+    "overviewHtml": "<p>\n            I built this to practice JavaScript and algorithms in a more visual\n            way. You can edit the grid, place walls, move the start and end\n            points, and watch the search run.\n          </p>\n          <ul>\n            <li>Made a 16x24 grid that can be edited in the browser.</li>\n            <li>Used click events to place walls and move the start and end cells.</li>\n            <li>Used Breadth-First Search to find the shortest path.</li>\n            <li>Showed basic stats like visited cells and path length.</li>\n          </ul>\n          <a class=\"text-link card-link\" href=\"maze-solver-visualizer/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">Open the full-size maze demo \u2197</a>",
+    "notes": [],
+    "visualHtml": "<aside class=\"project-highlight\"><p class=\"eyebrow\">Try it yourself</p><h3>A path through the possibilities.</h3><p>Draw walls, choose a start and finish, and watch breadth-first search work through the grid.</p><button class=\"primary-link\" data-open-view=\"demo\">Launch the live demo &rarr;</button></aside>",
+    "flows": [],
+    "concepts": [],
+    "demo": true
+  },
+  {
+    "id": "tree-cutter",
+    "title": "Autonomous Tree Cutter",
+    "eyebrow": "C, robotics, team project",
+    "overviewHtml": "<p>\n            This was a team robotics project for CPRE 288. The main challenge was\n            writing and testing C control logic, then seeing whether the robot\n            actually behaved the way we expected.\n          </p>\n          <ul>\n            <li>Worked on control logic in C.</li>\n            <li>Tested the robot with teammates and adjusted behavior based on results.</li>\n            <li>Debugged movement issues when the robot did not respond as planned.</li>\n            <li>Learned how different hardware debugging feels compared with normal code debugging.</li>\n          </ul>",
+    "notes": [],
+    "visualHtml": "<div class=\"image-card\">\n          <img\n            class=\"feature-photo tall\"\n            src=\"assets/robot.jpeg\"\n            alt=\"Autonomous robot used for the CPRE 288 tree-cutting project\"\n          />\n        </div>",
+    "flows": [],
+    "concepts": [],
+    "demo": false
+  },
+  {
+    "id": "react-cards",
+    "title": "Reusable cards with React",
+    "eyebrow": "3190 \u00b7 Activity 09 \u00b7 Currently learning",
+    "overviewHtml": "<p>I am using React with Vite to learn how a page can be built from reusable components. In Activity 09, App.jsx passes values into UserCard components through props.</p>\n          <p>Each card displays a picture, name, salary, marital status, and address using React-Bootstrap Container and Card components.</p>",
+    "notes": [
+      {
+        "title": "How the files fit together",
+        "html": "<ul>\n              <li><code>src/main.jsx</code> mounts the app.</li>\n              <li><code>App.jsx</code> renders cards and passes in props.</li>\n              <li><code>src/UserCards.jsx</code> defines the reusable card component.</li>\n              <li><code>src/index.css</code> controls the styles.</li>\n            </ul>"
+      }
+    ],
+    "visualHtml": "<aside class=\"project-highlight\">\n          <p class=\"eyebrow\">My next step</p>\n          <h3>Build once. Reuse with new data.</h3>\n          <p>Instead of writing the same card markup over and over, a component defines the card once. Props give each card its own information.</p>\n          <div class=\"tags\"><span>React</span><span>Vite</span><span>React-Bootstrap</span><span>Props</span></div>\n          <p class=\"small-copy\">Learning in progress. This portfolio uses plain HTML, CSS, and JavaScript.</p>\n        </aside>",
+    "flows": [],
+    "concepts": [],
+    "demo": false
+  }
+]

@@ -1,0 +1,50 @@
+/* The project cards keep their existing layout; details share one reusable view. */
+.project-toolbar { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:28px 0 18px; }
+.project-toolbar .eyebrow { margin:0; }
+.detail-heading { padding:18px 0 24px; }
+.detail-heading h1 { margin:0; font-size:clamp(38px,5vw,64px); }
+.view-switch { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+.view-switch button,.concept-choices button { border:1px solid var(--line); border-radius:9px; background:white; color:var(--ink); padding:12px 18px; font-size:13px; font-weight:600; }
+.view-switch button[aria-pressed="true"],.concept-choices button[aria-pressed="true"] { background:var(--accent-dark); color:white; border-color:var(--accent-dark); }
+.project-view .project-detail { margin:0; }
+.project-pagination { display:flex; gap:16px; justify-content:space-between; margin-top:28px; }
+.project-pagination a { max-width:48%; padding-top:12px; padding-bottom:12px; }
+.load-panel { padding:48px 28px; background:white; border:1px solid var(--line); border-radius:18px; margin:20px 0; }
+.load-panel h1 { font-size:34px; }
+.screen-intro { margin:8px 0 24px; max-width:760px; }
+.screen-intro h2 { font-size:28px; }
+.screen-intro p { font-size:14px; }
+.flow-preview-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:20px; }
+.flow-preview-card { padding:24px; border:1px solid var(--line); background:white; border-radius:18px; }
+.flow-preview-card > img { width:100%; height:250px; object-fit:contain; background:#f7f9fc; border-radius:10px; margin-bottom:20px; }
+.flow-preview-card h3 { font-size:22px; }
+.flow-preview-card p { font-size:14px; }
+.flow-preview-card button,.project-highlight button { border:0; cursor:pointer; }
+.concept-browser { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.7fr); gap:32px; padding:32px; margin-top:24px; border:1px solid var(--line); border-radius:18px; background:white; align-items:center; }
+.concept-browser p { font-size:14px; max-width:48ch; }
+.concept-choices { display:flex; flex-wrap:wrap; gap:8px; }
+.concept-browser figure { margin:0; text-align:center; padding:24px; background:#f1effb; border-radius:12px; }
+.concept-browser img { height:300px; width:auto; }
+.concept-browser figcaption { font-size:12px; color:var(--muted); margin-top:12px; }
+#view-demo { padding:24px; background:white; border:1px solid var(--line); border-radius:18px; }
+#view-demo iframe { height:680px; border-radius:12px; }
+dialog { border:1px solid var(--line); border-radius:18px; box-shadow:0 30px 100px #101b3540; color:var(--ink); }
+dialog::backdrop { background:#101b35a8; backdrop-filter:blur(5px); }
+#visual-dialog { width:min(1200px,94vw); max-width:94vw; max-height:92vh; padding:24px; }
+.visual-toolbar { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.visual-toolbar h2 { font-size:23px; margin:0; }
+.visual-controls { display:flex; align-items:center; gap:8px; }
+.visual-controls button,.ambient-controls button,.game-close,.game-reset { border:1px solid var(--line); background:white; color:var(--ink); border-radius:8px; min-height:40px; padding:8px 12px; font:inherit; cursor:pointer; }
+.visual-controls output { min-width:45px; text-align:center; font-size:12px; }
+.visual-scroll { max-height:68vh; overflow:auto; border:1px solid var(--line); border-radius:10px; background:#fff; }
+.visual-scroll img { display:block; max-width:none; height:auto; }
+@media(max-width:700px) {
+  .project-toolbar { font-size:12px; }
+  .detail-heading { padding-top:10px; }
+  .concept-browser { grid-template-columns:1fr; padding:22px; }
+  .visual-toolbar { flex-wrap:wrap; }
+  #visual-dialog { padding:16px; }
+  .visual-scroll { max-height:62vh; }
+  .flow-preview-card { padding:20px; }
+  #view-demo { padding:12px; }
+}

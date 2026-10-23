@@ -78,9 +78,9 @@ function renderExploration() {
     panel.querySelector(".exploration-message").textContent = explored.size === 6 ? "You have explored the whole collection. Thanks for taking a look!" : "Open project details to fill your discovery trail. Saved on this browser.";
   });
   projectCards.forEach((card) => {
-    const link = card.querySelector('a[href*="projects.html#"]');
+    const link = card.querySelector('a[href*="project.html?id="]');
     if (!link) return;
-    const visited = explored.has(link.hash.slice(1));
+    const visited = explored.has(new URL(link.href).searchParams.get('id'));
     card.classList.toggle("is-explored", visited);
     let badge = card.querySelector(".discovery-label");
     if (visited && !badge) {
@@ -126,6 +126,7 @@ const architectureCopy = {
   backend: "The Java backend receives requests from the app. I built the watch catalog endpoints and helped deploy the backend JAR to our team VM.",
   database: "MariaDB stores the watch catalog and user data. The backend reads and writes this shared data so the Android app can use it."
 };
+function initializeArchitecture() {
 document.querySelectorAll(".architecture-hotspots, .architecture-explorer").forEach((element) => { element.hidden = false; });
 document.querySelectorAll("[data-architecture]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -133,6 +134,15 @@ document.querySelectorAll("[data-architecture]").forEach((button) => {
     document.querySelector("#architecture-explanation").textContent = architectureCopy[button.dataset.architecture];
   });
 });
+}
+initializeArchitecture();
+
+// Keep shared links from earlier portfolio versions working.
+const legacyProject = location.hash.slice(1);
+if (projectIds.includes(legacyProject) && /\/(projects|screen-flows)\.html$/.test(location.pathname)) {
+  const view = location.pathname.endsWith('screen-flows.html') ? '&view=screens' : '';
+  location.replace(`project.html?id=${legacyProject}${view}`);
+}
 
 // Animate sections once as they arrive. Content remains visible without JavaScript.
 if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
