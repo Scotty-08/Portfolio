@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1430" viewBox="0 0 1280 1430" role="img" aria-labelledby="title desc">
+<title id="title">timePiece: screen flow</title><desc id="desc">Android watch catalog | Scott: backend developer | COM S 3090. Based on the supplied project handoff, not a review of the Android source. Lines show intended navigation, not verified implementation.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#2457a6"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="40" y="53" font-size="30" font-weight="700" fill="#17202a">timePiece: screen flow</text>
+<text x="40" y="86" font-size="17" fill="#505866">Android watch catalog | Scott: backend developer | COM S 3090</text>
+<polyline points="640.0,240 640.0,320" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="582.6" y="256.0" width="114.8" height="22" fill="white"/>
+<text x="640.0" y="272.0" font-size="14" text-anchor="middle" fill="#2457a6">Authenticated</text>
+<polyline points="510,375 200,375 200,510" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="328.0" y="351.0" width="54.0" height="22" fill="white"/>
+<text x="355.0" y="367.0" font-size="14" text-anchor="middle" fill="#2457a6">ADMIN</text>
+<polyline points="640.0,430 640.0,510" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="616.8" y="446.0" width="46.4" height="22" fill="white"/>
+<text x="640.0" y="462.0" font-size="14" text-anchor="middle" fill="#2457a6">USER</text>
+<polyline points="770,375 1080,375 1080,510" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="882.8" y="351.0" width="84.39999999999999" height="22" fill="white"/>
+<text x="925.0" y="367.0" font-size="14" text-anchor="middle" fill="#2457a6">MODERATOR</text>
+<polyline points="640,620 640,710 170,710 170,790" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="640,620 640,710 480,710 480,790" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="640,620 640,710 790,710 790,790" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="640,620 640,710 1100,710 1100,790" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="790.0,900 790.0,1030" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="728.8" y="941.0" width="122.39999999999999" height="22" fill="white"/>
+<text x="790.0" y="957.0" font-size="14" text-anchor="middle" fill="#2457a6">Create listing</text>
+<rect x="510" y="130" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="526" y="160" font-size="18" font-weight="700" fill="#17202a">Sign in / Sign up</text>
+<text x="526" y="186" font-size="15" fill="#17202a">Create an account or sign in</text>
+<rect x="510" y="320" width="260" height="110" rx="8" fill="#e8effb" stroke="#2457a6" stroke-width="2"/>
+<text x="526" y="350" font-size="18" font-weight="700" fill="#17202a">Account role</text>
+<text x="526" y="376" font-size="15" fill="#17202a">USER is the default role</text>
+<rect x="70" y="510" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="86" y="540" font-size="18" font-weight="700" fill="#17202a">ADMIN tools</text>
+<text x="86" y="566" font-size="15" fill="#17202a">Add / edit a catalog watch:</text>
+<text x="86" y="586" font-size="15" fill="#17202a">name, price, picture</text>
+<rect x="510" y="510" width="260" height="110" rx="8" fill="#1c3f78" stroke="#1c3f78" stroke-width="2"/>
+<text x="526" y="540" font-size="18" font-weight="700" fill="#ffffff">Catalog / Main screen</text>
+<text x="526" y="566" font-size="15" fill="#ffffff">Search + two-column watch</text>
+<text x="526" y="586" font-size="15" fill="#ffffff">grid</text>
+<rect x="950" y="510" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="966" y="540" font-size="18" font-weight="700" fill="#17202a">MODERATOR tools</text>
+<text x="966" y="566" font-size="15" fill="#17202a">Account management / delete</text>
+<text x="966" y="586" font-size="15" fill="#17202a">an account</text>
+<rect x="40" y="790" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="56" y="820" font-size="18" font-weight="700" fill="#17202a">Profile</text>
+<text x="56" y="846" font-size="15" fill="#17202a">User profile screen</text>
+<rect x="350" y="790" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="366" y="820" font-size="18" font-weight="700" fill="#17202a">Favorites</text>
+<text x="366" y="846" font-size="15" fill="#17202a">Saved watches</text>
+<rect x="660" y="790" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="676" y="820" font-size="18" font-weight="700" fill="#17202a">Sell a Watch</text>
+<text x="676" y="846" font-size="15" fill="#17202a">Find a catalog watch; set a</text>
+<text x="676" y="866" font-size="15" fill="#17202a">listing price</text>
+<rect x="970" y="790" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="986" y="820" font-size="18" font-weight="700" fill="#17202a">Report</text>
+<text x="986" y="846" font-size="15" fill="#17202a">User reporting feature</text>
+<rect x="660" y="1030" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="676" y="1060" font-size="18" font-weight="700" fill="#17202a">Watch listing</text>
+<text x="676" y="1086" font-size="15" fill="#17202a">Listing is separate from the</text>
+<text x="676" y="1106" font-size="15" fill="#17202a">catalog watch</text>
+<rect x="70" y="1230" width="1140" height="100" rx="8" fill="#f2f4f7" stroke="#d8dde6" stroke-width="2"/>
+<text x="86" y="1260" font-size="18" font-weight="700" fill="#505866">Later / outside this demo</text>
+<text x="86" y="1286" font-size="15" fill="#505866">Watch detail popup: later. AR try-on and wrist calibration: out of demo scope.</text>
+<text x="40" y="1382" font-size="14" fill="#505866">Based on the supplied project handoff, not a review of the Android source. Lines show intended navigation, not verified implementation.</text>
+</g></svg>

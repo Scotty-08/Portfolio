@@ -1,0 +1,16 @@
+<svg viewBox="0 0 200 400" role="img" aria-label="Concept mockup of a weekly stats screen">
+        <rect x="4" y="4" width="192" height="392" rx="28" fill="#0b0e19" stroke="#2a3150" stroke-width="3"/>
+        <text x="20" y="52" fill="#e8ebf5" font-size="16" font-family="system-ui" font-weight="600">This Week</text>
+        <g fill="#6c8cff">
+          <rect x="24" y="190" width="16" height="60" rx="4"/><rect x="48" y="150" width="16" height="100" rx="4"/>
+          <rect x="72" y="170" width="16" height="80" rx="4"/><rect x="96" y="120" width="16" height="130" rx="4"/>
+          <rect x="120" y="160" width="16" height="90" rx="4"/><rect x="144" y="200" width="16" height="50" rx="4" fill="#3ddc97"/>
+          <rect x="168" y="215" width="16" height="35" rx="4" fill="#3ddc97"/>
+        </g>
+        <g fill="#9aa3bf" font-size="10" font-family="system-ui" text-anchor="middle">
+          <text x="32" y="266">M</text><text x="56" y="266">T</text><text x="80" y="266">W</text><text x="104" y="266">T</text>
+          <text x="128" y="266">F</text><text x="152" y="266">S</text><text x="176" y="266">S</text>
+        </g>
+        <text x="20" y="320" fill="#e8ebf5" font-size="13" font-family="system-ui">Total focus time</text>
+        <text x="20" y="346" fill="#3ddc97" font-size="22" font-family="system-ui" font-weight="600">9 h 40 m</text>
+      </svg>

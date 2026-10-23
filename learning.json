@@ -1,0 +1,38 @@
+[
+  {
+    "id": "html-css",
+    "name": "HTML & CSS",
+    "status": "Putting it into practice",
+    "description": "I build pages with semantic HTML, navigation, images, and layouts. I have also used Bootstrap for catalogs and components.",
+    "example": "On this portfolio, HTML gives each page its structure and CSS controls the layout, colors, and responsive design.",
+    "project": "See my web projects",
+    "href": "projects.html#jeopardy"
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "status": "Putting it into practice",
+    "description": "I use arrays, objects, functions, events, and form input to make pages respond to people.",
+    "example": "The project filters on this page use click events to show matching cards. My maze project uses JavaScript to animate a search.",
+    "project": "Explore the maze solver",
+    "href": "projects.html#maze-solver"
+  },
+  {
+    "id": "json",
+    "name": "JSON",
+    "status": "Putting it into practice",
+    "description": "I have loaded and displayed movie data, people data, game questions, images, and other page content from JSON.",
+    "example": "These skill descriptions come from learning.json. In my Jeopardy hub, JSON configuration supplies the available game and board choices.",
+    "project": "Read about ISU Jeopardy",
+    "href": "projects.html#jeopardy"
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "status": "Currently learning",
+    "description": "I am learning React with Vite in ISU’s 3190 web development class, starting with reusable components and props.",
+    "example": "In Activity 09, App.jsx passes a picture, name, salary, marital status, and address into reusable UserCard components built with React-Bootstrap.",
+    "project": "Read about Activity 09",
+    "href": "projects.html#react-cards"
+  }
+]

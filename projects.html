@@ -7,18 +7,21 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
       <a class="logo" href="index.html">SG</a>
-      <nav aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" hidden>Menu</button>
+      <nav id="main-navigation" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a class="active" href="projects.html">Projects</a>
         <a href="work.html">Work Experience</a>
         <a href="about.html">About Me</a>
         <a href="contact.html">Contact</a>
+        <a href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </nav>
     </header>
 
-    <main>
+    <main id="main-content">
       <section class="page-title">
         <p class="eyebrow">Projects</p>
         <h1>Projects</h1>
@@ -27,6 +30,121 @@
         </p>
       </section>
 
+      <aside class="exploration-panel" aria-label="Project exploration" hidden>
+          <div><p class="eyebrow">Your discovery trail</p><strong class="exploration-count" role="status">Projects explored: 0/6</strong><p class="exploration-message small-copy">Open a project to start exploring.</p></div>
+          <div class="exploration-meter"><progress max="6" value="0" aria-label="Projects explored"></progress><span class="exploration-badge">Curious visitor</span></div>
+        </aside>
+      <section id="focusup" class="project-detail">
+        <div class="project-copy">
+          <p class="eyebrow">Personal project · Co-developed · iPhone app</p>
+          <h2>FocusUp</h2>
+          <p>I co-built FocusUp with my roommate to help students stay on top of their work and spend less time on distracting apps. It turns tasks into quests, connects progress to a player profile, and uses app groups to block or limit distractions.</p>
+          <p>This is my first app taken from my own idea to testers. We used SwiftUI for the iPhone interface, Apple’s Screen Time frameworks for app restrictions, and Supabase with PostgreSQL for accounts and shared features. We both receive credit for the project.</p>
+          <div class="tags"><span>SwiftUI</span><span>Screen Time APIs</span><span>Supabase</span><span>PostgreSQL</span><span>TestFlight</span></div>
+          <details class="project-notes">
+            <summary>What I worked on with my teammate</summary>
+            <ul>
+              <li>Built the iPhone interface and used AI development tools while learning Apple’s Screen Time frameworks.</li>
+              <li>Designed and hosted the database on Supabase with PostgreSQL.</li>
+              <li>Added Sign in with Apple and email sign-up, including confirmation links that return to the app.</li>
+              <li>Built Canvas-connected browser extensions for Chrome, Edge, and Firefox with Apple sign-in; submitted the Edge extension to Edge Add-ons.</li>
+              <li>Distributed builds to testers through TestFlight.</li>
+            </ul>
+          </details>
+          <details class="project-notes">
+            <summary>How the current app fits together</summary>
+            <p>Home manages app groups and their Block or Limit rules. Quests holds tasks and Canvas assignments. Player shows the avatar, level, EXP, coins, and customization. Friends contains requests, cheers, and a leaderboard.</p>
+            <p>Quests and app blocking work locally. Supabase supports accounts, player profiles, friends, and assignments imported through the desktop browser extension. An earlier Node backend remains in the repo, but the current backend notes identify Supabase as its replacement.</p>
+          </details>
+          <div class="hero-actions">
+            <a class="primary-link" href="screen-flows.html#focusup">View screen flow</a>
+            <a class="secondary-link" href="https://github.com/Scotty-08/FocusUp" target="_blank" rel="noopener noreferrer">GitHub repository &nearr;</a>
+          </div>
+        </div>
+        <figure class="project-highlight timepiece-figure">
+          <img class="architecture-image" src="assets/focusup-main-flow.svg" alt="FocusUp screen flow: Home, Quests, Player, and Friends tabs lead to app groups, quest editing, player customization, social features, and quest check-ins." loading="lazy" />
+          <figcaption class="small-copy">Current screen flow, drawn from the SwiftUI source. Open the diagram for a readable full-size view.</figcaption>
+          <a class="text-link card-link" href="screen-flows.html#focusup">Open FocusUp flow diagrams &rarr;</a>
+        </figure>
+      </section>
+      <section class="section" aria-labelledby="focusup-concepts">
+        <p class="eyebrow">Early visual concepts</p>
+        <h2 id="focusup-concepts">FocusUp concept screens</h2>
+        <p>These timer, planner, and stats mockups came from my original project brief. They are concept images, rather than screenshots of the current quest-based app. All displayed tasks and numbers are illustrative.</p>
+        <div class="concept-grid">
+          <figure><img src="assets/focusup-concept-timer.svg" alt="Early FocusUp concept: a 25-minute focus timer" loading="lazy" /><figcaption>Timer · concept mockup</figcaption></figure>
+          <figure><img src="assets/focusup-concept-planner.svg" alt="Early FocusUp concept: a daily study planner" loading="lazy" /><figcaption>Planner · concept mockup</figcaption></figure>
+          <figure><img src="assets/focusup-concept-stats.svg" alt="Early FocusUp concept: illustrative weekly focus statistics" loading="lazy" /><figcaption>Stats · concept mockup</figcaption></figure>
+        </div>
+      </section>
+      <section id="timepiece" class="project-detail">
+        <div class="project-copy">
+          <p class="eyebrow">COM S 3090 · Backend developer</p>
+          <h2>timePiece</h2>
+          <p>timePiece is a team Android app for browsing, favoriting, and selling watches. Our team had four people: two frontend developers and two backend developers. I worked on the backend.</p>
+          <p>I built the watch catalog backend that supplies data to the Android catalog screen, worked with MariaDB to store catalog and user data, and helped my backend partner deploy the backend JAR to our team VM.</p>
+          <div class="tags"><span>Java</span><span>MariaDB</span><span>Android Studio</span><span>GitLab</span><span>SCRUM</span></div>
+          <details class="project-notes">
+            <summary>My backend contributions</summary>
+            <ul>
+              <li>Owned the watch catalog endpoints for Round Trip 2.</li>
+              <li>Worked with a shared MariaDB schema for watch and user data.</li>
+              <li>Deployed the backend JAR to the team VM with my backend partner.</li>
+              <li>Designed the selling model to separate a catalog watch from individual listings, allowing multiple listings for the same watch.</li>
+            </ul>
+          </details>
+          <details class="project-notes">
+            <summary>How the team worked</summary>
+            <p>We worked in SCRUM sprints, tracked tasks on a GitLab issue board, and reviewed code through merge requests. I coordinated the catalog backend with the frontend developer working on the catalog screen.</p>
+          </details>
+          <details class="project-notes">
+            <summary>App features and demo scope</summary>
+            <p>The catalog was designed around a two-column watch grid with search. The app uses USER, MODERATOR, and ADMIN roles. Users have profile, favorites, sell, and report features; admins manage catalog watches, and moderators manage account deletion.</p>
+            <p>AR try-on and wrist calibration were outside the demo scope. These are app-level features and plans; my contribution was backend development.</p>
+          </details>
+        </div>
+        <figure class="project-highlight timepiece-figure">
+          <div class="architecture-stage"><img class="architecture-image" src="assets/timepiece-architecture.svg" alt="timePiece architecture: the Android app sends requests to the Java backend JAR on the team VM. The backend reads and writes watch and user data in MariaDB. Scott worked on the backend and shared deployment." />
+            <div class="architecture-hotspots" hidden>
+              <button class="architecture-step architecture-app" data-architecture="app" aria-label="Explain Android app" aria-pressed="false" aria-controls="architecture-explanation"></button>
+              <button class="architecture-step architecture-backend" data-architecture="backend" aria-label="Explain Scott's backend work" aria-pressed="true" aria-controls="architecture-explanation"></button>
+              <button class="architecture-step architecture-database" data-architecture="database" aria-label="Explain MariaDB database" aria-pressed="false" aria-controls="architecture-explanation"></button>
+            </div>
+          </div>
+          <div class="architecture-explorer" hidden>
+            <p class="eyebrow">Tap a box to explore</p>
+            <p id="architecture-explanation" aria-live="polite">The Java backend receives requests from the app. I built the watch catalog endpoints and helped deploy the backend JAR to our team VM.</p>
+          </div>
+          <figcaption class="small-copy">Architecture overview based on the project handoff. My work focused on the backend and shared deployment.</figcaption>
+          <a class="text-link card-link" href="screen-flows.html#timepiece">View timePiece screen flow &rarr;</a>
+        </figure>
+      </section>
+      <section id="jeopardy" class="project-detail">
+        <div class="project-copy">
+          <p class="eyebrow">3190 · HTML, CSS, JavaScript, JSON</p>
+          <h2>ISU Jeopardy</h2>
+          <p>I built an Iowa State-themed Jeopardy game with four categories, 16 questions, and score tracking for two teams. As the project grew, I used JSON to supply questions and other page content.</p>
+          <div class="tags"><span>4 categories</span><span>16 questions</span><span>2 teams</span></div>
+          <details class="project-notes">
+            <summary>How the game hub works</summary>
+            <p>The hub reads query parameters to choose a game. JSON configuration supplies the available game and board-style choices, and JavaScript renders those choices on the page.</p>
+          </details>
+          <details class="project-notes">
+            <summary>What I built around it</summary>
+            <p>The larger midterm site included content pages, authors and FAQ pages, images and content rendered from JSON, and a Bootstrap accordion FAQ.</p>
+          </details>
+        </div>
+        <aside class="project-highlight" aria-label="Jeopardy project highlights">
+          <p class="eyebrow">From page layout to game logic</p>
+          <h3>One project. Several moving parts.</h3>
+          <ol class="project-steps">
+            <li><strong>Structure</strong><p>Pages, navigation, and a question board.</p></li>
+            <li><strong>Data</strong><p>JSON questions and game configuration.</p></li>
+            <li><strong>Interaction</strong><p>Game selection and score tracking.</p></li>
+          </ol>
+          <p class="small-copy">Project overview. The original class game is not hosted in this portfolio.</p>
+        </aside>
+      </section>
       <section id="maze-solver" class="project-detail">
         <div class="project-copy">
           <p class="eyebrow">HTML, CSS, JavaScript</p>
@@ -42,11 +160,12 @@
             <li>Used Breadth-First Search to find the shortest path.</li>
             <li>Showed basic stats like visited cells and path length.</li>
           </ul>
+          <a class="text-link card-link" href="maze-solver-visualizer/index.html" target="_blank" rel="noopener noreferrer">Open the full-size maze demo ↗</a>
         </div>
         <div class="embed-shell">
           <iframe
             src="maze-solver-visualizer/index.html"
-            title="Embedded Maze Solver Visualizer"
+            title="Embedded Maze Solver Visualizer" loading="lazy"
           ></iframe>
         </div>
       </section>
@@ -75,8 +194,32 @@
           />
         </div>
       </section>
+      <section id="react-cards" class="project-detail">
+        <div class="project-copy">
+          <p class="eyebrow">3190 · Activity 09 · Currently learning</p>
+          <h2>Reusable cards with React</h2>
+          <p>I am using React with Vite to learn how a page can be built from reusable components. In Activity 09, App.jsx passes values into UserCard components through props.</p>
+          <p>Each card displays a picture, name, salary, marital status, and address using React-Bootstrap Container and Card components.</p>
+          <details class="project-notes">
+            <summary>How the files fit together</summary>
+            <ul>
+              <li><code>src/main.jsx</code> mounts the app.</li>
+              <li><code>App.jsx</code> renders cards and passes in props.</li>
+              <li><code>src/UserCards.jsx</code> defines the reusable card component.</li>
+              <li><code>src/index.css</code> controls the styles.</li>
+            </ul>
+          </details>
+        </div>
+        <aside class="project-highlight">
+          <p class="eyebrow">My next step</p>
+          <h3>Build once. Reuse with new data.</h3>
+          <p>Instead of writing the same card markup over and over, a component defines the card once. Props give each card its own information.</p>
+          <div class="tags"><span>React</span><span>Vite</span><span>React-Bootstrap</span><span>Props</span></div>
+          <p class="small-copy">Learning in progress. This portfolio uses plain HTML, CSS, and JavaScript.</p>
+        </aside>
+      </section>
     </main>
+  <footer class="site-footer"><span>Scott Gray · Iowa State Computer Engineering</span><a class="text-link" href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">View my GitHub ↗</a></footer>
+    <script src="portfolio.js" defer></script>
   </body>
 </html>
-
-

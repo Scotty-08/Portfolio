@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="1630" viewBox="0 0 1280 1630" role="img" aria-labelledby="title desc">
+<title id="title">FocusUp: sign-in and setup</title><desc id="desc">Based on MyApp.swift, AuthView.swift and OnboardingView.swift. Returning players skip setup after signing in. Screen Time, notifications and the first group have skip paths; app blocking requires Screen Time approval.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#2457a6"/></marker></defs>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="40" y="53" font-size="30" font-weight="700" fill="#17202a">FocusUp: sign-in and setup</text>
+<text x="40" y="86" font-size="17" fill="#505866">Based on MyApp.swift, AuthView.swift and OnboardingView.swift</text>
+<polyline points="640.0,240 640.0,310" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="510,365 190,365 190,500" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="334.4" y="341.0" width="31.2" height="22" fill="white"/>
+<text x="350.0" y="357.0" font-size="14" text-anchor="middle" fill="#2457a6">No</text>
+<polyline points="640.0,420 640.0,500" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="620.6" y="436.0" width="38.8" height="22" fill="white"/>
+<text x="640.0" y="452.0" font-size="14" text-anchor="middle" fill="#2457a6">Yes</text>
+<polyline points="320,555 510,555" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="357.6" y="531.0" width="114.8" height="22" fill="white"/>
+<text x="415.0" y="547.0" font-size="14" text-anchor="middle" fill="#2457a6">Authenticated</text>
+<polyline points="770,555 950,555" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="840.6" y="531.0" width="38.8" height="22" fill="white"/>
+<text x="860.0" y="547.0" font-size="14" text-anchor="middle" fill="#2457a6">Yes</text>
+<polyline points="640.0,610 640.0,710" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="624.4" y="636.0" width="31.2" height="22" fill="white"/>
+<text x="640.0" y="652.0" font-size="14" text-anchor="middle" fill="#2457a6">No</text>
+<polyline points="640.0,820 640.0,890" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="601.6" y="831.0" width="76.8" height="22" fill="white"/>
+<text x="640.0" y="847.0" font-size="14" text-anchor="middle" fill="#2457a6">Continue</text>
+<polyline points="640.0,1000 640.0,1070" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="575.0" y="1011.0" width="130.0" height="22" fill="white"/>
+<text x="640.0" y="1027.0" font-size="14" text-anchor="middle" fill="#2457a6">Continue / skip</text>
+<polyline points="640,1180 640,1215 190,1215 190,1250" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="575.0" y="1173.5" width="130.0" height="22" fill="white"/>
+<text x="640.0" y="1189.5" font-size="14" text-anchor="middle" fill="#2457a6">Continue / skip</text>
+<polyline points="320,1305 510,1305" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="350.0" y="1281.0" width="130.0" height="22" fill="white"/>
+<text x="415.0" y="1297.0" font-size="14" text-anchor="middle" fill="#2457a6">Continue / skip</text>
+<polyline points="770,1305 950,1305" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="821.6" y="1281.0" width="76.8" height="22" fill="white"/>
+<text x="860.0" y="1297.0" font-size="14" text-anchor="middle" fill="#2457a6">Continue</text>
+<polyline points="1210,1305 1240,1305 1240,555 1210,555" fill="none" stroke="#2457a6" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="1087.1999999999998" y="526" width="114.8" height="22" fill="white"/>
+<text x="1144.6" y="542" font-size="14" text-anchor="middle" fill="#2457a6">Enter FocusUp</text>
+<rect x="510" y="130" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="526" y="160" font-size="18" font-weight="700" fill="#17202a">Open FocusUp</text>
+<text x="526" y="186" font-size="15" fill="#17202a">App checks sign-in state</text>
+<rect x="510" y="310" width="260" height="110" rx="8" fill="#e8effb" stroke="#2457a6" stroke-width="2"/>
+<text x="526" y="340" font-size="18" font-weight="700" fill="#17202a">Already signed in?</text>
+<text x="526" y="366" font-size="15" fill="#17202a">Root routing in MyApp.swift</text>
+<rect x="60" y="500" width="260" height="123" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="76" y="530" font-size="18" font-weight="700" fill="#17202a">Sign in / Create</text>
+<text x="76" y="553" font-size="18" font-weight="700" fill="#17202a">account</text>
+<text x="76" y="579" font-size="15" fill="#17202a">Sign in with Apple or email</text>
+<text x="76" y="599" font-size="15" fill="#17202a">/ password</text>
+<rect x="510" y="500" width="260" height="110" rx="8" fill="#e8effb" stroke="#2457a6" stroke-width="2"/>
+<text x="526" y="530" font-size="18" font-weight="700" fill="#17202a">Setup already complete?</text>
+<text x="526" y="556" font-size="15" fill="#17202a">Checked for the signed-in</text>
+<text x="526" y="576" font-size="15" fill="#17202a">account</text>
+<rect x="950" y="500" width="260" height="110" rx="8" fill="#1c3f78" stroke="#1c3f78" stroke-width="2"/>
+<text x="966" y="530" font-size="18" font-weight="700" fill="#ffffff">Main app</text>
+<text x="966" y="556" font-size="15" fill="#ffffff">Home / Quests / Player /</text>
+<text x="966" y="576" font-size="15" fill="#ffffff">Friends</text>
+<rect x="510" y="710" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="526" y="740" font-size="18" font-weight="700" fill="#17202a">Create Your Player</text>
+<text x="526" y="766" font-size="15" fill="#17202a">Choose a name and avatar</text>
+<rect x="510" y="890" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="526" y="920" font-size="18" font-weight="700" fill="#17202a">Screen Time access</text>
+<text x="526" y="946" font-size="15" fill="#17202a">Allow access, or skip for</text>
+<text x="526" y="966" font-size="15" fill="#17202a">now</text>
+<rect x="510" y="1070" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="526" y="1100" font-size="18" font-weight="700" fill="#17202a">Notifications</text>
+<text x="526" y="1126" font-size="15" fill="#17202a">Enable, or skip for now</text>
+<rect x="60" y="1250" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="76" y="1280" font-size="18" font-weight="700" fill="#17202a">Lock Your First Group</text>
+<text x="76" y="1306" font-size="15" fill="#17202a">Choose apps and rules, or</text>
+<text x="76" y="1326" font-size="15" fill="#17202a">skip</text>
+<rect x="510" y="1250" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="526" y="1280" font-size="18" font-weight="700" fill="#17202a">Add Your Quests</text>
+<text x="526" y="1306" font-size="15" fill="#17202a">At least one quest; priority</text>
+<text x="526" y="1326" font-size="15" fill="#17202a">and optional deadline</text>
+<rect x="950" y="1250" width="260" height="110" rx="8" fill="#ffffff" stroke="#d8dde6" stroke-width="2"/>
+<text x="966" y="1280" font-size="18" font-weight="700" fill="#17202a">Player reveal</text>
+<text x="966" y="1306" font-size="15" fill="#17202a">Enter FocusUp; mark setup</text>
+<text x="966" y="1326" font-size="15" fill="#17202a">complete</text>
+<rect x="60" y="1450" width="1140" height="90" rx="8" fill="#f2f4f7" stroke="#d8dde6" stroke-width="2"/>
+<text x="76" y="1480" font-size="18" font-weight="700" fill="#505866">If Screen Time is denied</text>
+<text x="76" y="1506" font-size="15" fill="#505866">Continue without a group. Enable permission later in iOS Settings before blocking apps.</text>
+<text x="40" y="1582" font-size="14" fill="#505866">Returning players skip setup after signing in. Screen Time, notifications and the first group have skip paths; app blocking requires Screen Time</text>
+<text x="40" y="1602" font-size="14" fill="#505866">approval.</text>
+</g></svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="740" viewBox="0 0 640 740" role="img" aria-labelledby="title desc">
+  <title id="title">timePiece architecture</title>
+  <desc id="desc">An Android watch catalog app connects to a Java backend JAR on the team VM. The backend connects to MariaDB for watch and user data. Scott worked on the backend and shared deployment.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="#2457a6"/></marker>
+  </defs>
+  <rect width="640" height="740" rx="8" fill="#f2f4f7"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="40" y="55" font-size="34" font-weight="700" fill="#17202a">timePiece</text>
+    <text x="40" y="85" font-size="17" fill="#505866">Android watch catalog · COM S 3090</text>
+    <rect x="40" y="118" width="560" height="122" rx="8" fill="#fff" stroke="#d8dde6"/>
+    <text x="65" y="154" font-size="13" font-weight="700" fill="#505866">ANDROID APP · FRONTEND TEAM</text>
+    <text x="65" y="189" font-size="24" font-weight="700" fill="#17202a">Browse, favorite, and sell watches</text>
+    <text x="65" y="219" font-size="17" fill="#505866">Java · Android Studio</text>
+    <path d="M320 253 V303" fill="none" stroke="#2457a6" stroke-width="3" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+    <text x="345" y="284" font-size="15" fill="#505866">Requests / responses</text>
+    <rect x="40" y="317" width="560" height="150" rx="8" fill="#1c3f78"/>
+    <text x="65" y="351" font-size="13" font-weight="700" fill="#fff">MY ROLE · BACKEND DEVELOPER</text>
+    <text x="65" y="390" font-size="26" font-weight="700" fill="#fff">Java backend JAR</text>
+    <text x="65" y="420" font-size="17" fill="#fff">Watch catalog endpoints · team VM</text>
+    <text x="65" y="447" font-size="16" fill="#fff">Deployment shared with my backend partner</text>
+    <path d="M320 480 V530" fill="none" stroke="#2457a6" stroke-width="3" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+    <text x="345" y="511" font-size="15" fill="#505866">Read / write data</text>
+    <rect x="40" y="544" width="560" height="122" rx="8" fill="#fff" stroke="#d8dde6"/>
+    <text x="65" y="580" font-size="13" font-weight="700" fill="#505866">SHARED DATABASE</text>
+    <text x="65" y="615" font-size="26" font-weight="700" fill="#17202a">MariaDB</text>
+    <text x="65" y="644" font-size="17" fill="#505866">Watch catalog and user data</text>
+    <text x="40" y="709" font-size="14" fill="#505866">Architecture overview · not an app screenshot</text>
+  </g>
+</svg>

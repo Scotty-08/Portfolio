@@ -1,0 +1,10 @@
+<svg viewBox="0 0 200 400" role="img" aria-label="Concept mockup of a focus timer screen">
+        <rect x="4" y="4" width="192" height="392" rx="28" fill="#0b0e19" stroke="#2a3150" stroke-width="3"/>
+        <text x="100" y="52" fill="#9aa3bf" font-size="12" text-anchor="middle" font-family="system-ui">Focus Session</text>
+        <circle cx="100" cy="170" r="70" fill="none" stroke="#232a45" stroke-width="12"/>
+        <circle cx="100" cy="170" r="70" fill="none" stroke="#6c8cff" stroke-width="12" stroke-linecap="round" stroke-dasharray="440" stroke-dashoffset="150" transform="rotate(-90 100 170)"/>
+        <text x="100" y="178" fill="#e8ebf5" font-size="28" text-anchor="middle" font-family="system-ui" font-weight="600">25:00</text>
+        <text x="100" y="270" fill="#9aa3bf" font-size="12" text-anchor="middle" font-family="system-ui">Study: Circuits</text>
+        <rect x="45" y="305" width="110" height="38" rx="19" fill="#6c8cff"/>
+        <text x="100" y="329" fill="#fff" font-size="14" text-anchor="middle" font-family="system-ui" font-weight="600">Start</text>
+      </svg>
