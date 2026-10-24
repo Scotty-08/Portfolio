@@ -1,155 +1,196 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scott Gray | Portfolio</title>
-    <link rel="stylesheet" href="styles.css?v=3" />
-    <link rel="stylesheet" href="polish.css?v=4" />
-  <link rel="stylesheet" href="interactive.css?v=4" /></head>
-  <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <header class="site-header">
-      <a class="logo" href="index.html">SG</a>
-      <button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" hidden>Menu</button>
-      <nav id="main-navigation" aria-label="Main navigation">
-        <a class="active" href="index.html">Home</a>
-        <a href="projects.html">Projects</a>
-        <a href="work.html">Work Experience</a>
-        <a href="about.html">About Me</a>
-        <a href="contact.html">Contact</a>
-        <a href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      </nav>
-    </header>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scott Gray | Portfolio</title>
+<meta name="description" content="Scott Gray, computer engineering student at Iowa State. Projects in iOS, backend, web and embedded systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Public+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<a class="sr" href="#main">Skip to content</a>
+<aside class="rail" id="rail" aria-label="Site">
+  <a class="who" href="#home" data-nav="home"><img src="assets/scott-headshot.jpg" alt="Scott Gray" width="56" height="56"><span><b>Scott Gray</b><small>Computer engineering, Iowa State</small></span></a>
+  <nav class="nav" aria-label="Pages">
+    <a href="#home" data-nav="home">Home</a>
+    <a href="#projects" data-nav="projects">Projects</a>
+    <a href="#work" data-nav="work">Work experience</a>
+    <a href="#about" data-nav="about">About me</a>
+    <a href="#contact" data-nav="contact">Contact</a>
+  </nav>
+  <div class="tools">
+    <button class="btn small" id="openPal" type="button">Search <kbd>Ctrl K</kbd></button>
+  </div>
+</aside>
 
-    <main id="main-content">
-      <section class="hero page-band">
-        <div class="hero-copy">
-          <p class="eyebrow">Iowa State Computer Engineering</p>
-          <h1>Scott Gray<span style="color:var(--accent)">.</span></h1>
-          <p class="hero-subtitle">Build. Test. Figure it out.</p>
-          <p class="intro">
-            I am a computer engineering student from Council Bluffs, Iowa. I like
-            building projects where I can see the logic work, break, and improve
-            as I test it. My work includes an iPhone productivity app, an Android app backend, interactive web pages, a maze solver, and a team robotics project.
-          </p>
-          <div class="hero-actions">
-            <a class="primary-link" href="projects.html">Projects</a>
-            <a class="secondary-link" href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-            <a class="text-link" href="#learning">What I am learning ↓</a>
+<main id="main">
+  <div class="top"><img src="assets/scott-headshot.jpg" alt="" width="36" height="36"><b>Scott Gray</b><button class="btn small" id="menuBtn" type="button" aria-expanded="false" aria-controls="rail">Menu</button></div>
+
+  <!-- HOME -->
+  <section class="view" id="v-home" aria-labelledby="h-home">
+    <p class="hello">Hi, I'm a junior at Iowa State studying computer engineering. I build apps, backends and small robots.</p>
+    <h1 class="name" id="h-home"><span>Scott</span><span>Gray</span></h1>
+    <p class="lede">This site is a working sample of what I make. Draw walls in the maze below and the search reroutes around them.</p>
+    <div class="hero-actions">
+      <button class="btn solid" type="button" data-go="projects">See my projects</button>
+      <button class="btn" type="button" data-resume="software">Read my resume</button>
+      <button class="btn quiet" type="button" data-go="contact">Contact me</button>
+    </div>
+    <div class="mazewrap" id="mazePanel">
+      <div class="maze" id="maze" role="group" aria-label="Maze. Click or drag cells to add or remove walls."></div>
+      <div class="mbar">
+        <span class="grow" id="mStatus" aria-live="polite">Placing walls</span>
+        <span>Cells searched <b id="mVisited">0</b></span>
+        <span>Path length <b id="mPath">0</b></span>
+        <button class="btn small" id="mNew" type="button">New maze</button>
+        <button class="btn small quiet" id="mToggle" type="button">Pause</button>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h2>Recent work</h2>
+      <p class="intro">Each project opens inside this site, with the screens, notes and a demo you can use.</p>
+      <ul class="plist" id="homeList"></ul>
+      <p style="margin-top:18px"><button class="btn" type="button" data-go="projects">All projects</button></p>
+    </div>
+
+    <div class="sec" id="learning">
+      <h2>What I'm learning</h2>
+      <p class="intro">Two things I'm working on right now. Pick one and try the demo.</p>
+      <div class="pills">
+        <button class="btn" type="button" data-skill="react" aria-pressed="true">React</button>
+        <button class="btn" type="button" data-skill="websockets" aria-pressed="false">WebSockets</button>
+      </div>
+      <div class="tg">
+        <div>
+          <h3 id="dName" style="font-size:34px;margin-bottom:6px">React</h3>
+          <p id="dStatus" style="color:var(--red-ink);font-weight:700;margin-bottom:10px">Currently learning</p>
+          <p id="dDesc"></p>
+          <p id="dEx"></p>
+          <p><a class="btn small" id="dLink" href="#react-cards" data-go="p:react-cards">Open the project</a></p>
+          <div class="relp"><span id="relReact" class="on">React</span><span id="relWs" class="off">WebSockets</span></div>
+        </div>
+        <div class="stage" style="align-self:start">
+          <div id="demoReact">
+            <p class="note" style="margin:0 0 12px">Change the props. The card and the JSX update.</p>
+            <div class="formgrid">
+              <label class="field" for="rName">Name<input id="rName" value="Maria Lopez"></label>
+              <label class="field" for="rSalary">Salary<input id="rSalary" type="number" value="82000"></label>
+              <label class="field" for="rMarital">Marital status<select id="rMarital"><option>Single</option><option>Married</option><option>Divorced</option></select></label>
+              <label class="field" for="rAddress">Address<input id="rAddress" value="12 Elm St, Ames, IA"></label>
+            </div>
+            <div class="ucard" style="margin-top:14px"><div class="av" id="rAvatar">M</div><div><strong id="uName"></strong><p id="uSalary"></p><p id="uMarital"></p><p id="uAddress"></p></div></div>
+            <div class="code" id="rCode"></div>
+          </div>
+          <div id="demoWs" hidden>
+            <p class="note" style="margin:0 0 12px">A simulation with example watches. Open the connection, then change something on the server.</p>
+            <div class="toolbar">
+              <button class="btn small" id="wsConn" type="button">Open connection</button>
+              <button class="btn small quiet" id="wsAdd" type="button">Server: drop a price</button>
+              <button class="btn small quiet" id="wsSell" type="button">Server: sell a watch</button>
+              <button class="btn small quiet" id="wsRefresh" type="button">App: refresh (HTTP)</button>
+              <button class="btn small quiet" id="wsReset" type="button">Reset</button>
+            </div>
+            <div class="wsgrid">
+              <div class="wsbox"><h5>Android app</h5><ul id="appList"></ul></div>
+              <div class="wslink" id="wsLink"><span>socket <b id="wsState">closed</b></span></div>
+              <div class="wsbox"><h5>Backend</h5><ul id="srvList"></ul></div>
+            </div>
+            <div class="wslog" id="wsLog" aria-live="polite"></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="profile-panel">
-          <img
-            class="feature-photo"
-            src="assets/family-deck.jpeg"
-            alt="Scott Gray with family in Council Bluffs"
-          />
-          <div class="quick-facts">
-            <span>Iowa State University</span>
-            <span>Computer Engineering</span>
-            <span>Council Bluffs, Iowa</span>
-          </div>
-        </div>
-      </section>
+  <!-- PROJECTS -->
+  <section class="view" id="v-projects" hidden aria-labelledby="h-projects">
+    <h1 class="plain-h" id="h-projects" style="font-size:clamp(52px,9vw,110px);font-stretch:62%;font-weight:900;line-height:.9">Projects</h1>
+    <p class="lede" style="margin-bottom:28px">Seven projects across phones, backends, web and hardware. Hover one to preview it, then open it for the full write-up.</p>
+    <div class="filters" id="filters" role="group" aria-label="Filter projects"></div>
+    <div class="split">
+      <ul class="plist" id="projList"></ul>
+      <div class="peekcol"><div class="peek" id="peek" aria-live="polite"></div></div>
+    </div>
+    <p class="note" id="pCount" style="margin-top:14px"></p>
+  </section>
 
-      <section class="section" aria-labelledby="projects-title">
-        <div class="section-heading section-heading-row">
-          <div><p class="eyebrow">What I have worked on</p><h2 id="projects-title">Explore my projects</h2></div>
-          <a class="text-link" href="projects.html">All project details →</a>
-        </div>
-        <aside class="exploration-panel" aria-label="Project exploration" hidden>
-          <div><p class="eyebrow">Your discovery trail</p><strong class="exploration-count" role="status">Projects explored: 0/6</strong><p class="exploration-message small-copy">Open a project to start exploring.</p></div>
-          <div class="exploration-meter"><progress max="6" value="0" aria-label="Projects explored"></progress><span class="exploration-badge">Curious visitor</span></div>
-        </aside>
-        <div class="filter-bar" role="group" aria-label="Filter projects">
-          <button type="button" data-filter="all" aria-pressed="true">All projects</button>
-          <button type="button" data-filter="mobile" aria-pressed="false">iOS app</button>
-          <button type="button" data-filter="backend" aria-pressed="false">Backend development</button>
-          <button type="button" data-filter="web" aria-pressed="false">Web development</button>
-          <button type="button" data-filter="hardware" aria-pressed="false">Hardware &amp; robotics</button>
-          <button type="button" data-filter="learning" aria-pressed="false">Currently learning</button>
-        </div>
-        <p id="project-count" class="small-copy" role="status">6 projects shown</p>
-        <div class="preview-grid">
-          <article class="preview-card" data-category="mobile">
-            <p class="eyebrow">Personal project · Co-developed · iOS</p>
-            <h3>FocusUp</h3>
-            <p>An iPhone productivity app that turns tasks into quests and helps limit distracting apps. Co-built with my roommate and shared with testers through TestFlight.</p>
-            <div class="tags"><span>SwiftUI</span><span>Screen Time</span><span>Supabase</span><span>Canvas</span></div>
-            <a class="text-link card-link" href="project.html?id=focusup">Explore FocusUp &rarr;</a>
-          </article>
-          
+  <!-- PROJECT DETAIL -->
+  <section class="view" id="v-project" hidden aria-labelledby="pdTitle">
+    <button class="back" type="button" data-go="projects">Back to projects</button>
+    <div class="pd-head"><h1 id="pdTitle"></h1><p class="kind" id="pdKind"></p></div>
+    <div class="pd-body">
+      <div id="pdMain"></div>
+      <aside class="facts"><dl id="pdFacts"></dl></aside>
+    </div>
+    <div class="tabs" id="pdTabs" role="tablist" aria-label="Explore this project"></div>
+    <div class="stage" id="pdStage" role="tabpanel"></div>
+    <div class="pn" id="pdNav"></div>
+  </section>
 
-          <article class="preview-card" data-category="backend">
-            <p class="eyebrow">COM S 3090 · Java / MariaDB</p>
-            <h3>timePiece</h3>
-            <p>A team Android app for browsing, favoriting, and selling watches. I worked on the catalog backend and deployed the backend with my backend partner.</p>
-            <div class="tags"><span>Backend developer</span><span>MariaDB</span><span>Team of 4</span></div>
-            <a class="text-link card-link" href="project.html?id=timepiece">Explore timePiece &rarr;</a>
-          </article>
-          <article class="preview-card" data-category="web">
-            <p class="eyebrow">3190 · HTML / CSS / JavaScript / JSON</p>
-            <h3>ISU Jeopardy</h3>
-            <p>An Iowa State game with four categories, 16 questions, and score tracking for two teams. It grew into a JSON-driven game hub.</p>
-            <div class="tags"><span>JSON data</span><span>Game logic</span><span>Team scoring</span></div>
-            <a class="text-link card-link" href="project.html?id=jeopardy">Explore the project →</a>
-          </article>
-          <article class="preview-card" data-category="web">
-            <p class="eyebrow">HTML / CSS / JavaScript</p>
-            <h3>Maze Solver Visualizer</h3>
-            <p>Build a maze, place the start and finish, and watch breadth-first search find a route through the grid.</p>
-            <div class="tags"><span>Algorithms</span><span>Click events</span><span>Live demo</span></div>
-            <a class="text-link card-link" href="project.html?id=maze-solver">Try the maze solver →</a>
-          </article>
-          <article class="preview-card" data-category="hardware">
-            <p class="eyebrow">CPRE 288 · C / Robotics</p>
-            <h3>Autonomous Tree Cutter</h3>
-            <p>A team robot project where I worked on C control logic, tested movement, and debugged behavior with my teammates.</p>
-            <div class="tags"><span>C</span><span>Hardware testing</span><span>Teamwork</span></div>
-            <a class="text-link card-link" href="project.html?id=tree-cutter">See the robot project →</a>
-          </article>
-          <article class="preview-card" data-category="learning">
-            <p class="eyebrow">3190 · Currently learning</p>
-            <h3>React User Cards</h3>
-            <p>Activity 09 uses React, Vite, and React-Bootstrap to display reusable cards with information passed through props.</p>
-            <div class="tags"><span>React</span><span>Components</span><span>Props</span></div>
-            <a class="text-link card-link" href="project.html?id=react-cards">What I am learning →</a>
-          </article>
-        </div>
-      </section>
+  <!-- WORK -->
+  <section class="view" id="v-work" hidden aria-labelledby="h-work">
+    <h1 class="plain-h" id="h-work" style="font-size:clamp(52px,9vw,110px);font-stretch:62%;font-weight:900;line-height:.9;margin-bottom:36px">Work experience</h1>
+    <ul class="tl">
+      <li><div class="when">April 2024 to now</div><div><h3>Courtesy patrol and cashier, Menards</h3><p style="color:var(--muted)">Council Bluffs, Iowa</p>
+        <ul><li>Run the register and help customers find what they need.</li><li>Walk the lot and the floor on courtesy patrol, so people get help without having to ask twice.</li><li>Work shifts around classes, which taught me to plan my week.</li></ul></div></li>
+      <li><div class="when">March 2022 to June 2024</div><div><h3>Landscaper, J&amp;A Mowing</h3><p style="color:var(--muted)">Council Bluffs, Iowa</p>
+        <ul><li>Mowed, trimmed and edged residential lawns on a crew.</li><li>Kept equipment running and loaded for the day's route.</li><li>Learned to work outside, on a schedule, with a small team.</li></ul></div></li>
+    </ul>
+    <p style="margin-top:36px">Looking for the technical side? <a href="#projects" data-go="projects">The projects page</a> has it.</p>
+  </section>
 
-      <section id="learning" class="section" aria-labelledby="learning-title">
-        <div class="section-heading">
-          <p class="eyebrow">Building on the basics</p>
-          <h2 id="learning-title">What I am learning</h2>
-          <p>In ISU’s 3190 web development class, I have moved from page structure to data and interaction. Select a skill to see how I have used it.</p>
-        </div>
-        <div class="skill-explorer">
-          <div class="skill-buttons" role="group" aria-label="Explore a web development skill">
-            <button type="button" data-skill="html-css" aria-pressed="true" disabled>HTML &amp; CSS</button>
-            <button type="button" data-skill="javascript" aria-pressed="false" disabled>JavaScript</button>
-            <button type="button" data-skill="json" aria-pressed="false" disabled>JSON</button>
-            <button type="button" data-skill="react" aria-pressed="false" disabled>React <span>Learning now</span></button>
-          </div>
-          <article id="skill-panel" class="skill-panel" aria-live="polite" aria-atomic="true">
-            <p id="skill-status" class="eyebrow">Putting it into practice</p>
-            <h3 id="skill-title">HTML &amp; CSS</h3>
-            <p id="skill-description">I build pages with semantic HTML, navigation, images, and layouts. I have also used Bootstrap for catalogs and components.</p>
-            <p id="skill-example" class="skill-example">On this portfolio, HTML gives each page its structure and CSS controls the layout, colors, and responsive design.</p>
-            <a id="skill-project" class="text-link" href="project.html?id=jeopardy">See my web projects →</a>
-          </article>
-        </div>
-        <p id="skill-load-status" class="small-copy" role="status"></p>
-        <noscript><p>Enable JavaScript to use the filters and skill explorer. All six projects and their details are available above.</p></noscript>
-      </section>
-      <section class="section contact-strip">
-        <div><p class="eyebrow">Keep in touch</p><h2>Let’s build something.</h2><p>I am open to internships and project opportunities in software and computer engineering.</p></div>
-        <a class="primary-link" href="contact.html">Get in touch →</a>
-      </section>
-    </main>
-  <footer class="site-footer"><span>Scott Gray · Iowa State Computer Engineering</span><a class="text-link" href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">View my GitHub ↗</a></footer>
-    <script src="portfolio.js?v=4" defer></script>
-  <script src="ambient.js?v=4" defer></script></body>
+  <!-- ABOUT -->
+  <section class="view" id="v-about" hidden aria-labelledby="h-about">
+    <h1 class="plain-h" id="h-about" style="font-size:clamp(52px,9vw,110px);font-stretch:62%;font-weight:900;line-height:.9">About me</h1>
+    <div class="about-top" style="margin-top:28px">
+      <img src="assets/scott-headshot.jpg" alt="Scott Gray in a navy suit with the Iowa State Campanile behind him" width="240" height="240">
+      <div>
+        <p class="lede">I was adopted from Guatemala and I've lived in Council Bluffs, Iowa my whole life. Now I'm studying computer engineering at Iowa State.</p>
+        <p>I got into computer engineering because I was good at math and science, and an HTML class got me interested in coding. What made the decision was learning how computer engineers work with robotics.</p>
+        <p>When I was young, my dad fell from a zipline, and the fall left his left side paralyzed. His therapist guided him through recovery, and the robotics at Madonna Rehabilitation Hospital helped too. That technology is the main reason I chose computer engineering.</p>
+        <p>I want to build on the technology we have today so it can help people like my dad heal, or make their everyday lives easier.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="view" id="v-contact" hidden aria-labelledby="h-contact">
+    <h1 class="plain-h" id="h-contact" style="font-size:clamp(52px,9vw,110px);font-stretch:62%;font-weight:900;line-height:.9">Contact</h1>
+    <p class="lede" style="margin-bottom:30px">I'm looking for internships and happy to talk about a project. Email is the fastest way to reach me.</p>
+    <div class="contact-list">
+      <div><div><small>Email</small><b class="mail">grayscott07@outlook.com</b></div><button class="btn small" id="copyMail" type="button">Copy address</button></div>
+      <div><div><small>Phone</small><b>402-990-3568</b></div></div>
+      <div><div><small>GitHub</small><b>github.com/Scotty-08</b></div><a class="btn small" href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">Open GitHub</a></div>
+    </div>
+    <p>Two resumes, so you get the one that fits the role.</p>
+    <div class="hero-actions" style="margin-top:0">
+      <button class="btn solid" type="button" data-resume="software">Software resume</button>
+      <button class="btn" type="button" data-resume="embedded">Embedded resume</button>
+    </div>
+  </section>
+</main>
+
+<dialog id="pal" aria-label="Search the site">
+  <div class="psearch"><kbd>Ctrl K</kbd><input id="palQ" type="text" placeholder="Jump to a page, project or action" aria-label="Search" autocomplete="off" role="combobox" aria-controls="palList" aria-expanded="true"></div>
+  <div id="palList" role="listbox"></div>
+  <div class="pfoot"><span><kbd>Up</kbd> <kbd>Down</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
+</dialog>
+
+<dialog id="res" aria-label="Resume">
+  <div class="rtop">
+    <button class="btn small rtab" type="button" data-rtab="software" aria-pressed="true">Software</button>
+    <button class="btn small rtab" type="button" data-rtab="embedded" aria-pressed="false">Embedded</button>
+    <span class="grow" id="resNote"></span>
+    <button class="btn small" id="resClose" type="button">Close</button>
+  </div>
+  <div class="rscroll"><img id="resImgSoftware" src="assets/resume-software.png" alt="Scott Gray software resume"><img id="resImgEmbedded" src="assets/resume-embedded.png" alt="Scott Gray embedded resume" hidden></div>
+</dialog>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script src="js/app.js"></script>
+</body>
 </html>
