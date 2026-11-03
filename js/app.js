@@ -467,7 +467,7 @@
 
   /* ================= learning ================= */
   const SKILLS = {
-    react: { name: 'React', status: 'Currently learning', desc: 'I am learning React with Vite in Iowa State\'s COM S 3190 web development class, starting with reusable components and props.', ex: 'In Activity 09, App.jsx passes a picture, name, salary, marital status and address into reusable UserCard components built with React-Bootstrap.', go: 'p:react-cards', link: '#project-react-cards', text: 'Open the React project' },
+    react: { name: 'React', status: 'Currently learning', desc: 'I am learning React with Vite in Iowa State\'s COM S 3190 web development class, starting with reusable components and props and moving on to state and hooks.', ex: 'I started with reusable UserCard components that take props. My most recent project is a shopping cart that keeps its items in state, groups repeats with reduce and updates the total with useEffect.', go: 'p:react-cart', link: '#project-react-cart', text: 'Open the shopping cart project' },
     websockets: { name: 'WebSockets', status: 'Learning and using it in COM S 3090', desc: 'One connection stays open between the Android app and the backend, so the server can send an update the moment something changes instead of waiting for the app to ask.', ex: 'On timePiece, my endpoints push live price updates and sold-watch notifications. The demo is a simulation with example watches, not the real server.', go: 'p:timepiece', link: '#project-timepiece', text: 'Open timePiece' }
   };
   function pickSkill(id) {
