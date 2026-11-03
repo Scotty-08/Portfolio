@@ -10,21 +10,21 @@ import items from "./data/fashion.json";
     }
     const listItems = items.map((el) => (
     
-        <div class="row border-top border-bottom" key={el._id}>
-        <div class="row main align-items-center">
-        <div class="col-2">
-            <img class="img-fluid" src={el.image} />
+        <div className="row border-top border-bottom" key={el._id}>
+        <div className="row main align-items-center">
+        <div className="col-2">
+            <img className="img-fluid" src={el.image} />
         </div>
-        <div class="col">
-            <div class="row text-muted">{el.title}</div>
-            <div class="row">{el.category}</div>
+        <div className="col">
+            <div className="row text-muted">{el.title}</div>
+            <div className="row">{el.category}</div>
         </div>
-        <div class="col">
-            <button type="button" variant="light" onClick={() => removeFromCart(el)} > - </button>{" "}
-            <button type="button" variant="light" onClick={() => addToCart(el)}> + </button>
+        <div className="col">
+            <button type="button" onClick={() => removeFromCart(el)} > - </button>{" "}
+            <button type="button" onClick={() => addToCart(el)}> + </button>
         </div>
-        <div class="col">
-            ${el.price} <span class="close">&#10005;</span>{howManyofThis(el._id)}
+        <div className="col">
+            ${el.price} <span className="close">&#10005;</span>{howManyofThis(el._id)}
         </div>
         </div>
         </div>
@@ -82,14 +82,14 @@ import items from "./data/fashion.json";
     <div className="card">
         <div className="row">
         <div className="col-md-8 cart">
-        <div class="title">
-        <div class="row">
-            <div class="col">
+        <div className="title">
+        <div className="row">
+            <div className="col">
             <h4>
             <b>319 Shopping Cart</b>
             </h4>
             </div>
-            <div class="col align-self-center text-right text-muted">
+            <div className="col align-self-center text-right text-muted">
             Products selected {cart.length}
             </div>
         </div>
