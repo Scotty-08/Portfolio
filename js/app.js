@@ -40,6 +40,10 @@
       facts: [['Course', 'COM S 3190'], ['Tools', 'React, Vite, React-Bootstrap'], ['Idea', 'One component, many cards']],
       overview: ['In Activity 09, App.jsx passes a picture, name, salary, marital status and address into a reusable UserCard component built with React-Bootstrap.', 'It is a small project, and it is where React clicked for me: write the card once, describe each person as data, and let React draw the rest.'],
       mine: [['Components', 'UserCard is one function that returns the markup for a single person.'], ['Props', 'App.jsx holds an array of users and passes each one down as props.'], ['Bootstrap', 'React-Bootstrap supplies the card layout so I could focus on the data flow.']] },
+    { id: 'react-cart', cat: 'learning', title: 'React Shopping Cart', kind: 'Class activity, React', desc: 'A small store in React and Bootstrap. Add and remove products, and the cart groups repeats with a quantity and keeps a running total.', tags: ['React', 'useState', 'useEffect', 'Bootstrap', 'JSON'],
+      facts: [['Tools', 'React, Vite, Bootstrap'], ['Data', '20 products from a JSON file'], ['Hooks', 'useState and useEffect'], ['Source', 'react-shopping-cart/ in the repo']],
+      overview: ['A class activity where I built a store in React. Twenty products load from a JSON file, and each one has a plus and a minus button.', 'The cart groups repeated items into one line with a quantity, shows how many of each item is in the cart, and updates the order total whenever the cart changes. I started with a plain list and then rebuilt the layout with Bootstrap.'],
+      mine: [['State with useState', 'The cart is one array in state. Adding an item copies the array and appends it, so React sees a new value and redraws.'], ['Total with useEffect', 'An effect runs whenever the cart changes and adds up the prices into the order total.'], ['Grouping with reduce', 'reduce turns the flat cart into one entry per product with a quantity, so two jackets show as one line, times 2.'], ['Removing one copy', 'The minus button finds the first matching item and splices out a single copy, so the rest stay in the cart.'], ['Two versions', 'shopping.jsx is the first plain version. ShoppingBootstrap.jsx is the finished store layout.']] },
     { id: 'robot-gui', cat: 'hardware', title: 'Robot Sensor Visualizer', kind: 'Python, embedded resume project', desc: 'A live Python GUI for a robot: a 180 degree polar plot of what the sensors see, with a switch between autonomous and manual control.', tags: ['Python', 'Matplotlib', 'Tkinter'],
       facts: [['Language', 'Python'], ['Plot', 'Matplotlib polar, 180 degrees'], ['Interface', 'Tkinter'], ['Modes', 'Autonomous and manual']],
       overview: ['A desktop tool that shows a robot\'s sensor sweep as a live polar plot, so you can see obstacles around it as the data arrives.', 'A Tkinter switch changes the robot between autonomous driving and manual control from the same window.'],
@@ -60,6 +64,7 @@
     })(),
     'tree-cutter': '<div class="pa-bot"><svg viewBox="0 0 200 70" aria-hidden="true"><path d="M10 55 C 50 55, 50 15, 90 15 S 150 55, 190 20" stroke-width="2"/></svg></div>',
     'react-cards': '<div class="pa-cards"><b>UserCard</b><b>UserCard</b><b>UserCard</b></div>',
+    'react-cart': '<div class="pa-cart"><i></i><i></i><i></i><b>Total</b></div>',
     'robot-gui': '<div class="pa-polar"><svg viewBox="0 0 200 105" aria-hidden="true"><path d="M10 100 A90 90 0 0 1 190 100 Z" fill="none" stroke="currentColor" opacity=".3"/><path d="M55 100 A45 45 0 0 1 145 100" fill="none" stroke="currentColor" opacity=".3"/><line x1="100" y1="100" x2="100" y2="14"/></svg></div>'
   };
 
@@ -395,6 +400,42 @@
     $('#rcAdd', s).addEventListener('click', () => { n++; draw(); }); $('#rcRm', s).addEventListener('click', () => { n--; draw(); }); draw();
   }
 
+
+  /* React shopping cart */
+  const SHOP = [[1,"Long sleeve Jacket","women",150,"2584269/pexels-photo-2584269.jpeg"],[2,"Jacket with wollen hat","women",65,"2681751/pexels-photo-2681751.jpeg"],[3,"Compact fashion t-shirt","women",55.99,"2752045/pexels-photo-2752045.jpeg"],[4,"Blue jins","women",50,"1485031/pexels-photo-1485031.jpeg"],[5,"Skirts with full setup","women",695,"1631181/pexels-photo-1631181.jpeg"],[6,"Yellow Hoody","men",180,"1183266/pexels-photo-1183266.jpeg"],[7,"Black t-shirt for women","women",20,"2010812/pexels-photo-2010812.jpeg"],[8,"Gouwn with Red velvet","women",350,"2233703/pexels-photo-2233703.jpeg"],[9,"Pink beauty","women",100,"2065195/pexels-photo-2065195.jpeg"],[10,"Jean's stylish Jacket","men",245,"1040945/pexels-photo-1040945.jpeg"],[11,"Jamdani Saree","women",800,"3363204/pexels-photo-3363204.jpeg"],[12,"Black Jacket","men",140,"983497/pexels-photo-983497.jpeg"],[13,"Black top with jeans","women",120,"3672825/pexels-photo-3672825.jpeg"],[14,"Clothes with bag","kids",50,"36029/aroni-arsa-children-little.jpg"],[15,"Stylish jeans in lightblue","women",100,"2738792/pexels-photo-2738792.jpeg"],[16,"Unknown horizon","men",350,"2866077/pexels-photo-2866077.jpeg"],[17,"Light tops","women",120,"2010925/pexels-photo-2010925.jpeg"],[18,"Khakhi jeans","women",190,"3054973/pexels-photo-3054973.jpeg"],[19,"Black full sleeve","women",170,"2693849/pexels-photo-2693849.jpeg"],[20,"Formal for Men","men",490,"1043474/pexels-photo-1043474.jpeg"]];
+  const shopImg = (u) => (u.indexOf('http') === 0 ? u : 'https://images.pexels.com/photos/' + u + '?auto=compress&cs=tinysrgb&w=120');
+  function cartDemo(s) {
+    let cat = 'all', cart = [];
+    const items = SHOP.map((r) => ({ _id: r[0], title: r[1], category: r[2], price: r[3], image: shopImg(r[4]) }));
+    s.innerHTML = '<p class="note" style="margin:0 0 12px">Real products from the project\'s JSON file. The cart logic follows my React code.</p><div class="toolbar" id="scF"></div><div class="shop"><div class="shoplist" id="scL"></div><aside class="shopcart"><h4>Items in cart</h4><p class="note" style="margin:4px 0 10px" id="scN"></p><div id="scC"></div><p class="shoptotal"><span>Order total</span><b id="scT"></b></p><button class="btn small quiet" id="scX" type="button">Empty cart</button></aside></div>';
+    const fb = $('#scF', s);
+    ['all', 'women', 'men', 'kids'].forEach((c) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn small'; b.textContent = c === 'all' ? 'All' : c[0].toUpperCase() + c.slice(1); b.setAttribute('aria-pressed', String(c === 'all')); b.addEventListener('click', () => { cat = c; $$('.btn', fb).forEach((x) => x.setAttribute('aria-pressed', String(x === b))); draw(); }); fb.appendChild(b); });
+    const count = (id) => cart.filter((c) => c._id === id).length;
+    function draw() {
+      $('#scL', s).innerHTML = items.filter((it) => cat === 'all' || it.category === cat).map((it) =>
+        '<div class="shoprow"><img src="' + esc(it.image) + '" alt="" loading="lazy" width="48" height="48"><div class="si"><b>' + esc(it.title) + '</b><span>' + esc(it.category) + '</span></div><div class="sq"><button class="btn small quiet" type="button" data-m="' + it._id + '" aria-label="Remove one ' + esc(it.title) + '">-</button><output>' + count(it._id) + '</output><button class="btn small" type="button" data-p="' + it._id + '" aria-label="Add ' + esc(it.title) + '">+</button></div><div class="sp">$' + it.price + '</div></div>').join('');
+      $$('[data-p]', s).forEach((b) => b.addEventListener('click', () => { cart = cart.concat(items.filter((x) => x._id === +b.dataset.p)); draw(); }));
+      $$('[data-m]', s).forEach((b) => b.addEventListener('click', () => { const i = cart.findIndex((x) => x._id === +b.dataset.m); if (i !== -1) { cart = cart.slice(); cart.splice(i, 1); draw(); } }));
+      const grouped = cart.reduce((g, el) => { const f = g.find((x) => x._id === el._id); if (f) f.quantity += 1; else g.push(Object.assign({}, el, { quantity: 1 })); return g; }, []);
+      $('#scC', s).innerHTML = grouped.length ? grouped.map((g) => '<div class="cartline"><img src="' + esc(g.image) + '" alt="" width="40" height="40"><div><div>' + esc(g.title) + '</div><small>$' + g.price + ' x ' + g.quantity + '</small></div></div>').join('') : '<p class="note" style="margin:0">Nothing here yet. Press + on a product.</p>';
+      const total = cart.reduce((t, c) => t + c.price, 0);
+      $('#scT', s).textContent = '$' + (Math.round(total * 100) / 100);
+      $('#scN', s).textContent = 'Products selected ' + cart.length;
+    }
+    $('#scX', s).addEventListener('click', () => { cart = []; draw(); });
+    cart = items.filter((x) => x._id === 6).concat(items.filter((x) => x._id === 4), items.filter((x) => x._id === 6));
+    draw();
+  }
+  function cartCode(s) {
+    const blocks = [
+      ['Cart state', 'A flat array holds every item added. The total lives in its own state.', 'const [cart, setCart] = useState([]);\nconst [cartTotal, setCartTotal] = useState(0);\n\nconst addToCart = (el) => {\n  setCart([...cart, el]);\n};'],
+      ['Group repeats with reduce', 'One entry per product, with a quantity that goes up each time it appears.', 'const groupedCart = cart.reduce((grouped, el) => {\n  const existingItem = grouped.find((c) => c._id === el._id);\n  if (existingItem) {\n    existingItem.quantity += 1;\n  } else {\n    grouped.push({ ...el, quantity: 1 });\n  }\n  return grouped;\n}, []);'],
+      ['Remove one copy', 'findIndex and splice take out a single item, not every copy.', 'const removeFromCart = (el) => {\n  const itemIndex = cart.findIndex((c) => c._id === el._id);\n  if (itemIndex !== -1) {\n    const updatedCart = [...cart];\n    updatedCart.splice(itemIndex, 1);\n    setCart(updatedCart);\n  }\n};'],
+      ['Total with useEffect', 'Runs after every change to the cart and adds up the prices.', 'useEffect(() => {\n  total();\n}, [cart]);\n\nconst total = () => {\n  let totalVal = 0;\n  for (let i = 0; i < cart.length; i++) {\n    totalVal += cart[i].price;\n  }\n  setCartTotal(totalVal);\n};']
+    ];
+    s.innerHTML = '<p class="note" style="margin:0 0 6px">From ShoppingBootstrap.jsx.</p>' + blocks.map((b) => '<div class="detail"><h4>' + esc(b[0]) + '</h4><p>' + esc(b[1]) + '</p><div class="code">' + esc(b[2]) + '</div></div>').join('');
+  }
+
   /* Robot GUI */
   function robotDemo(s) {
     s.innerHTML = '<p class="note" style="margin:0 0 12px">Simulated readings. The real tool plots live sensor data from the robot.</p><div class="toolbar"><button class="btn small solid" id="rgS" type="button">Run a sweep</button><button class="btn small" id="rgM" type="button" aria-pressed="false">Autonomous mode</button><button class="btn small quiet" data-c="Turn left" type="button">Left</button><button class="btn small quiet" data-c="Forward" type="button">Forward</button><button class="btn small quiet" data-c="Turn right" type="button">Right</button></div><div class="sweep"><svg viewBox="0 0 240 130" id="rgSvg" role="img" aria-label="Polar plot of sensor readings"><path class="bgline" d="M20 120 A100 100 0 0 1 220 120 Z"/><path class="bgline" d="M70 120 A50 50 0 0 1 170 120"/><line class="bgline" x1="120" y1="120" x2="120" y2="20"/><g id="rgD"></g><text x="14" y="128">0</text><text x="218" y="128">180</text></svg></div><div class="detail"><h4 id="rgH">Idle</h4><p id="rgP">Run a sweep to read the surroundings.</p></div>';
@@ -420,6 +461,7 @@
     'maze-solver': [{ label: 'Live demo', render: mazeDemo }],
     'tree-cutter': [{ label: 'Sensor decisions', render: cutterDemo }],
     'react-cards': [{ label: 'Cards from data', render: cardsDemo }],
+    'react-cart': [{ label: 'Try the cart', render: cartDemo }, { label: 'The React code', render: cartCode }],
     'robot-gui': [{ label: 'Polar plot', render: robotDemo }]
   };
 
@@ -512,7 +554,7 @@
     { g: 'Pages', ic: 'A', label: 'About me', hint: '', k: 'about bio guatemala', run: () => go('about') },
     { g: 'Pages', ic: 'C', label: 'Contact', hint: '', k: 'email phone', run: () => go('contact') }
   ];
-  const KEYS = { focusup: 'swiftui iphone ios quests screen time supabase canvas', timepiece: 'java spring boot mariadb jpa android watches websockets rest', jeopardy: 'json game javascript trivia', 'maze-solver': 'bfs algorithm demo search', 'tree-cutter': 'robot c hardware cpre 288 arm uart', 'react-cards': 'react props vite', 'robot-gui': 'python matplotlib tkinter polar sensor' };
+  const KEYS = { focusup: 'swiftui iphone ios quests screen time supabase canvas', timepiece: 'java spring boot mariadb jpa android watches websockets rest', jeopardy: 'json game javascript trivia', 'maze-solver': 'bfs algorithm demo search', 'tree-cutter': 'robot c hardware cpre 288 arm uart', 'react-cards': 'react props vite', 'react-cart': 'react shopping cart store hooks usestate useeffect bootstrap json', 'robot-gui': 'python matplotlib tkinter polar sensor' };
   PROJECTS.forEach((p) => ITEMS.push({ g: 'Projects', ic: p.title[0], label: p.title, hint: p.kind.split(',')[0], k: KEYS[p.id], run: () => go('p:' + p.id) }));
   ITEMS.push(
     { g: 'Actions', ic: 'S', label: 'View software resume', hint: '', k: 'resume cv software', run: () => openResume('software') },
