@@ -1,89 +1,22 @@
 # Scott Gray Portfolio
 
-An update of the existing GitHub Pages portfolio. It keeps the original
-blue-and-white design, family photos, personal story, work history, and maze demo.
+Personal portfolio for Scott Gray, a computer engineering student at Iowa State. It is a static single-page site served by GitHub Pages, with no build step.
 
-## Preview locally
-
-From this folder, run:
+## Run locally
 
 ```sh
 python -m http.server 4173 --bind 127.0.0.1
 ```
 
-Then open http://127.0.0.1:4173. Use a server rather than double-clicking
-index.html so the browser can fetch learning.json.
+Then open http://127.0.0.1:4173.
 
-## What changed
+## Structure
 
-- Home: six project cards with category filters, JSON-powered skill explorer,
-  and links to GitHub and contact information.
-- Projects: ISU Jeopardy and Activity 09 descriptions with expandable details.
-  The existing maze and robot projects remain.
-- timePiece: backend role confirmed by Scott, catalog/database/deployment
-  contributions, a backend filter, and an SVG architecture diagram.
-- Contact: real GitHub link and a copy-email button with success/failure feedback.
-- Every page: GitHub navigation, consistent footer, skip link, keyboard focus,
-  and a small-screen menu that closes with Escape.
+- `index.html` holds the page markup.
+- `css/site.css` holds the styles.
+- `js/app.js` holds the router, the project data and the interactive demos (maze solver, command palette, React props, WebSocket simulation, shopping cart).
+- `assets/` holds the headshot and the two resumes.
+- `about.html`, `contact.html`, `projects.html`, `project.html`, `work.html` and `screen-flows.html` only redirect old links to the matching view in `index.html`.
+- `maze-solver-visualizer/` is the original standalone maze project.
 
-The original Jeopardy and React assignment source files were not supplied.
-Those sections describe the work provided by Scott; they do not pretend to be
-working versions of those assignments. React is labeled as currently learning.
-The existing maze source is unchanged.
-
-## How the new code works
-
-1. HTML defines the cards, buttons, and content areas.
-2. CSS extends the existing design and adjusts layout for small screens.
-3. portfolio.js listens for clicks. A filter compares its data-filter value
-   with each card's data-category and sets the card's hidden property.
-4. learning.json stores an array of skill objects. JavaScript loads the array
-   with fetch, finds the selected skill, and updates textContent on the page.
-5. Native HTML details/summary elements provide expandable project notes
-   without additional JavaScript.
-
-No framework or build step is needed. The site remains plain HTML/CSS/JS.
-
-
-## Source
-
-Retrieved from Scotty-08/Portfolio at main revision
-3cede02b0734120687fa77001e06cb281a922c46 using the GitHub connection.
-This local working copy has its origin set to the existing GitHub repository.
-Review the changes before copying them to an existing checkout or publishing.
-
-## FocusUp and screen flows
-
-FocusUp is credited as co-developed with Scott's roommate. The provided local
-portfolio brief supplies contribution and TestFlight/submission history; the
-current public SwiftUI source supplies the screen navigation.
-
-screen-flows.html contains FocusUp setup and everyday flows plus the
-handoff-based timePiece flow. assets/app-screen-flows.drawio has the same three
-editable diagrams. SVG exports are beside it.
-
-The three FocusUp concept SVGs were extracted from the supplied
-focusup-portfolio-section.html and labeled as concepts with illustrative data.
-No placeholder store links or unprovided private GitLab links were added.
-
-
-## Interactive exploration
-
-Project discovery progress is saved in localStorage on the visitor browser.
-Cards and sections animate with reduced-motion support. The timePiece diagram
-uses keyboard-accessible buttons to explain the app, backend, and database.
-
-## Reusable project pages
-
-Home and Projects show the project cards. Each opens project.html?id=PROJECT_ID.
-project.js loads projects.json and renders only that project's content. The
-view query parameter selects overview, screens, or demo; browser Back restores
-the selection. Existing projects.html# links redirect to the matching project.
-Screen diagrams open in a zoomable dialog. Only the maze loads an embedded demo,
-and only when its Live demo view is selected. Unknown IDs show a recovery link.
-
-## Optional playground
-
-ambient.js draws a subtle interactive background and adds a signal-hunt game.
-Motion can be paused, starts paused for reduced-motion preferences, and stops
-when the page is hidden. Preference and project discovery use browser storage.
+Each project opens inside the site at `#project-<id>`, for example `#project-timepiece`.
