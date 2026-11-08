@@ -50,7 +50,7 @@
       mine: [['Live plot', 'Matplotlib redraws the 180 degree sweep as new readings come in.'], ['Control interface', 'Tkinter buttons send manual commands, and a switch hands control back to the robot.']] }
   ];
   const PBY = {}; PROJECTS.forEach((p) => { PBY[p.id] = p; });
-  const FILTERS = [['all', 'All'], ['mobile', 'iOS'], ['android', 'Android'], ['web', 'Web'], ['hardware', 'Hardware'], ['learning', 'Learning']];
+  const FILTERS = [['all', 'All'], ['mobile', 'iOS'], ['android', 'Android'], ['web', 'Web'], ['hardware', 'Hardware']];
   const N_PROJ = PROJECTS.length;
 
   function phoneShow(slides, w, h, bare) {
