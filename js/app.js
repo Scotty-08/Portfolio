@@ -67,6 +67,16 @@
       '<div class="mc" style="animation-delay:' + (i * 0.4).toFixed(1) + 's"><div class="mpic" style="background:' + u[4] + '">' + u[0][0] + '</div><div class="mtx"><b>' + esc(u[0]) + '</b><span>$' + u[1] + '</span><span>' + u[2] + '</span><span>' + esc(u[3]) + '</span></div></div>').join('') +
       '</div></div><div class="mcap">One UserCard, passed props for each person</div></div>';
   }
+  function miniCart() {
+    const R = [['Long sleeve Jacket', 'women', '$150', '#b9a4d8', 'tapb'], ['Jacket with wollen hat', 'women', '$65', '#d8b4a4', ''], ['Compact fashion t-shirt', 'women', '$55.99', '#a4c7d8', ''], ['Blue jins', 'women', '$50', '#7f9fd0', 'tapa']];
+    return '<div class="minibox"><div class="mini">' + miniBar + '<div class="mview mshop"><div class="mlist">' + R.map((r) =>
+      '<div class="srow"><span class="st" style="background:' + r[3] + '"></span><span class="sx"><b>' + r[0] + '</b><small>' + r[1] + ' &middot; ' + r[2] + '</small></span><span class="sb ' + r[4] + '">+</span></div>').join('') +
+      '</div><div class="mcart"><h5>Items in cart</h5><div class="cl cl0">Nothing here yet</div>' +
+      '<div class="cl cl1"><span class="st" style="background:#7f9fd0"></span><span class="sx"><b>Blue jins</b><small>$50 x <span class="qw"><em class="q1">1</em><em class="q2">2</em></span></small></span></div>' +
+      '<div class="cl cl2"><span class="st" style="background:#b9a4d8"></span><span class="sx"><b>Long sleeve Jacket</b><small>$150 x 1</small></span></div>' +
+      '<div class="tot">Total <span class="tv"><em class="t0">$0</em><em class="t1">$50</em><em class="t2">$200</em><em class="t3">$250</em></span></div></div></div></div>' +
+      '<div class="mcap">Repeats group with a quantity, total updates</div></div>';
+  }
   const PEEK = {
     'focusup': phoneShow([['focusup-concept-lock', 'Apps stay locked', 'FocusUp lock screen concept'], ['focusup-concept-quests', 'Every task is a quest', 'FocusUp quest list concept']], 444, 864, true),
     'timepiece': phoneShow([['timepiece-home', 'Home', 'timePiece home screen'], ['timepiece-catalog', 'Browse the catalog', 'timePiece watch catalog'], ['timepiece-details', 'Compare prices by condition', 'timePiece watch details']], 648, 1436),
@@ -78,7 +88,7 @@
     })(),
     'tree-cutter': '<div class="pa-bot"><svg viewBox="0 0 200 70" aria-hidden="true"><path d="M10 55 C 50 55, 50 15, 90 15 S 150 55, 190 20" stroke-width="2"/></svg></div>',
     'react-cards': miniCards(),
-    'react-cart': '<div class="pa-cart"><i></i><i></i><i></i><b>Total</b></div>',
+    'react-cart': miniCart(),
     'robot-gui': '<div class="pa-polar"><svg viewBox="0 0 200 105" aria-hidden="true"><path d="M10 100 A90 90 0 0 1 190 100 Z" fill="none" stroke="currentColor" opacity=".3"/><path d="M55 100 A45 45 0 0 1 145 100" fill="none" stroke="currentColor" opacity=".3"/><line x1="100" y1="100" x2="100" y2="14"/></svg></div>'
   };
 
