@@ -115,6 +115,35 @@
     if (view === 'project') renderProject(projectId);
     $('#rail').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded', 'false');
   }
+  /* ================= project intro pop-up ================= */
+  const INTRO = { focusup: true };
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  let introTimer = 0;
+  function closeIntro() {
+    const d = $('#intro'); if (!d || !d.open) return;
+    clearTimeout(introTimer);
+    d.classList.add('out');
+    setTimeout(() => { d.classList.remove('out'); if (d.open) d.close(); }, 220);
+  }
+  function playIntro(id) {
+    const d = $('#intro'), v = $('#introVideo');
+    if (!INTRO[id] || !d || !v || d.open || reduceMotion.matches || typeof d.showModal !== 'function') return;
+    try { v.currentTime = 0; } catch (e) {}
+    d.showModal();
+    const p = v.play();
+    if (p && p.catch) p.catch(closeIntro);
+    clearTimeout(introTimer);
+    introTimer = setTimeout(closeIntro, 5000);
+  }
+  (function () {
+    const d = $('#intro'), v = $('#introVideo'); if (!d || !v) return;
+    v.addEventListener('ended', () => { clearTimeout(introTimer); introTimer = setTimeout(closeIntro, 450); });
+    v.addEventListener('error', closeIntro);
+    $('#introSkip').addEventListener('click', closeIntro);
+    d.addEventListener('click', (e) => { if (e.target === d) closeIntro(); });
+    d.addEventListener('close', () => { clearTimeout(introTimer); d.classList.remove('out'); try { v.pause(); } catch (e) {} });
+  })();
+
   function go(token, quiet) {
     let view = token, pid = null, scroll = null;
     if (token.indexOf('p:') === 0) { view = 'project'; pid = token.slice(2); }
@@ -126,6 +155,7 @@
     if (!quiet) { try { history.replaceState(null, '', '#' + hashTok); } catch (e) { try { location.hash = hashTok; } catch (e2) {} } }
     if (scroll) { const el = $(scroll); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); } else window.scrollTo(0, 0);
     if (view === 'home' && !scroll) heroVisible = true;
+    if (view === 'project' && !quiet) playIntro(pid);
   }
   function tokenFromHash() {
     const h = (location.hash || '').replace('#', '');

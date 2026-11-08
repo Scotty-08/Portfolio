@@ -277,6 +277,14 @@ details p{margin:10px 0 0;color:var(--muted)}
 .contact-list b{font:800 24px var(--display);font-stretch:85%;overflow-wrap:anywhere}
 .contact-list small{display:block;color:var(--muted);font-size:13px;font-family:var(--body);font-weight:400}
 
+/* project intro pop-up */
+#intro{width:min(760px,calc(100vw - 24px));background:#04070b;border:1px solid #1f4457;overflow:hidden;transition:opacity .22s}
+#intro.out{opacity:0}
+#intro::backdrop{background:rgba(2,5,8,.84)}
+#intro video{display:block;width:100%;height:auto;background:#04070b}
+#intro .skip{position:absolute;top:10px;right:10px;padding:5px 12px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:#d6ecf5;border-radius:3px;font-size:13px;font-weight:600}
+#intro .skip:hover{background:rgba(255,255,255,.2)}
+
 /* dialogs, toast */
 dialog{border:0;padding:0;background:var(--paper);color:var(--ink);border-radius:6px;box-shadow:0 24px 80px rgba(0,0,0,.4);max-width:calc(100vw - 24px)}
 dialog::backdrop{background:var(--scrim)}
