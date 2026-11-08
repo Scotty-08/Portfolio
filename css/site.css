@@ -305,6 +305,7 @@ details p{margin:10px 0 0;color:var(--muted)}
 .formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:12px}
 .ucard{border:1.5px solid var(--ink);background:var(--paper);padding:18px;display:flex;gap:14px;align-items:center;border-radius:3px}
 .ucard .av{width:56px;height:56px;flex:none;border-radius:50%;object-fit:cover;background:var(--panel)}
+.ucard div.av{background:var(--red);color:var(--on-red);display:grid;place-items:center;font:800 24px var(--display)}
 .ucard p{margin:0;font-size:14px}
 .ucard strong{font:800 20px var(--display);font-stretch:85%}
 .board{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
