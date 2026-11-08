@@ -56,11 +56,11 @@
   function phoneShow(slides, w, h, bare) {
     const n = slides.length, slot = 2.8, dur = (n * slot).toFixed(1) + 's';
     const sty = (i) => ' style="animation-duration:' + dur + ';animation-delay:' + (i * slot).toFixed(1) + 's"';
-    return '<div class="pv pv' + n + '"><div class="phone' + (bare ? ' bare' : '') + '" style="aspect-ratio:' + w + '/' + h + '">' +
+    return '<div class="pv pv' + n + '"><div class="pvphone' + (bare ? ' bare' : '') + '" style="aspect-ratio:' + w + '/' + h + '">' +
       slides.map((x, i) => '<img src="assets/' + x[0] + '.webp" width="' + w + '" height="' + h + '" alt="' + esc(x[2]) + '"' + sty(i) + '>').join('') +
       '</div><div class="pvcap" aria-hidden="true">' + slides.map((x, i) => '<span' + sty(i) + '>' + esc(x[1]) + '</span>').join('') + '</div></div>';
   }
-  const miniBar = '<div class="mbar"><i></i><i></i><i></i><span>localhost:5173</span></div>';
+  const miniBar = '<div class="pkbar"><i></i><i></i><i></i><span>localhost:5173</span></div>';
   function miniCards() {
     const U = [['Maria Lopez', '82,000', 'Single', 'Ames', '#6f8fd8'], ['Devon Clark', '64,500', 'Married', 'Des Moines', '#d88f6f'], ['Priya Nair', '91,000', 'Single', 'Omaha', '#74b58f']];
     return '<div class="minibox"><div class="mini">' + miniBar + '<div class="mview mcards">' + U.map((u, i) =>
@@ -68,13 +68,13 @@
       '</div></div><div class="mcap">One UserCard, passed props for each person</div></div>';
   }
   function miniCart() {
-    const R = [['Long sleeve Jacket', 'women', '$150', '#b9a4d8', 'tapb'], ['Jacket with wollen hat', 'women', '$65', '#d8b4a4', ''], ['Compact fashion t-shirt', 'women', '$55.99', '#a4c7d8', ''], ['Blue jins', 'women', '$50', '#7f9fd0', 'tapa']];
+    const R = [['Long sleeve Jacket', 'women', '$150', '#b9a4d8', 'pktapb'], ['Jacket with wollen hat', 'women', '$65', '#d8b4a4', ''], ['Compact fashion t-shirt', 'women', '$55.99', '#a4c7d8', ''], ['Blue jins', 'women', '$50', '#7f9fd0', 'pktapa']];
     return '<div class="minibox"><div class="mini">' + miniBar + '<div class="mview mshop"><div class="mlist">' + R.map((r) =>
-      '<div class="srow"><span class="st" style="background:' + r[3] + '"></span><span class="sx"><b>' + r[0] + '</b><small>' + r[1] + ' &middot; ' + r[2] + '</small></span><span class="sb ' + r[4] + '">+</span></div>').join('') +
-      '</div><div class="mcart"><h5>Items in cart</h5><div class="cl cl0">Nothing here yet</div>' +
-      '<div class="cl cl1"><span class="st" style="background:#7f9fd0"></span><span class="sx"><b>Blue jins</b><small>$50 x <span class="qw"><em class="q1">1</em><em class="q2">2</em></span></small></span></div>' +
-      '<div class="cl cl2"><span class="st" style="background:#b9a4d8"></span><span class="sx"><b>Long sleeve Jacket</b><small>$150 x 1</small></span></div>' +
-      '<div class="tot">Total <span class="tv"><em class="t0">$0</em><em class="t1">$50</em><em class="t2">$200</em><em class="t3">$250</em></span></div></div></div></div>' +
+      '<div class="pkrow"><span class="pkt" style="background:' + r[3] + '"></span><span class="pkx"><b>' + r[0] + '</b><small>' + r[1] + ' &middot; ' + r[2] + '</small></span><span class="pkb ' + r[4] + '">+</span></div>').join('') +
+      '</div><div class="mcart"><h5>Items in cart</h5><div class="pkcl pkcl0">Nothing here yet</div>' +
+      '<div class="pkcl pkcl1"><span class="pkt" style="background:#7f9fd0"></span><span class="pkx"><b>Blue jins</b><small>$50 x <span class="pkqw"><em class="pkq1">1</em><em class="pkq2">2</em></span></small></span></div>' +
+      '<div class="pkcl pkcl2"><span class="pkt" style="background:#b9a4d8"></span><span class="pkx"><b>Long sleeve Jacket</b><small>$150 x 1</small></span></div>' +
+      '<div class="pktot">Total <span class="pktv"><em class="pkt0">$0</em><em class="pkt1">$50</em><em class="pkt2">$200</em><em class="pkt3">$250</em></span></div></div></div></div>' +
       '<div class="mcap">Repeats group with a quantity, total updates</div></div>';
   }
   const PEEK = {

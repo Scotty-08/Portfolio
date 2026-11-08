@@ -106,11 +106,11 @@ main{margin-left:var(--rail);padding:56px clamp(24px,5vw,72px) 96px;min-width:0}
 
 /* peek phone slideshow */
 .pv{display:grid;justify-items:center;gap:10px;width:100%}
-.phone{position:relative;width:clamp(120px,58%,160px);border:5px solid #17141c;border-radius:24px;background:#000;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.28)}
-.phone.bare{border:0;border-radius:26px}
-.phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:pvfade3 linear infinite}
-.pv2 .phone img{animation-name:pvfade2}
-.phone img:first-child{opacity:1}
+.pvphone{position:relative;width:clamp(120px,58%,160px);border:5px solid #17141c;border-radius:24px;background:#000;overflow:hidden;box-shadow:0 8px 22px rgba(0,0,0,.28)}
+.pvphone.bare{border:0;border-radius:26px}
+.pvphone img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:pvfade3 linear infinite}
+.pv2 .pvphone img{animation-name:pvfade2}
+.pvphone img:first-child{opacity:1}
 .pvcap{position:relative;height:1.4em;width:100%;font-size:12.5px;font-weight:700;text-align:center;color:var(--ink)}
 .pvcap span{position:absolute;inset:0;opacity:0;animation:pvfade3 linear infinite}
 .pv2 .pvcap span{animation-name:pvfade2}
@@ -122,9 +122,9 @@ main{margin-left:var(--rail);padding:56px clamp(24px,5vw,72px) 96px;min-width:0}
 /* peek: mini app windows (React) */
 .minibox{width:100%;container-type:inline-size;display:grid;gap:10px}
 .mini{font-size:6.5px;font-size:3.1cqw;background:#fff;color:#212529;border:1px solid #cfd4da;border-radius:.8em;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.18);font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
-.mbar{display:flex;align-items:center;gap:.5em;padding:.7em .9em;background:#eef0f2;border-bottom:1px solid #dde0e3}
-.mbar i{width:.9em;height:.9em;border-radius:50%;background:#c9ced3}
-.mbar span{margin-left:.6em;flex:1;background:#fff;border-radius:1em;padding:.15em .8em;font-size:1em;color:#6c757d}
+.pkbar{display:flex;align-items:center;gap:.5em;padding:.7em .9em;background:#eef0f2;border-bottom:1px solid #dde0e3}
+.pkbar i{width:.9em;height:.9em;border-radius:50%;background:#c9ced3}
+.pkbar span{margin-left:.6em;flex:1;background:#fff;border-radius:1em;padding:.15em .8em;font-size:1em;color:#6c757d}
 .mview{padding:1.2em}
 .mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:.9em}
 .mc{border:1px solid #dee2e6;border-radius:.6em;overflow:hidden;background:#fff;animation:mcin 7s ease-out infinite backwards}
@@ -133,31 +133,31 @@ main{margin-left:var(--rail);padding:56px clamp(24px,5vw,72px) 96px;min-width:0}
 .mtx b{font-size:1.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mtx span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#495057}
 .mshop{display:grid;grid-template-columns:1.3fr 1fr;gap:1.2em;align-items:start}
-.srow,.cl{display:flex;align-items:center;gap:.8em;font-size:1.25em}
-.srow{padding:.55em 0;border-bottom:1px solid #e9ecef}
-.st{flex:none;width:2.6em;height:2.6em;border-radius:.35em}
-.sx{display:grid;min-width:0}
-.sx b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sx small{color:#6c757d;font-size:.85em}
-.sb{margin-left:auto;flex:none;background:#0d6efd;color:#fff;border-radius:.35em;padding:.05em .65em;font-weight:700}
+.pkrow,.pkcl{display:flex;align-items:center;gap:.8em;font-size:1.25em}
+.pkrow{padding:.55em 0;border-bottom:1px solid #e9ecef}
+.pkt{flex:none;width:2.6em;height:2.6em;border-radius:.35em}
+.pkx{display:grid;min-width:0}
+.pkx b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pkx small{color:#6c757d;font-size:.85em}
+.pkb{margin-left:auto;flex:none;background:#0d6efd;color:#fff;border-radius:.35em;padding:.05em .65em;font-weight:700}
 .mcart{position:relative;border:1px solid #dee2e6;border-radius:.6em;padding:.9em;min-height:19em;font-size:1em}
 .mcart h5{margin:0 0 .6em;font-size:1.3em}
-.cl{position:absolute;left:.9em;right:.9em;opacity:1}
-.cl0{top:3.6em;opacity:0;color:#6c757d;font-size:1.1em;animation:clempty 8s linear infinite}
-.cl1{top:3.2em;animation:cl1 8s linear infinite}
-.cl2{top:7.4em;animation:cl2 8s linear infinite}
-.cl .st{width:2.2em;height:2.2em}
-.qw{display:inline-grid}
-.qw em{grid-area:1/1;font-style:normal}
-.q1{opacity:0;animation:q1 8s linear infinite}
-.q2{animation:q2 8s linear infinite}
-.t0,.t1,.t2,.t3{font-style:normal;position:absolute;top:0}
-.tot{position:absolute;left:.9em;right:.9em;bottom:.8em;display:flex;justify-content:space-between;font-weight:700;font-size:1.25em;border-top:1px solid #dee2e6;padding-top:.5em}
-.tv{position:relative;min-width:3.4em;text-align:right}
-.tv em{left:auto;right:0}
-.t0,.t1,.t2{opacity:0}
-.t0{animation:t0 8s linear infinite}.t1{animation:t1 8s linear infinite}.t2{animation:t2 8s linear infinite}.t3{animation:t3 8s linear infinite}
-.tapa{animation:tapa 8s linear infinite}.tapb{animation:tapb 8s linear infinite}
+.pkcl{position:absolute;left:.9em;right:.9em;opacity:1}
+.pkcl0{top:3.6em;opacity:0;color:#6c757d;font-size:1.1em;animation:clempty 8s linear infinite}
+.pkcl1{top:3.2em;animation:cl1 8s linear infinite}
+.pkcl2{top:7.4em;animation:cl2 8s linear infinite}
+.pkcl .pkt{width:2.2em;height:2.2em}
+.pkqw{display:inline-grid}
+.pkqw em{grid-area:1/1;font-style:normal}
+.pkq1{opacity:0;animation:q1 8s linear infinite}
+.pkq2{animation:q2 8s linear infinite}
+.pkt0,.pkt1,.pkt2,.pkt3{font-style:normal;position:absolute;top:0}
+.pktot{position:absolute;left:.9em;right:.9em;bottom:.8em;display:flex;justify-content:space-between;font-weight:700;font-size:1.25em;border-top:1px solid #dee2e6;padding-top:.5em}
+.pktv{position:relative;min-width:3.4em;text-align:right}
+.pktv em{left:auto;right:0}
+.pkt0,.pkt1,.pkt2{opacity:0}
+.pkt0{animation:t0 8s linear infinite}.pkt1{animation:t1 8s linear infinite}.pkt2{animation:t2 8s linear infinite}.pkt3{animation:t3 8s linear infinite}
+.pktapa{animation:tapa 8s linear infinite}.pktapb{animation:tapb 8s linear infinite}
 .mcap{text-align:center;font-size:12.5px;font-weight:700}
 @keyframes mcin{0%{opacity:0;transform:translateY(1.2em)}9%,80%{opacity:1;transform:none}92%,100%{opacity:0;transform:none}}
 @keyframes clempty{0%,9%{opacity:1}11%,92%{opacity:0}96%,100%{opacity:1}}
@@ -395,4 +395,5 @@ dialog::backdrop{background:var(--scrim)}
   .wsgrid{grid-template-columns:1fr}.wslink{height:46px}
   .prow{grid-template-columns:1fr}.prow .open{grid-row:auto;grid-column:1}
 }
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
