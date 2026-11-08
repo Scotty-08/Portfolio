@@ -96,6 +96,14 @@
   function renderTrail() {}
 
   /* ================= project rows ================= */
+  function viewHtml(id) {
+    const A = 'assets/', fig = (f, w, h, cap, alt, cls) => '<figure class="vfig ' + (cls || '') + '"><img src="' + A + f + '.webp" width="' + w + '" height="' + h + '" alt="' + esc(alt) + '"><figcaption>' + esc(cap) + '</figcaption></figure>';
+    if (id === 'focusup') return '<div class="vgal">' + fig('focusup-concept-lock', 444, 864, 'Lock screen', 'FocusUp lock screen concept') + fig('focusup-concept-quests', 444, 864, 'Quest log', 'FocusUp quest log concept') +
+      '<div class="vwide">' + fig('focusup-concept-companions', 1320, 820, 'Companions to unlock', 'Grid of hooded companion avatars') + fig('focusup-concept-canvas', 1480, 840, 'Canvas assignments become quests', 'Canvas page with the FocusUp extension') + '</div></div>';
+    if (id === 'timepiece') return '<div class="vgal">' + fig('timepiece-home', 420, 931, 'Home', 'timePiece home screen', 'vph') + fig('timepiece-catalog', 420, 931, 'Catalog', 'timePiece watch catalog', 'vph') + fig('timepiece-details', 420, 931, 'Watch details', 'timePiece watch details', 'vph') + '</div>';
+    if (id === 'react-cards' || id === 'react-cart') return '<div class="vmini">' + PEEK[id] + '</div>';
+    return '<div class="vart">' + PEEK[id] + '</div>';
+  }
   function rowEl(p, withPeek) {
     const li = document.createElement('li'); li.dataset.cat = p.cat;
     li.innerHTML = '<button class="prow" type="button" data-id="' + p.id + '"><h3>' + esc(p.title) + '</h3><span class="open">Open project</span><span class="kind">' + esc(p.kind) + '</span><p class="desc">' + esc(p.desc) + '</p></button>';
@@ -295,6 +303,7 @@
     const p = PBY[id]; if (!p) return;
     discover(id);
     $('#pdTitle').textContent = p.title; $('#pdKind').textContent = p.kind;
+    $('#pdView').innerHTML = '<div class="vlabel">A quick look</div>' + viewHtml(id);
     $('#pdMain').innerHTML = p.overview.map((t) => '<p style="font-size:18px">' + esc(t) + '</p>').join('') +
       '<h2 style="font-size:28px;margin:30px 0 8px">What I did</h2>' + p.mine.map((m) => '<details><summary>' + esc(m[0]) + '</summary><p>' + esc(m[1]) + '</p></details>').join('');
     $('#pdFacts').innerHTML = p.facts.map((f) => '<div><dt>' + esc(f[0]) + '</dt><dd>' + (f[2] ? '<a href="' + esc(f[2]) + '" target="_blank" rel="noopener noreferrer">' + esc(f[1]) + '</a>' : esc(f[1])) + '</dd></div>').join('');
