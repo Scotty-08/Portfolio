@@ -587,8 +587,17 @@
     $('#dStatus').textContent = k.status; $('#dName').textContent = k.name; $('#dDesc').textContent = k.desc; $('#dEx').textContent = k.ex;
     const l = $('#dLink'); l.dataset.go = k.go; l.setAttribute('href', k.link); l.textContent = k.text;
   }
-  $$('[data-skill]').forEach((b) => b.addEventListener('click', () => pickSkill(b.dataset.skill)));
   pickSkill('react');
+  let cartMounted = false;
+  function pickDemo(id) {
+    $$('[data-demo]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.demo === id)));
+    $('#demoReact').hidden = id !== 'cards'; $('#demoCart').hidden = id !== 'cart';
+    if (id === 'cart' && !cartMounted) { cartMounted = true; cartDemo($('#demoCart')); }
+    const l = $('#dLink');
+    l.dataset.go = id === 'cart' ? 'p:react-cart' : 'p:react-cards'; l.setAttribute('href', id === 'cart' ? '#project-react-cart' : '#project-react-cards'); l.textContent = id === 'cart' ? 'Open the shopping cart project' : 'Open the user cards project';
+  }
+  $$('[data-demo]').forEach((b) => b.addEventListener('click', () => pickDemo(b.dataset.demo)));
+  pickDemo('cards');
 
   function drawCard() {
     const name = $('#rName').value || 'Name', sal = Number($('#rSalary').value) || 0, mar = $('#rMarital').value, adr = $('#rAddress').value || 'Address';
