@@ -460,12 +460,12 @@
 
   /* React cards */
   function cardsDemo(s) {
-    const POOL = [['Maria Lopez', 82000, 'Single', '12 Elm St, Ames'], ['Devon Clark', 64500, 'Married', '88 Oak Ave, Des Moines'], ['Priya Nair', 91000, 'Single', '4 Lake Rd, Council Bluffs'], ['Tom Becker', 57000, 'Divorced', '210 Main St, Omaha']];
+    const POOL = [['Maria Lopez', 82000, 'Single', '12 Elm St, Ames', 'squidward'], ['Devon Clark', 64500, 'Married', '88 Oak Ave, Des Moines', 'success'], ['Priya Nair', 91000, 'Single', '4 Lake Rd, Council Bluffs', 'chain'], ['Tom Becker', 57000, 'Divorced', '210 Main St, Omaha', 'googly']];
     let n = 2;
     s.innerHTML = '<div class="two"><div><div class="toolbar"><button class="btn small solid" id="rcAdd" type="button">Add a user</button><button class="btn small quiet" id="rcRm" type="button">Remove one</button></div><div id="rcL" style="display:grid;gap:10px"></div></div><div><div class="code" id="rcC"></div><p class="note">One UserCard function. The array decides how many cards exist.</p></div></div>';
     function draw() {
-      $('#rcL', s).innerHTML = POOL.slice(0, n).map((u) => '<div class="ucard"><div class="av">' + u[0][0] + '</div><div><strong>' + esc(u[0]) + '</strong><p>Salary: $' + u[1].toLocaleString('en-US') + '</p><p>Marital status: ' + u[2] + '</p><p>' + esc(u[3]) + '</p></div></div>').join('');
-      $('#rcC', s).textContent = 'const users = [\n' + POOL.slice(0, n).map((u) => '  { name: "' + u[0] + '", salary: ' + u[1] + ',\n    marital: "' + u[2] + '", address: "' + u[3] + '" }').join(',\n') + '\n];\n\n{users.map(u => <UserCard key={u.name} {...u} />)}';
+      $('#rcL', s).innerHTML = POOL.slice(0, n).map((u) => '<div class="ucard"><img class="av" src="assets/card-' + u[4] + '.webp" width="56" height="56" alt=""><div><strong>' + esc(u[0]) + '</strong><p>Salary: $' + u[1].toLocaleString('en-US') + '</p><p>Marital status: ' + u[2] + '</p><p>' + esc(u[3]) + '</p></div></div>').join('');
+      $('#rcC', s).textContent = 'const users = [\n' + POOL.slice(0, n).map((u) => '  { name: "' + u[0] + '", picture: "' + u[4] + '.webp",\n    salary: ' + u[1] + ', marital: "' + u[2] + '",\n    address: "' + u[3] + '" }').join(',\n') + '\n];\n\n{users.map(u => <UserCard key={u.name} {...u} />)}';
       $('#rcAdd', s).disabled = n >= POOL.length; $('#rcRm', s).disabled = n <= 1;
     }
     $('#rcAdd', s).addEventListener('click', () => { n++; draw(); }); $('#rcRm', s).addEventListener('click', () => { n--; draw(); }); draw();
