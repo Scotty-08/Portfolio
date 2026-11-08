@@ -53,9 +53,16 @@
   const FILTERS = [['all', 'All'], ['mobile', 'iOS'], ['backend', 'Backend'], ['web', 'Web'], ['hardware', 'Hardware'], ['learning', 'Learning']];
   const N_PROJ = PROJECTS.length;
 
+  function phoneShow(slides, w, h, bare) {
+    const n = slides.length, slot = 2.8, dur = (n * slot).toFixed(1) + 's';
+    const sty = (i) => ' style="animation-duration:' + dur + ';animation-delay:' + (i * slot).toFixed(1) + 's"';
+    return '<div class="pv pv' + n + '"><div class="phone' + (bare ? ' bare' : '') + '" style="aspect-ratio:' + w + '/' + h + '">' +
+      slides.map((x, i) => '<img src="assets/' + x[0] + '.webp" width="' + w + '" height="' + h + '" alt="' + esc(x[2]) + '"' + sty(i) + '>').join('') +
+      '</div><div class="pvcap" aria-hidden="true">' + slides.map((x, i) => '<span' + sty(i) + '>' + esc(x[1]) + '</span>').join('') + '</div></div>';
+  }
   const PEEK = {
-    'focusup': '<div class="pa-quest"><div>Problem set<i><b></b></i></div><div>Read chapter<i><b></b></i></div><div>Lab report<i><b></b></i></div></div>',
-    'timepiece': '<div class="pa-flow"><span class="n">App</span><span class="w"></span><span class="n">Backend</span><span class="w"></span><span class="n">DB</span></div>',
+    'focusup': phoneShow([['focusup-concept-lock', 'Apps stay locked', 'FocusUp lock screen concept'], ['focusup-concept-quests', 'Every task is a quest', 'FocusUp quest list concept']], 444, 864, true),
+    'timepiece': phoneShow([['timepiece-home', 'Home', 'timePiece home screen'], ['timepiece-catalog', 'Browse the catalog', 'timePiece watch catalog'], ['timepiece-details', 'Compare prices by condition', 'timePiece watch details']], 648, 1436),
     'jeopardy': '<div class="pa-board">' + Array.from({ length: 16 }, (_, i) => '<i style="animation-delay:' + (i * 0.19).toFixed(2) + 's">$' + (100 * (1 + (i >> 2))) + '</i>').join('') + '</div>',
     'maze-solver': (function () {
       const L = ['SppwEEEEwEEE', 'EwpwEwwEwEwE', 'EwppppwEEEwE', 'EwwwwpppppPF']; let o = '<div class="pa-grid">'; let n = 0;
@@ -84,6 +91,7 @@
   PROJECTS.slice(0, 3).forEach((p) => homeList.appendChild(rowEl(p, false)));
   const projList = $('#projList'); let curFilter = 'all';
   PROJECTS.forEach((p) => projList.appendChild(rowEl(p, true)));
+  ['focusup-concept-lock', 'focusup-concept-quests', 'timepiece-home', 'timepiece-catalog', 'timepiece-details'].forEach((f) => { new Image().src = 'assets/' + f + '.webp'; });
   function showPeek(id) {
     const p = PBY[id]; if (!p) return;
     $$('.prow', projList).forEach((r) => r.classList.toggle('hot', r.dataset.id === id));
