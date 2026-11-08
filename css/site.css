@@ -396,4 +396,18 @@ dialog::backdrop{background:var(--scrim)}
   .prow{grid-template-columns:1fr}.prow .open{grid-row:auto;grid-column:1}
 }
 
+/* project quick look + list thumbnails */
+.pdview{margin-top:26px}
+.vlabel{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px}
+.vgal{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start}
+.vfig{margin:0;width:176px}
+.vfig img{display:block;width:100%;height:auto;border-radius:22px;background:#000}
+.vfig.vph img{border:5px solid #17141c;border-radius:26px}
+.vfig figcaption{margin-top:8px;font-size:13px;font-weight:700;text-align:center;color:var(--ink)}
+.vwide{display:grid;gap:14px;flex:1 1 280px;min-width:min(100%,260px);max-width:400px}
+.vwide .vfig{width:auto}
+.vwide .vfig img{border:1px solid #1d3a4a;border-radius:6px;background:#05080c}
+.vmini{max-width:520px}
+.vart{max-width:420px;border:1px solid var(--line);background:var(--panel);padding:20px;border-radius:3px}
+@media (max-width:900px){.vfig{width:calc(50% - 9px)}.vwide{max-width:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
