@@ -62,19 +62,20 @@
   }
   const miniBar = '<div class="pkbar"><i></i><i></i><i></i><span>localhost:5173</span></div>';
   function miniCards() {
-    const U = [['Maria Lopez', '82,000', 'Single', 'Ames', '#6f8fd8'], ['Devon Clark', '64,500', 'Married', 'Des Moines', '#d88f6f'], ['Priya Nair', '91,000', 'Single', 'Omaha', '#74b58f']];
+    const U = [['Maria Lopez', '82,000', 'Single', 'Ames', 'squidward'], ['Devon Clark', '64,500', 'Married', 'Des Moines', 'success'], ['Priya Nair', '91,000', 'Single', 'Omaha', 'chain']];
     return '<div class="minibox"><div class="mini">' + miniBar + '<div class="mview mcards">' + U.map((u, i) =>
-      '<div class="mc" style="animation-delay:' + (i * 0.4).toFixed(1) + 's"><div class="mpic" style="background:' + u[4] + '">' + u[0][0] + '</div><div class="mtx"><b>' + esc(u[0]) + '</b><span>$' + u[1] + '</span><span>' + u[2] + '</span><span>' + esc(u[3]) + '</span></div></div>').join('') +
+      '<div class="mc" style="animation-delay:' + (i * 0.4).toFixed(1) + 's"><img class="mpic" src="assets/card-' + u[4] + '.webp" width="360" height="288" alt=""><div class="mtx"><b>' + esc(u[0]) + '</b><span>$' + u[1] + '</span><span>' + u[2] + '</span><span>' + esc(u[3]) + '</span></div></div>').join('') +
       '</div></div><div class="mcap">One UserCard, passed props for each person</div></div>';
   }
   function miniCart() {
-    const R = [['Long sleeve Jacket', 'women', '$150', '#b9a4d8', 'pktapb'], ['Jacket with wollen hat', 'women', '$65', '#d8b4a4', ''], ['Compact fashion t-shirt', 'women', '$55.99', '#a4c7d8', ''], ['Blue jins', 'women', '$50', '#7f9fd0', 'pktapa']];
+    const px = (id, f) => 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=96';
+    const R = [['Long sleeve Jacket', 'women', '$150', px(2584269), '<em class="pkj0">0</em><em class="pkj1">1</em>', 'pktapb'], ['Jacket with wollen hat', 'women', '$65', px(2681751), '<em class="pkz">0</em>', ''], ['Compact fashion t-shirt', 'women', '$55.99', px(2752045), '<em class="pkz">0</em>', ''], ['Blue jins', 'women', '$50', px(1485031), '<em class="pkt0">0</em><em class="pkq1">1</em><em class="pkq2">2</em>', 'pktapa']];
     return '<div class="minibox"><div class="mini">' + miniBar + '<div class="mview mshop"><div class="mlist">' + R.map((r) =>
-      '<div class="pkrow"><span class="pkt" style="background:' + r[3] + '"></span><span class="pkx"><b>' + r[0] + '</b><small>' + r[1] + ' &middot; ' + r[2] + '</small></span><span class="pkb ' + r[4] + '">+</span></div>').join('') +
-      '</div><div class="mcart"><h5>Items in cart</h5><div class="pkcl pkcl0">Nothing here yet</div>' +
-      '<div class="pkcl pkcl1"><span class="pkt" style="background:#7f9fd0"></span><span class="pkx"><b>Blue jins</b><small>$50 x <span class="pkqw"><em class="pkq1">1</em><em class="pkq2">2</em></span></small></span></div>' +
-      '<div class="pkcl pkcl2"><span class="pkt" style="background:#b9a4d8"></span><span class="pkx"><b>Long sleeve Jacket</b><small>$150 x 1</small></span></div>' +
-      '<div class="pktot">Total <span class="pktv"><em class="pkt0">$0</em><em class="pkt1">$50</em><em class="pkt2">$200</em><em class="pkt3">$250</em></span></div></div></div></div>' +
+      '<div class="pkrow"><img class="pkt" src="' + r[3] + '" alt="" width="48" height="48"><span class="pkx"><b>' + r[0] + '</b><small>' + r[1] + '</small></span><span class="pkctl"><span class="pkbtn">-</span><span class="pkn">' + r[4] + '</span><span class="pkbtn ' + r[5] + '">+</span></span><span class="pkpr">' + r[2] + '</span></div>').join('') +
+      '</div><div class="mcart"><h5>Items in cart</h5><p class="pkmut">Products selected <span class="pksl"><em class="pkt0">0</em><em class="pkt1">1</em><em class="pkt2">2</em><em class="pkt3">3</em></span></p><div class="pkcl pkcl0">Nothing here yet</div>' +
+      '<div class="pkcl pkcl1"><img class="pkt" src="' + px(1485031) + '" alt="" width="40" height="40"><span class="pkx"><b>Blue jins</b><small>$50 x <span class="pkqw"><em class="pkq1">1</em><em class="pkq2">2</em></span></small></span></div>' +
+      '<div class="pkcl pkcl2"><img class="pkt" src="' + px(2584269) + '" alt="" width="40" height="40"><span class="pkx"><b>Long sleeve Jacket</b><small>$150 x 1</small></span></div>' +
+      '<div class="pktot">Order total <span class="pktv"><em class="pkt0">$0</em><em class="pkt1">$50</em><em class="pkt2">$200</em><em class="pkt3">$250</em></span></div></div></div></div>' +
       '<div class="mcap">Repeats group with a quantity, total updates</div></div>';
   }
   const PEEK = {
