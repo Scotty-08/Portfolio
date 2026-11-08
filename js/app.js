@@ -60,6 +60,13 @@
       slides.map((x, i) => '<img src="assets/' + x[0] + '.webp" width="' + w + '" height="' + h + '" alt="' + esc(x[2]) + '"' + sty(i) + '>').join('') +
       '</div><div class="pvcap" aria-hidden="true">' + slides.map((x, i) => '<span' + sty(i) + '>' + esc(x[1]) + '</span>').join('') + '</div></div>';
   }
+  const miniBar = '<div class="mbar"><i></i><i></i><i></i><span>localhost:5173</span></div>';
+  function miniCards() {
+    const U = [['Maria Lopez', '82,000', 'Single', 'Ames', '#6f8fd8'], ['Devon Clark', '64,500', 'Married', 'Des Moines', '#d88f6f'], ['Priya Nair', '91,000', 'Single', 'Omaha', '#74b58f']];
+    return '<div class="minibox"><div class="mini">' + miniBar + '<div class="mview mcards">' + U.map((u, i) =>
+      '<div class="mc" style="animation-delay:' + (i * 0.4).toFixed(1) + 's"><div class="mpic" style="background:' + u[4] + '">' + u[0][0] + '</div><div class="mtx"><b>' + esc(u[0]) + '</b><span>$' + u[1] + '</span><span>' + u[2] + '</span><span>' + esc(u[3]) + '</span></div></div>').join('') +
+      '</div></div><div class="mcap">One UserCard, passed props for each person</div></div>';
+  }
   const PEEK = {
     'focusup': phoneShow([['focusup-concept-lock', 'Apps stay locked', 'FocusUp lock screen concept'], ['focusup-concept-quests', 'Every task is a quest', 'FocusUp quest list concept']], 444, 864, true),
     'timepiece': phoneShow([['timepiece-home', 'Home', 'timePiece home screen'], ['timepiece-catalog', 'Browse the catalog', 'timePiece watch catalog'], ['timepiece-details', 'Compare prices by condition', 'timePiece watch details']], 648, 1436),
@@ -70,7 +77,7 @@
       return o + '</div>';
     })(),
     'tree-cutter': '<div class="pa-bot"><svg viewBox="0 0 200 70" aria-hidden="true"><path d="M10 55 C 50 55, 50 15, 90 15 S 150 55, 190 20" stroke-width="2"/></svg></div>',
-    'react-cards': '<div class="pa-cards"><b>UserCard</b><b>UserCard</b><b>UserCard</b></div>',
+    'react-cards': miniCards(),
     'react-cart': '<div class="pa-cart"><i></i><i></i><i></i><b>Total</b></div>',
     'robot-gui': '<div class="pa-polar"><svg viewBox="0 0 200 105" aria-hidden="true"><path d="M10 100 A90 90 0 0 1 190 100 Z" fill="none" stroke="currentColor" opacity=".3"/><path d="M55 100 A45 45 0 0 1 145 100" fill="none" stroke="currentColor" opacity=".3"/><line x1="100" y1="100" x2="100" y2="14"/></svg></div>'
   };

@@ -126,6 +126,13 @@ main{margin-left:var(--rail);padding:56px clamp(24px,5vw,72px) 96px;min-width:0}
 .mbar span{margin-left:.6em;flex:1;background:#fff;border-radius:1em;padding:.15em .8em;font-size:1em;color:#6c757d}
 .mview{padding:1.2em}
 .mcap{text-align:center;font-size:12.5px;font-weight:700}
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:.9em}
+.mc{border:1px solid #dee2e6;border-radius:.6em;overflow:hidden;background:#fff;animation:mcin 7s ease-out infinite backwards}
+.mpic{aspect-ratio:1.25;display:grid;place-items:center;color:#fff;font:700 3.4em system-ui,sans-serif}
+.mtx{padding:.7em .8em 1em;display:grid;gap:.25em;font-size:1.2em}
+.mtx b{font-size:1.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtx span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#495057}
+@keyframes mcin{0%{opacity:0;transform:translateY(1.2em)}9%,80%{opacity:1;transform:none}92%,100%{opacity:0;transform:none}}
 
 /* peek art */
 .anim{animation-play-state:running}
