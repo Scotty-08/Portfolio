@@ -316,7 +316,14 @@
     }));
   }
   function fuConcept(s) {
-    s.innerHTML = '<p class="note" style="margin:0 0 14px">Early concept screens, redrawn here. The real app has Home, Quests, Player and Friends tabs.</p><div class="phones"><div class="phone"><h5>Focus Session</h5><div class="big">25:00</div><div class="it">Study: Circuits</div><div class="go">Start</div></div><div class="phone"><h5>Today\'s plan</h5><div class="it">Calculus problem set<br>3:00 PM, 45 min</div><div class="it">Read: Digital Logic<br>5:00 PM, 30 min</div><div class="it">Lab report draft<br>7:30 PM, 60 min</div></div><div class="phone"><h5>This week</h5><div class="bars"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:35%"></i><i style="height:60%"></i><i style="height:20%"></i></div><div class="it">Total focus time<br><b>9 h 40 m</b></div></div></div>';
+    const A = 'assets/focusup-concept-';
+    const S = [
+      ['lock', 'phone', 444, 864, 'Lock the apps that pull you off track.', 'The screen you see when you open a blocked app. It names the quest to finish and offers Open Quests or Give up.', 'FocusUp lock screen asking you to finish the quest Finish lab report, with an Open Quests button and a Give up link.'],
+      ['quests', 'phone', 444, 864, 'Clear a quest to unlock them.', 'Checking off a quest unlocks your apps. Finished quests clear themselves after a day.', 'Quest log with one cleared quest and two open ones, and an Apps unlocked banner at the bottom.'],
+      ['companions', 'wide', 1320, 820, 'Level up. Unlock companions.', 'You start as yourself, then earn companions, cloaks and extras as you level up.', 'Grid of ten hooded character avatars, most of them locked until a level or coin goal.'],
+      ['canvas', 'wide', 1480, 840, 'Canvas assignments become quests.', 'A browser extension imports Canvas assignments as quests and skips work you already submitted.', 'A Canvas page with the FocusUp extension popup, and an arrow to three imported quests.']
+    ];
+    s.innerHTML = '<p class="note" style="margin:0 0 16px">Concept screens from the FocusUp tester intro video. The real app has Home, Quests, Player and Friends tabs.</p><div class="shots">' + S.map((x) => '<figure class="shot ' + x[1] + '"><img src="' + A + x[0] + '.webp" width="' + x[2] + '" height="' + x[3] + '" loading="lazy" alt="' + esc(x[6]) + '"><figcaption>' + (x[1] === 'phone' ? '<b>' + esc(x[4]) + '</b>' : '') + esc(x[5]) + '</figcaption></figure>').join('') + '</div>';
   }
 
   /* timePiece */
