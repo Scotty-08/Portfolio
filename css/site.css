@@ -409,5 +409,12 @@ dialog::backdrop{background:var(--scrim)}
 .vwide .vfig img{border:1px solid #1d3a4a;border-radius:6px;background:#05080c}
 .vmini{max-width:520px}
 .vart{max-width:420px;border:1px solid var(--line);background:var(--panel);padding:20px;border-radius:3px}
-@media (max-width:900px){.vfig{width:calc(50% - 9px)}.vwide{max-width:none}}
+.pvthumb{display:none;pointer-events:none;width:210px}
+.pvthumb .pvcap,.pvthumb .mcap{display:none}
+.pvthumb .pvphone{width:86px}
+.prow.hasv{grid-template-columns:minmax(0,1fr) 210px}
+.hasv .pvthumb{display:block;grid-column:2;grid-row:1/span 4;align-self:center;justify-self:end}
+.hasv .open{grid-column:1;grid-row:5;justify-self:start;margin-top:6px}
+@media (max-width:1100px){.prow.hasvm{grid-template-columns:minmax(0,1fr) 210px}.hasvm .pvthumb{display:block;grid-column:2;grid-row:1/span 4;align-self:center;justify-self:end}.hasvm .open{grid-column:1;grid-row:5;justify-self:start;margin-top:6px}}
+@media (max-width:900px){.prow.hasv,.prow.hasvm{grid-template-columns:1fr}.hasv .pvthumb,.hasvm .pvthumb{grid-column:1;grid-row:auto;justify-self:start;margin-top:8px}.hasv .open,.hasvm .open{grid-row:auto}.vfig{width:calc(50% - 9px)}.vwide{max-width:none}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
