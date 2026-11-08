@@ -106,8 +106,8 @@
   }
   function rowEl(p, withPeek) {
     const li = document.createElement('li'); li.dataset.cat = p.cat;
-    li.innerHTML = '<button class="prow" type="button" data-id="' + p.id + '"><h3>' + esc(p.title) + '</h3><span class="open">Open project</span><span class="kind">' + esc(p.kind) + '</span><p class="desc">' + esc(p.desc) + '</p></button>';
-    const b = $('.prow', li);
+    li.innerHTML = '<button class="prow" type="button" data-id="' + p.id + '"><h3>' + esc(p.title) + '</h3><span class="open">Open project</span><span class="kind">' + esc(p.kind) + '</span><p class="desc">' + esc(p.desc) + '</p><div class="pvthumb" aria-hidden="true">' + PEEK[p.id] + '</div></button>';
+    const b = $('.prow', li); b.classList.add(withPeek ? 'hasvm' : 'hasv');
     b.addEventListener('click', () => go('p:' + p.id));
     if (withPeek) { ['mouseenter', 'focus'].forEach((ev) => b.addEventListener(ev, () => showPeek(p.id))); }
     return li;
