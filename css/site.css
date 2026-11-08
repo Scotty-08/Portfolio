@@ -281,6 +281,9 @@ details p{margin:10px 0 0;color:var(--muted)}
 .roles b{display:block}
 
 /* shopping cart demo */
+#demoCart .shop{grid-template-columns:minmax(0,1fr)}
+#demoCart .shopcart{position:static}
+#demoCart .shoplist{max-height:360px}
 .shop{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:22px;align-items:start}
 .shoplist{display:grid;max-height:520px;overflow-y:auto;border-top:2px solid var(--ink);background:var(--paper)}
 .shoprow{display:grid;grid-template-columns:48px minmax(0,1fr) auto 64px;gap:12px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line)}
