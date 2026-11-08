@@ -59,10 +59,9 @@
 
     <div class="sec" id="learning">
       <h2>What I'm learning</h2>
-      <p class="intro">Two things I'm working on right now. Pick one and try the demo.</p>
+      <p class="intro">What I'm working on right now. Try the demo.</p>
       <div class="pills">
         <button class="btn" type="button" data-skill="react" aria-pressed="true">React</button>
-        <button class="btn" type="button" data-skill="websockets" aria-pressed="false">WebSockets</button>
       </div>
       <div class="tg">
         <div>
@@ -71,7 +70,6 @@
           <p id="dDesc"></p>
           <p id="dEx"></p>
           <p><a class="btn small" id="dLink" href="#react-cards" data-go="p:react-cards">Open the project</a></p>
-          <div class="relp"><span id="relReact" class="on">React</span><span id="relWs" class="off">WebSockets</span></div>
         </div>
         <div class="stage" style="align-self:start">
           <div id="demoReact">
@@ -84,22 +82,6 @@
             </div>
             <div class="ucard" style="margin-top:14px"><div class="av" id="rAvatar">M</div><div><strong id="uName"></strong><p id="uSalary"></p><p id="uMarital"></p><p id="uAddress"></p></div></div>
             <div class="code" id="rCode"></div>
-          </div>
-          <div id="demoWs" hidden>
-            <p class="note" style="margin:0 0 12px">A simulation with example watches. Open the connection, then change something on the server.</p>
-            <div class="toolbar">
-              <button class="btn small" id="wsConn" type="button">Open connection</button>
-              <button class="btn small quiet" id="wsAdd" type="button">Server: drop a price</button>
-              <button class="btn small quiet" id="wsSell" type="button">Server: sell a watch</button>
-              <button class="btn small quiet" id="wsRefresh" type="button">App: refresh (HTTP)</button>
-              <button class="btn small quiet" id="wsReset" type="button">Reset</button>
-            </div>
-            <div class="wsgrid">
-              <div class="wsbox"><h5>Android app</h5><ul id="appList"></ul></div>
-              <div class="wslink" id="wsLink"><span>socket <b id="wsState">closed</b></span></div>
-              <div class="wsbox"><h5>Backend</h5><ul id="srvList"></ul></div>
-            </div>
-            <div class="wslog" id="wsLog" aria-live="polite"></div>
           </div>
         </div>
       </div>

@@ -377,8 +377,48 @@
       '<div class="br"><div><small>From the catalog</small>' + box('Profile', 'Your account') + '<div style="height:8px"></div>' + box('Favorites', 'Saved watches') + '<div style="height:8px"></div>' + box('Sell a watch', 'Find a catalog watch, set a price') + '<div style="height:8px"></div>' + box('Report', 'Report a user') + '</div><div><small>Roles</small>' + box('User', 'The default role') + '<div style="height:8px"></div>' + box('Admin', 'Add or edit catalog watches: name, price, picture') + '<div style="height:8px"></div>' + box('Moderator', 'Manage or delete accounts') + '</div></div></div><p class="note">A listing is separate from the catalog watch it is for. Watch detail popups and AR try-on were left for later.</p>';
   }
   function tpLive(s) {
-    s.innerHTML = '<p>The live updates are the part I built that is easiest to feel. The simulator on the home page shows how a WebSocket push differs from asking again with HTTP.</p><p><button class="btn solid" type="button" id="tpGo">Open the WebSocket demo</button></p>';
-    $('#tpGo', s).addEventListener('click', () => { go('learning'); pickSkill('websockets'); });
+    s.innerHTML = '<p style="margin:0 0 12px">The live updates are the part I built that is easiest to feel. This simulation, with example watches and not the real server, shows how a WebSocket push differs from the app asking again over HTTP. Open the connection, then change something on the server.</p>' +
+      '<div class="toolbar"><button class="btn small" id="wsConn" type="button">Open connection</button><button class="btn small quiet" id="wsAdd" type="button">Server: drop a price</button><button class="btn small quiet" id="wsSell" type="button">Server: sell a watch</button><button class="btn small quiet" id="wsRefresh" type="button">App: refresh (HTTP)</button><button class="btn small quiet" id="wsReset" type="button">Reset</button></div>' +
+      '<div class="wsgrid"><div class="wsbox"><h5>Android app</h5><ul id="appList"></ul></div><div class="wslink" id="wsLink"><span>socket <b id="wsState">closed</b></span></div><div class="wsbox"><h5>Backend</h5><ul id="srvList"></ul></div></div><div class="wslog" id="wsLog" aria-live="polite"></div>';
+    const START = [{ n: 'Field Watch', p: 180, sold: false }, { n: 'Pilot 40', p: 240, sold: false }, { n: 'Diver 300', p: 320, sold: false }];
+    let ws = { open: false, srv: [], app: [], log: [], pi: 0 }, lastNew = '';
+    const copyList = (a) => a.map((w) => ({ n: w.n, p: w.p, sold: w.sold }));
+    const wsPush = (arr) => { ws.log = arr.concat(ws.log).slice(0, 7); };
+    function wsPulse() { const l = $('#wsLink', s); l.classList.remove('send'); void l.offsetWidth; if (!reduced) l.classList.add('send'); }
+    function wsList(el, arr, hot) { el.innerHTML = ''; arr.forEach((w) => { const li = document.createElement('li'); li.textContent = w.n + ': ' + (w.sold ? 'SOLD' : '$' + w.p); if (hot === w.n && !reduced) li.className = 'new'; el.appendChild(li); }); }
+    const openW = () => ws.srv.filter((w) => !w.sold);
+    function renderWs() {
+      wsList($('#appList', s), ws.app, lastNew); wsList($('#srvList', s), ws.srv, '');
+      $('#wsState', s).textContent = ws.open ? 'open' : 'closed'; $('#wsLink', s).classList.toggle('open', ws.open);
+      $('#wsConn', s).textContent = ws.open ? 'Close connection' : 'Open connection';
+      const left = openW().length; $('#wsAdd', s).disabled = left === 0; $('#wsSell', s).disabled = left <= 1;
+      const lg = $('#wsLog', s); lg.innerHTML = '';
+      if (!ws.log.length) { const d = document.createElement('div'); d.textContent = 'Message log. Open the connection to start.'; lg.appendChild(d); }
+      ws.log.forEach((m) => { const d = document.createElement('div'); d.textContent = m; lg.appendChild(d); });
+    }
+    function wsReset() { ws = { open: false, srv: copyList(START), app: copyList(START), log: [], pi: 0 }; lastNew = ''; renderWs(); }
+    $('#wsConn', s).addEventListener('click', () => {
+      lastNew = '';
+      if (!ws.open) { ws.open = true; wsPulse(); ws.app = copyList(ws.srv); wsPush(['server to app: connected, staying open', 'app to server: open connection']); }
+      else { ws.open = false; wsPush(['connection closed. The server can no longer push to the app.']); }
+      renderWs();
+    });
+    $('#wsAdd', s).addEventListener('click', () => {
+      const o = openW(); if (!o.length) return;
+      const w = o[ws.pi++ % o.length]; w.p = Math.max(10, w.p - 10); lastNew = '';
+      if (ws.open) { const a = ws.app.filter((x) => x.n === w.n)[0]; if (a) a.p = w.p; lastNew = w.n; wsPulse(); wsPush(['server to app: price_update "' + w.n + '" $' + w.p, 'server: price of "' + w.n + '" changed']); }
+      else wsPush(['server: price of "' + w.n + '" changed to $' + w.p + '. The app was not told, so it still shows the old price.']);
+      renderWs();
+    });
+    $('#wsSell', s).addEventListener('click', () => {
+      const o = openW(); if (o.length <= 1) return;
+      const w = o[o.length - 1]; w.sold = true; lastNew = '';
+      if (ws.open) { const a = ws.app.filter((x) => x.n === w.n)[0]; if (a) a.sold = true; lastNew = w.n; wsPulse(); wsPush(['server to app: watch_sold "' + w.n + '"', 'server: "' + w.n + '" sold']); }
+      else wsPush(['server: "' + w.n + '" sold. The app was not told, so it still shows it for sale.']);
+      renderWs();
+    });
+    $('#wsRefresh', s).addEventListener('click', () => { ws.app = copyList(ws.srv); lastNew = ''; wsPulse(); wsPush(['server to app: 200 OK, ' + ws.srv.length + ' watches', 'app to server: GET /watches (the app had to ask)']); renderWs(); });
+    $('#wsReset', s).addEventListener('click', wsReset); wsReset();
   }
 
   /* Jeopardy */
@@ -540,15 +580,12 @@
   /* ================= learning ================= */
   const SKILLS = {
     react: { name: 'React', status: 'Currently learning', desc: 'I am learning React with Vite in Iowa State\'s COM S 3190 web development class, starting with reusable components and props and moving on to state and hooks.', ex: 'I started with reusable UserCard components that take props. My most recent project is a shopping cart that keeps its items in state, groups repeats with reduce and updates the total with useEffect.', go: 'p:react-cart', link: '#project-react-cart', text: 'Open the shopping cart project' },
-    websockets: { name: 'WebSockets', status: 'Learning and using it in COM S 3090', desc: 'One connection stays open between the Android app and the backend, so the server can send an update the moment something changes instead of waiting for the app to ask.', ex: 'On timePiece, my endpoints push live price updates and sold-watch notifications. The demo is a simulation with example watches, not the real server.', go: 'p:timepiece', link: '#project-timepiece', text: 'Open timePiece' }
   };
   function pickSkill(id) {
     const k = SKILLS[id];
     $$('[data-skill]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.skill === id)));
     $('#dStatus').textContent = k.status; $('#dName').textContent = k.name; $('#dDesc').textContent = k.desc; $('#dEx').textContent = k.ex;
     const l = $('#dLink'); l.dataset.go = k.go; l.setAttribute('href', k.link); l.textContent = k.text;
-    $('#demoReact').hidden = id !== 'react'; $('#demoWs').hidden = id !== 'websockets';
-    $('#relReact').className = id === 'react' ? 'on' : 'off'; $('#relWs').className = id === 'websockets' ? 'on' : 'off';
   }
   $$('[data-skill]').forEach((b) => b.addEventListener('click', () => pickSkill(b.dataset.skill)));
   pickSkill('react');
@@ -560,46 +597,6 @@
     $('#rCode').textContent = '<UserCard\n  name="' + name + '"\n  salary={' + sal + '}\n  marital="' + mar + '"\n  address="' + adr + '" />';
   }
   ['#rName', '#rSalary', '#rMarital', '#rAddress'].forEach((q) => $(q).addEventListener('input', drawCard)); drawCard();
-
-  const START = [{ n: 'Field Watch', p: 180, sold: false }, { n: 'Pilot 40', p: 240, sold: false }, { n: 'Diver 300', p: 320, sold: false }];
-  let ws = { open: false, srv: [], app: [], log: [], pi: 0 }, lastNew = '';
-  const copyList = (a) => a.map((w) => ({ n: w.n, p: w.p, sold: w.sold }));
-  const wsPush = (arr) => { ws.log = arr.concat(ws.log).slice(0, 7); };
-  function wsPulse() { const l = $('#wsLink'); l.classList.remove('send'); void l.offsetWidth; if (!reduced) l.classList.add('send'); }
-  function wsList(el, arr, hot) { el.innerHTML = ''; arr.forEach((w) => { const li = document.createElement('li'); li.textContent = w.n + ': ' + (w.sold ? 'SOLD' : '$' + w.p); if (hot === w.n && !reduced) li.className = 'new'; el.appendChild(li); }); }
-  const openW = () => ws.srv.filter((w) => !w.sold);
-  function renderWs() {
-    wsList($('#appList'), ws.app, lastNew); wsList($('#srvList'), ws.srv, '');
-    $('#wsState').textContent = ws.open ? 'open' : 'closed'; $('#wsLink').classList.toggle('open', ws.open);
-    $('#wsConn').textContent = ws.open ? 'Close connection' : 'Open connection';
-    const left = openW().length; $('#wsAdd').disabled = left === 0; $('#wsSell').disabled = left <= 1;
-    const lg = $('#wsLog'); lg.innerHTML = '';
-    if (!ws.log.length) { const d = document.createElement('div'); d.textContent = 'Message log. Open the connection to start.'; lg.appendChild(d); }
-    ws.log.forEach((m) => { const d = document.createElement('div'); d.textContent = m; lg.appendChild(d); });
-  }
-  function wsReset() { ws = { open: false, srv: copyList(START), app: copyList(START), log: [], pi: 0 }; lastNew = ''; renderWs(); }
-  $('#wsConn').addEventListener('click', () => {
-    lastNew = '';
-    if (!ws.open) { ws.open = true; wsPulse(); ws.app = copyList(ws.srv); wsPush(['server to app: connected, staying open', 'app to server: open connection']); }
-    else { ws.open = false; wsPush(['connection closed. The server can no longer push to the app.']); }
-    renderWs();
-  });
-  $('#wsAdd').addEventListener('click', () => {
-    const o = openW(); if (!o.length) return;
-    const w = o[ws.pi++ % o.length]; w.p = Math.max(10, w.p - 10); lastNew = '';
-    if (ws.open) { const a = ws.app.filter((x) => x.n === w.n)[0]; if (a) a.p = w.p; lastNew = w.n; wsPulse(); wsPush(['server to app: price_update "' + w.n + '" $' + w.p, 'server: price of "' + w.n + '" changed']); }
-    else wsPush(['server: price of "' + w.n + '" changed to $' + w.p + '. The app was not told, so it still shows the old price.']);
-    renderWs();
-  });
-  $('#wsSell').addEventListener('click', () => {
-    const o = openW(); if (o.length <= 1) return;
-    const w = o[o.length - 1]; w.sold = true; lastNew = '';
-    if (ws.open) { const a = ws.app.filter((x) => x.n === w.n)[0]; if (a) a.sold = true; lastNew = w.n; wsPulse(); wsPush(['server to app: watch_sold "' + w.n + '"', 'server: "' + w.n + '" sold']); }
-    else wsPush(['server: "' + w.n + '" sold. The app was not told, so it still shows it for sale.']);
-    renderWs();
-  });
-  $('#wsRefresh').addEventListener('click', () => { ws.app = copyList(ws.srv); lastNew = ''; wsPulse(); wsPush(['server to app: 200 OK, ' + ws.srv.length + ' watches', 'app to server: GET /watches (the app had to ask)']); renderWs(); });
-  $('#wsReset').addEventListener('click', wsReset); wsReset();
 
   /* ================= resume, contact ================= */
   const resDlg = $('#res');
@@ -621,7 +618,7 @@
   const ITEMS = [
     { g: 'Pages', ic: 'H', label: 'Home', hint: '', k: 'home maze', run: () => go('home') },
     { g: 'Pages', ic: 'P', label: 'Projects', hint: '', k: 'projects work', run: () => go('projects') },
-    { g: 'Pages', ic: 'L', label: 'What I\'m learning', hint: 'Home', k: 'learning react websockets', run: () => go('learning') },
+    { g: 'Pages', ic: 'L', label: 'What I\'m learning', hint: 'Home', k: 'learning react', run: () => go('learning') },
     { g: 'Pages', ic: 'W', label: 'Work experience', hint: '', k: 'jobs menards mowing', run: () => go('work') },
     { g: 'Pages', ic: 'A', label: 'About me', hint: '', k: 'about bio guatemala', run: () => go('about') },
     { g: 'Pages', ic: 'C', label: 'Contact', hint: '', k: 'email phone', run: () => go('contact') }
