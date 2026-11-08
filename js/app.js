@@ -99,8 +99,7 @@
   /* ================= project rows ================= */
   function viewHtml(id) {
     const A = 'assets/', fig = (f, w, h, cap, alt, cls) => '<figure class="vfig ' + (cls || '') + '"><img src="' + A + f + '.webp" width="' + w + '" height="' + h + '" alt="' + esc(alt) + '"><figcaption>' + esc(cap) + '</figcaption></figure>';
-    if (id === 'focusup') return '<div class="vgal">' + fig('focusup-concept-lock', 444, 864, 'Lock screen', 'FocusUp lock screen concept') + fig('focusup-concept-quests', 444, 864, 'Quest log', 'FocusUp quest log concept') +
-      '<div class="vwide">' + fig('focusup-concept-companions', 1320, 820, 'Companions to unlock', 'Grid of hooded companion avatars') + fig('focusup-concept-canvas', 1480, 840, 'Canvas assignments become quests', 'Canvas page with the FocusUp extension') + '</div></div>';
+    if (id === 'focusup') return '<div class="vgal">' + fig('focusup-concept-lock', 444, 864, 'Lock screen', 'FocusUp lock screen concept') + fig('focusup-concept-quests', 444, 864, 'Quest log', 'FocusUp quest log concept') + '</div>';
     if (id === 'timepiece') return '<div class="vgal">' + fig('timepiece-home', 420, 931, 'Home', 'timePiece home screen', 'vph') + fig('timepiece-catalog', 420, 931, 'Catalog', 'timePiece watch catalog', 'vph') + fig('timepiece-details', 420, 931, 'Watch details', 'timePiece watch details', 'vph') + '</div>';
     if (id === 'react-cards' || id === 'react-cart') return '<div class="vmini">' + PEEK[id] + '</div>';
     return '<div class="vart">' + PEEK[id] + '</div>';
