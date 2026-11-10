@@ -33,6 +33,7 @@ p{margin:0 0 1em;max-width:62ch}
 .btn.solid{background:var(--red);border-color:var(--red);color:var(--on-red)}
 .btn.solid:hover{background:var(--red-ink);border-color:var(--red-ink);color:var(--on-red)}
 .btn.small{min-height:34px;padding:0 11px;font-size:13px}
+.btn.ghost{border-color:var(--red);color:var(--red-ink)}
 .btn.quiet{font-weight:600;color:var(--muted)}
 .btn.quiet:hover{color:var(--ink)}
 .btn[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--on-red)}

@@ -692,5 +692,6 @@
     else if (e.key === '/' && !typing && !pal.open) { e.preventDefault(); palOpen(); }
   });
 
+  window.SiteApi = { go: go, openResume: openResume, PROJECTS: PROJECTS };
   go(tokenFromHash(), true);
 })();
