@@ -86,7 +86,7 @@
     'focusup': phoneShow([['focusup-concept-lock', 'Apps stay locked', 'FocusUp lock screen concept'], ['focusup-concept-quests', 'Every task is a quest', 'FocusUp quest list concept']], 444, 864, true),
     'timepiece': phoneShow([['timepiece-home', 'Home', 'timePiece home screen'], ['timepiece-catalog', 'Browse the catalog', 'timePiece watch catalog'], ['timepiece-details', 'Compare prices by condition', 'timePiece watch details']], 648, 1436),
     'courseflow': '<div class="minibox"><div class="mini"><div class="pkbar"><i></i><i></i><i></i><span>scotty-08.github.io/CourseFlow</span></div><div class="cfview"><img src="assets/courseflow-planner.webp" width="1200" height="806" alt="CourseFlow semester planner"></div></div></div>',
-    'jeopardy': '<div class="pa-board">' + Array.from({ length: 16 }, (_, i) => '<i style="animation-delay:' + (i * 0.19).toFixed(2) + 's">$' + (100 * (1 + (i >> 2))) + '</i>').join('') + '</div>',
+    'jeopardy': '<div class="pa-hub">' + ['Jeopardy', 'Quiz Blitz', 'Family Feud', 'Maze', 'Memory'].map((g) => '<span>' + g + '</span>').join('') + '<em><i></i></em></div>',
     'maze-solver': (function () {
       const L = ['SppwEEEEwEEE', 'EwpwEwwEwEwE', 'EwppppwEEEwE', 'EwwwwpppppPF']; let o = '<div class="pa-grid">'; let n = 0;
       L.forEach((r) => r.split('').forEach((c) => { o += '<i class="' + (c === 'w' ? 'w' : (c === 'p' || c === 'P' || c === 'S' || c === 'F') ? 'p' : '') + '" style="animation-delay:' + ((n++) * 0.06).toFixed(2) + 's"></i>'; }));
@@ -441,6 +441,18 @@
     d.addEventListener('input', upd); upd();
   }
 
+  /* GameHub */
+  function hubGames(s) {
+    const G = [
+      ['ISU Jeopardy', 'Host mode or team multiple choice with a 20 second timer and a Daily Double.'],
+      ['Quiz Blitz', 'Race the clock for 60 seconds, or play sudden death where one miss ends the run.'],
+      ['Family Feud', 'Two teams, a survey board, fuzzy answer matching and a steal. 3 or 6 rounds.'],
+      ['Maze', 'Run a generated maze against the clock, or watch BFS, DFS and A* solve one.'],
+      ['Memory Match', 'Flip pairs with a combo multiplier. Easy and hard grids.']
+    ];
+    s.innerHTML = '<p class="note" style="margin:0 0 12px">Five games with shared XP, levels and local leaderboards. <a href="https://scotty-08.github.io/Jeopardy-Gameboard/" target="_blank" rel="noopener noreferrer">Play it live</a>.</p>' + G.map((g) => '<div class="detail" style="margin-bottom:8px"><h4>' + esc(g[0]) + '</h4><p>' + esc(g[1]) + '</p></div>').join('');
+  }
+
   /* Jeopardy */
   function jeoDemo(s) {
     const CATS = ['Campus', 'Cyclones', 'STEM', 'Web'];
@@ -590,7 +602,7 @@
     'focusup': [{ label: 'Setup flow', render: fuSetup }, { label: 'Everyday screens', render: fuMain }, { label: 'Concept screens', render: fuConcept }],
     'timepiece': [{ label: 'Architecture', render: tpArch }, { label: 'Screens and roles', render: tpFlow }, { label: 'Live updates', render: tpLive }],
     'courseflow': [{ label: 'Screens', render: cfScreens }, { label: 'Price a semester', render: cfPrice }],
-    'jeopardy': [{ label: 'Play a sample board', render: jeoDemo }],
+    'jeopardy': [{ label: 'The five games', render: hubGames }, { label: 'Play a sample Jeopardy board', render: jeoDemo }],
     'maze-solver': [{ label: 'Live demo', render: mazeDemo }],
     'tree-cutter': [{ label: 'Sensor decisions', render: cutterDemo }],
     'react-cards': [{ label: 'Cards from data', render: cardsDemo }],
