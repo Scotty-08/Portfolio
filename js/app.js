@@ -585,17 +585,9 @@
   };
 
   /* ================= recent project (home) ================= */
-  (function recentDemo() {
-    const s = $('#recentDemo'); if (!s) return;
-    s.innerHTML = '<p class="note" style="margin:0 0 12px">CourseFlow\'s pricing rule: $399 per credit. A semester over 12 credits never costs more than $8,000.</p><label class="field" for="rcC" style="max-width:360px">Credits this semester: <span id="rcV">15</span><input id="rcC" type="range" min="1" max="24" value="15"></label><div class="detail"><h4 id="rcT"></h4><p id="rcP"></p></div>';
-    const d = $('#rcC', s);
-    function upd() {
-      const c = +d.value, sub = c * 399, over = c > 12, total = over ? Math.min(sub, 8000) : sub, capped = over && total !== sub;
-      $('#rcV', s).textContent = c;
-      $('#rcT', s).textContent = '$' + total.toLocaleString('en-US');
-      $('#rcP', s).textContent = c + ' credits x $399 = $' + sub.toLocaleString('en-US') + '. ' + (capped ? 'Over 12 credits, so the $8,000 cap applies and you save $' + (sub - total).toLocaleString('en-US') + '.' : over ? 'Over 12 credits, but the $8,000 cap does not bind until about 21 credits.' : 'At or under 12 credits you pay the plain total.');
-    }
-    d.addEventListener('input', upd); upd();
+  (function recentVideo() {
+    const v = $('#recentVideo'); if (!v || reduced) return;
+    v.autoplay = true; const play = v.play(); if (play && play.catch) play.catch(() => {});
   })();
 
   /* ================= contact ================= */
