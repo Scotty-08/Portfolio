@@ -49,7 +49,7 @@
     projects: { text: PROJ.length + ' projects: web apps, an iOS app, an Android app, plus two robot projects from class. ' + liveList().join(' and ') + ' have live sites.', go: [['See featured projects', function () { api.go('featured'); }], ['All projects', function () { api.go('projects'); }]] },
     skills: { text: 'Java, JavaScript, Swift, Python and C, plus React, SwiftUI, Spring Boot, MariaDB and Supabase. I am going deeper on React right now.', go: [['See skills', function () { api.go('skills'); }]] },
     story: { text: 'Scott was adopted from Guatemala and grew up in Council Bluffs. After his dad fell from a zipline, robotics-assisted therapy at Madonna Rehabilitation Hospital helped him recover. That is why he wants to build tech that helps people heal.', go: [['Back to the intro', function () { api.go('home'); }]] },
-    live: { text: 'Two live web apps: CourseFlow, a CPR E course planner, and Maze Solver, a breadth-first search visualizer.', go: [['Open CourseFlow', function () { api.go('p:courseflow'); }], ['Open Maze Solver', function () { api.go('p:maze-solver'); }]] },
+    live: { text: 'Three live web apps: CourseFlow, a CPR E course planner, Maze Solver, a breadth-first search visualizer, and the ISU Game Hub with five Iowa State games.', go: [['Open CourseFlow', function () { api.go('p:courseflow'); }], ['Open Maze Solver', function () { api.go('p:maze-solver'); }], ['Open Game Hub', function () { api.go('p:jeopardy'); }]] },
     ios: { text: 'FocusUp is an iOS app built with SwiftUI and the Screen Time API, with Supabase behind it. About 15 people tested it on TestFlight.', go: [['See FocusUp', function () { api.go('p:focusup'); }]] },
     android: { text: 'timePiece is an Android team app for browsing, favoriting and selling watches. Scott built the catalog backend and the WebSocket endpoints in Spring Boot.', go: [['See timePiece', function () { api.go('p:timepiece'); }]] },
     contact: { text: 'Email grayscott07@outlook.com or find Scott on GitHub as Scotty-08.', go: [['Go to contact', function () { api.go('contact'); }]] },
@@ -62,7 +62,7 @@
     var s = q.toLowerCase();
     function has(words) { return words.some(function (w) { return s.indexOf(w) !== -1; }); }
     if (has(['are you ai', 'chatgpt', 'are you a bot', 'are you real', 'otter'])) return 'bot';
-    if (has(['live', 'website', 'web app', 'webapp', 'demo', 'link', 'course', 'maze'])) return 'live';
+    if (has(['live', 'website', 'web app', 'webapp', 'demo', 'link', 'course', 'maze', 'game', 'jeopardy', 'hub'])) return 'live';
     if (has(['android', 'timepiece', 'watch', 'backend', 'spring'])) return 'android';
     if (has(['ios', 'swift', 'focusup', 'iphone', 'testflight'])) return 'ios';
     if (has(['learning', 'react'])) return 'learning';
