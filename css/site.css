@@ -119,13 +119,8 @@ main{max-width:1180px;margin:0 auto;padding:48px 32px 96px;min-width:0}
 .ft-bar i{width:7px;height:7px;border-radius:50%;background:var(--line)}
 .ft-pan{height:168px;overflow:hidden}
 .ft-pan img{display:block;width:200%;max-width:none;height:auto;animation:ftpan 14s ease-in-out infinite}
+.ft-vid{height:162px;overflow:hidden;background:#0b0710}.ft-vid video{display:block;width:100%;height:100%;object-fit:cover}
 @keyframes ftpan{0%,6%{transform:translate(0,0)}34%,44%{transform:translate(-50%,0)}72%,82%{transform:translate(-50%,-30%)}100%{transform:translate(0,0)}}
-.ft-maze{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;padding:12px;height:168px;align-content:center}
-.ft-cell{display:block;aspect-ratio:1;border-radius:3px;background:var(--panel)}
-.ft-cell.w{background:#2a3858}.ft-cell.s{background:var(--red)}.ft-cell.e{background:var(--gold)}
-.ft-cell.v{animation:ftvis 9s infinite}.ft-cell.p{animation:ftpth 9s infinite}
-@keyframes ftvis{0%{background:var(--panel)}3%,86%{background:#2f5fb3}94%,100%{background:var(--panel)}}
-@keyframes ftpth{0%{background:var(--panel)}3%,86%{background:var(--gold)}94%,100%{background:var(--panel)}}
 @media (max-width:900px){.ft-rail{margin:0 -20px;padding:4px 20px 22px;scroll-padding:0 20px}.ft-card{flex-basis:min(320px,82vw)}}
 
 /* what I build, skills, call to action */
