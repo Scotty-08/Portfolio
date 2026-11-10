@@ -638,60 +638,6 @@
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText('grayscott07@outlook.com').then(done, fail); else fail();
   });
 
-  /* ================= palette ================= */
-  const pal = $('#pal'), palQ = $('#palQ'), palList = $('#palList'); let palActive = 0, palItems = [];
-  const ITEMS = [
-    { g: 'Pages', ic: 'H', label: 'Home', hint: 'My story', k: 'home about story bio guatemala', run: () => go('home') },
-    { g: 'Pages', ic: 'P', label: 'Projects', hint: '', k: 'projects work', run: () => go('projects') },
-    { g: 'Pages', ic: 'S', label: 'Skills', hint: 'Home', k: 'skills languages tools', run: () => go('skills') },
-    { g: 'Pages', ic: 'L', label: 'What I\'m learning', hint: 'Home', k: 'learning react', run: () => go('learning') },
-    { g: 'Pages', ic: 'W', label: 'Work experience', hint: '', k: 'jobs menards mowing', run: () => go('work') },
-    { g: 'Pages', ic: 'C', label: 'Contact', hint: '', k: 'email phone', run: () => go('contact') }
-  ];
-  const KEYS = { courseflow: 'react vite planner courses semester prerequisites tuition live site github pages', focusup: 'swiftui iphone ios quests screen time supabase canvas', timepiece: 'java spring boot mariadb jpa android watches websockets rest', jeopardy: 'json game javascript trivia', 'maze-solver': 'bfs algorithm demo search', 'tree-cutter': 'robot c hardware cpre 288 arm uart', 'react-cards': 'react props vite', 'react-cart': 'react shopping cart store hooks usestate useeffect bootstrap json', 'robot-gui': 'python matplotlib tkinter polar sensor' };
-  PROJECTS.forEach((p) => ITEMS.push({ g: 'Projects', ic: p.title[0], label: p.title, hint: p.kind.split(',')[0], k: KEYS[p.id], run: () => go('p:' + p.id) }));
-  ITEMS.push(
-    { g: 'Actions', ic: 'S', label: 'View software resume', hint: '', k: 'resume cv software', run: () => openResume('software') },
-    { g: 'Actions', ic: 'E', label: 'View embedded resume', hint: '', k: 'resume cv embedded firmware', run: () => openResume('embedded') },
-    { g: 'Actions', ic: '@', label: 'Copy email address', hint: '', k: 'email mail', run: () => $('#copyMail').click() },
-    { g: 'Actions', ic: 'G', label: 'Open GitHub profile', hint: 'github.com', k: 'github code', href: 'https://github.com/Scotty-08' }
-  );
-  const palFilter = () => { const q = palQ.value.trim().toLowerCase(); return ITEMS.filter((it) => !q || (it.label + ' ' + it.k + ' ' + it.g).toLowerCase().indexOf(q) !== -1); };
-  function palRender() {
-    palItems = palFilter(); if (palActive >= palItems.length) palActive = Math.max(0, palItems.length - 1);
-    palList.innerHTML = '';
-    if (!palItems.length) { const e = document.createElement('div'); e.className = 'empty'; e.textContent = 'No matches. Try "maze", "robot" or "contact".'; palList.appendChild(e); return; }
-    let last = '';
-    palItems.forEach((it, i) => {
-      if (it.g !== last) { const h = document.createElement('div'); h.className = 'gh'; h.textContent = it.g; palList.appendChild(h); last = it.g; }
-      const b = document.createElement('button'); b.type = 'button'; b.id = 'pi' + i; b.className = 'row' + (i === palActive ? ' on' : ''); b.setAttribute('role', 'option'); b.setAttribute('aria-selected', String(i === palActive));
-      b.innerHTML = '<span class="ic"></span><span class="lb"></span><span class="hint"></span>';
-      $('.ic', b).textContent = it.ic; $('.lb', b).textContent = it.label; $('.hint', b).textContent = it.hint;
-      b.addEventListener('mouseenter', () => palSet(i, false)); b.addEventListener('click', () => palRun(it)); palList.appendChild(b);
-    });
-    palQ.setAttribute('aria-activedescendant', 'pi' + palActive);
-  }
-  function palSet(i, sc) { const rows = $$('.row', palList); if (!rows.length) return; rows.forEach((r, n) => { r.classList.toggle('on', n === i); r.setAttribute('aria-selected', String(n === i)); }); palActive = i; palQ.setAttribute('aria-activedescendant', 'pi' + i); if (sc) rows[i].scrollIntoView({ block: 'nearest' }); }
-  function palRun(it) {
-    pal.close();
-    if (it.href) { const a = document.createElement('a'); a.href = it.href; a.target = '_blank'; a.rel = 'noopener noreferrer'; document.body.appendChild(a); a.click(); a.remove(); } else if (it.run) it.run();
-  }
-  function palOpen() { palQ.value = ''; palActive = 0; palRender(); if (!pal.open) pal.showModal(); palQ.focus(); }
-  $('#openPal').addEventListener('click', palOpen);
-  palQ.addEventListener('input', () => { palActive = 0; palRender(); });
-  palQ.addEventListener('keydown', (e) => {
-    const n = palItems.length;
-    if (e.key === 'ArrowDown' && n) { e.preventDefault(); palSet((palActive + 1) % n, true); }
-    else if (e.key === 'ArrowUp' && n) { e.preventDefault(); palSet((palActive + n - 1) % n, true); }
-    else if (e.key === 'Enter' && n) { e.preventDefault(); palRun(palItems[palActive]); }
-  });
-  pal.addEventListener('click', (e) => { if (e.target === pal) pal.close(); });
-  addEventListener('keydown', (e) => {
-    const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '');
-    if ((e.key === 'k' || e.key === 'K') && (e.ctrlKey || e.metaKey)) { e.preventDefault(); if (pal.open) pal.close(); else palOpen(); }
-    else if (e.key === '/' && !typing && !pal.open) { e.preventDefault(); palOpen(); }
-  });
-
   window.SiteApi = { go: go, openResume: openResume, PROJECTS: PROJECTS };
   go(tokenFromHash(), true);
 })();

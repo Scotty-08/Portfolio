@@ -136,7 +136,6 @@
   btn.addEventListener('click', function () { setOpen(!open); });
   close.addEventListener('click', function () { setOpen(false); });
   panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); setOpen(false); } });
-  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('[data-otter]'); if (a) { e.preventDefault(); if (!open) setOpen(true); else input.focus(); } });
 
   jump(home());
   if (!reduced) { timer = setTimeout(tick, 5200); setTimeout(showBubble, 2500); }
