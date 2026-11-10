@@ -404,14 +404,7 @@ details p{margin:10px 0 0;color:var(--muted)}
 .wslog{margin-top:12px;font:13px/1.5 ui-monospace,Consolas,monospace;border:1px solid var(--line);padding:10px;min-height:96px;background:var(--paper);overflow-x:auto}
 .wslog div{white-space:pre}
 
-/* work, about, contact */
-.tl{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.tl li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 28px;padding:26px 0;border-top:2px solid var(--ink)}
-.tl li+li{border-top:1px solid var(--line)}
-.tl .when{font-weight:700;color:var(--red-ink)}
-.tl h3{font-size:clamp(26px,3.5vw,36px);margin-bottom:4px}
-.tl ul{margin:12px 0 0;padding-left:1.1em;max-width:62ch}
-.tl li li{display:list-item;border:0;padding:3px 0}
+/* contact */
 .about-top{display:grid;grid-template-columns:240px minmax(0,1fr);gap:40px;align-items:start}
 .about-top img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;background:#181b1f}
 .contact-list{border-top:2px solid var(--ink);margin:0 0 30px;max-width:620px}
@@ -439,7 +432,6 @@ dialog::backdrop{background:var(--scrim)}
   main{padding:28px 20px 72px}
   .two,.tg,.about-top,.cols{grid-template-columns:1fr;columns:1}
   .about-top img{max-width:200px}
-  .tl li{grid-template-columns:1fr}
   .sec{margin-top:72px}
   .arch{grid-template-columns:1fr}
   .wsgrid{grid-template-columns:1fr}.wslink{height:46px}

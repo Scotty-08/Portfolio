@@ -54,7 +54,6 @@
     android: { text: 'timePiece is an Android team app for browsing, favoriting and selling watches. Scott built the catalog backend and the WebSocket endpoints in Spring Boot.', go: [['See timePiece', function () { api.go('p:timepiece'); }]] },
     contact: { text: 'Email grayscott07@outlook.com or find Scott on GitHub as Scotty-08.', go: [['Go to contact', function () { api.go('contact'); }]] },
     learning: { text: 'Right now Scott is learning React. There are two demos on the home page: user cards and a shopping cart.', go: [['See what I’m learning', function () { api.go('learning'); }]] },
-    work: { text: 'Scott works as a courtesy patrol and cashier at Menards, and mowed lawns at J&A Mowing before that.', go: [['Work experience', function () { api.go('work'); }]] },
     bot: { text: 'I am an otter, not an AI. I match keywords and answer from what is already on this site, so I only know a few topics.' },
     none: { text: 'I only know a few topics. Try projects, skills, story, iOS, Android or contact, or pick a chip below.' }
   };
@@ -68,7 +67,6 @@
     if (has(['learning', 'react'])) return 'learning';
     if (has(['project', 'built', 'portfolio'])) return 'projects';
     if (has(['skill', 'java', 'python', 'tech', 'stack', 'language'])) return 'skills';
-    if (has(['job', 'menards', 'mowing', 'experience', 'work'])) return 'work';
     if (has(['story', 'about', 'who', 'why', 'guatemala', 'heal', 'background'])) return 'story';
     if (has(['contact', 'hire', 'intern', 'email', 'reach', 'github', 'linkedin', 'phone'])) return 'contact';
     return 'none';

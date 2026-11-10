@@ -199,7 +199,7 @@
   applyFilter(); renderTrail();
 
   /* ================= router ================= */
-  const VIEWS = ['home', 'projects', 'work', 'contact', 'project'];
+  const VIEWS = ['home', 'projects', 'contact', 'project'];
   const SCROLL_TO = { learning: '#learning', skills: '#skills', build: '#build', featured: '#featured' };
   let current = 'home';
   function show(view, projectId, navHint) {
