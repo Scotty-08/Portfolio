@@ -141,7 +141,7 @@ main{max-width:1180px;margin:0 auto;padding:48px 32px 96px;min-width:0}
 .bcard ul{list-style:none;margin:auto 0 0;padding:14px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px;font-size:15px}
 .bcard li a{color:var(--red-ink);text-decoration:none;border-bottom:1px dashed var(--red)}
 .bcard li span{color:var(--muted);font-size:13px}
-.skgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.skgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
 .skc{padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .skc h4{margin:0 0 12px;font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .cta{margin:88px 0 0;padding:34px;display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between;background:var(--panel);border:1px solid var(--red);border-radius:16px}
