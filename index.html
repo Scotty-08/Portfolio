@@ -8,8 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap">
-<link rel="stylesheet" href="css/site.css?v=20261110k">
-<link rel="stylesheet" href="css/otter.css?v=20261110k">
+<link rel="stylesheet" href="css/site.css?v=20261110l">
+<link rel="stylesheet" href="css/otter.css?v=20261110l">
 </head>
 <body>
 <a class="sr" href="#main">Skip to content</a>
@@ -112,35 +112,18 @@
       </div>
     </div>
 
-    <div class="sec" id="learning">
-      <h2>What I'm learning</h2>
-      <p class="intro">What I'm working on right now. Try the demo.</p>
-      <div class="pills">
-        <button class="btn" type="button" data-demo="cards" aria-pressed="true">UserCard props</button>
-        <button class="btn" type="button" data-demo="cart" aria-pressed="false">Shopping cart</button>
-      </div>
+    <div class="sec" id="recent">
+      <h2>What I built recently</h2>
+      <p class="intro">My most recent project. Try its pricing rule.</p>
       <div class="tg">
         <div>
-          <h3 id="dName" style="font-size:34px;margin-bottom:6px">React</h3>
-          <p id="dStatus" style="color:var(--red-ink);font-weight:700;margin-bottom:10px">Currently learning</p>
-          <p id="dDesc"></p>
-          <p id="dEx"></p>
-          <p><a class="btn small" id="dLink" href="#react-cards" data-go="p:react-cards">Open the project</a></p>
+          <h3 style="font-size:34px;margin-bottom:6px">CourseFlow</h3>
+          <p style="color:var(--red-ink);font-weight:700;margin-bottom:10px">Web app, React</p>
+          <p>A planner for Iowa State CPR E students. Add courses to a cart, place them in semesters, check prerequisites and see what each semester costs before you pay.</p>
+          <p>I built it on my own with React and Vite. The pricing logic has unit tests, and GitHub Actions tests, builds and publishes it to GitHub Pages on every push.</p>
+          <p class="relp" style="margin-top:0"><a class="btn small solid" href="https://scotty-08.github.io/CourseFlow/" target="_blank" rel="noopener noreferrer">Live site &#8599;</a> <a class="btn small" id="recentLink" href="#project-courseflow" data-go="p:courseflow">Project details</a></p>
         </div>
-        <div class="stage" style="align-self:start">
-          <div id="demoReact">
-            <p class="note" style="margin:0 0 12px">Change the props. The card and the JSX update.</p>
-            <div class="formgrid">
-              <label class="field" for="rName">Name<input id="rName" value="Maria Lopez"></label>
-              <label class="field" for="rSalary">Salary<input id="rSalary" type="number" value="82000"></label>
-              <label class="field" for="rMarital">Marital status<select id="rMarital"><option>Single</option><option>Married</option><option>Divorced</option></select></label>
-              <label class="field" for="rAddress">Address<input id="rAddress" value="12 Elm St, Ames, IA"></label>
-            </div>
-            <div class="ucard" style="margin-top:14px"><div class="av" id="rAvatar">M</div><div><strong id="uName"></strong><p id="uSalary"></p><p id="uMarital"></p><p id="uAddress"></p></div></div>
-            <div class="code" id="rCode"></div>
-          </div>
-          <div id="demoCart" hidden></div>
-        </div>
+        <div class="stage" style="align-self:start" id="recentDemo"></div>
       </div>
     </div>
 
@@ -205,7 +188,7 @@
 
 <div class="toast" id="toast" hidden role="status"></div>
 
-<script src="js/app.js?v=20261110k"></script>
-<script src="js/otter.js?v=20261110k"></script>
+<script src="js/app.js?v=20261110l"></script>
+<script src="js/otter.js?v=20261110l"></script>
 </body>
 </html>

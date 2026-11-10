@@ -174,7 +174,7 @@
 
   /* ================= router ================= */
   const VIEWS = ['home', 'projects', 'contact', 'project'];
-  const SCROLL_TO = { learning: '#learning', skills: '#skills', build: '#build', featured: '#featured' };
+  const SCROLL_TO = { skills: '#skills', build: '#build', featured: '#featured' };
   let current = 'home';
   function show(view, projectId, navHint) {
     VIEWS.forEach((v) => { $('#v-' + v).hidden = v !== view; });
@@ -584,35 +584,19 @@
     'robot-gui': [{ label: 'Polar plot', render: robotDemo }]
   };
 
-  /* ================= learning ================= */
-  const SKILLS = {
-    react: { name: 'React', status: 'Currently learning', desc: 'I am learning React with Vite in Iowa State\'s COM S 3190 web development class, starting with reusable components and props and moving on to state and hooks.', ex: 'I started with reusable UserCard components that take props. My most recent project is a shopping cart that keeps its items in state, groups repeats with reduce and updates the total with useEffect.', go: 'p:react-cart', link: '#project-react-cart', text: 'Open the shopping cart project' },
-  };
-  function pickSkill(id) {
-    const k = SKILLS[id];
-    $$('[data-skill]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.skill === id)));
-    $('#dStatus').textContent = k.status; $('#dName').textContent = k.name; $('#dDesc').textContent = k.desc; $('#dEx').textContent = k.ex;
-    const l = $('#dLink'); l.dataset.go = k.go; l.setAttribute('href', k.link); l.textContent = k.text;
-  }
-  pickSkill('react');
-  let cartMounted = false;
-  function pickDemo(id) {
-    $$('[data-demo]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.demo === id)));
-    $('#demoReact').hidden = id !== 'cards'; $('#demoCart').hidden = id !== 'cart';
-    if (id === 'cart' && !cartMounted) { cartMounted = true; cartDemo($('#demoCart')); }
-    const l = $('#dLink');
-    l.dataset.go = id === 'cart' ? 'p:react-cart' : 'p:react-cards'; l.setAttribute('href', id === 'cart' ? '#project-react-cart' : '#project-react-cards'); l.textContent = id === 'cart' ? 'Open the shopping cart project' : 'Open the user cards project';
-  }
-  $$('[data-demo]').forEach((b) => b.addEventListener('click', () => pickDemo(b.dataset.demo)));
-  pickDemo('cards');
-
-  function drawCard() {
-    const name = $('#rName').value || 'Name', sal = Number($('#rSalary').value) || 0, mar = $('#rMarital').value, adr = $('#rAddress').value || 'Address';
-    $('#rAvatar').textContent = name.trim().charAt(0).toUpperCase() || '?';
-    $('#uName').textContent = name; $('#uSalary').textContent = 'Salary: $' + sal.toLocaleString('en-US'); $('#uMarital').textContent = 'Marital status: ' + mar; $('#uAddress').textContent = adr;
-    $('#rCode').textContent = '<UserCard\n  name="' + name + '"\n  salary={' + sal + '}\n  marital="' + mar + '"\n  address="' + adr + '" />';
-  }
-  ['#rName', '#rSalary', '#rMarital', '#rAddress'].forEach((q) => $(q).addEventListener('input', drawCard)); drawCard();
+  /* ================= recent project (home) ================= */
+  (function recentDemo() {
+    const s = $('#recentDemo'); if (!s) return;
+    s.innerHTML = '<p class="note" style="margin:0 0 12px">CourseFlow\'s pricing rule: $399 per credit. A semester over 12 credits never costs more than $8,000.</p><label class="field" for="rcC" style="max-width:360px">Credits this semester: <span id="rcV">15</span><input id="rcC" type="range" min="1" max="24" value="15"></label><div class="detail"><h4 id="rcT"></h4><p id="rcP"></p></div>';
+    const d = $('#rcC', s);
+    function upd() {
+      const c = +d.value, sub = c * 399, over = c > 12, total = over ? Math.min(sub, 8000) : sub, capped = over && total !== sub;
+      $('#rcV', s).textContent = c;
+      $('#rcT', s).textContent = '$' + total.toLocaleString('en-US');
+      $('#rcP', s).textContent = c + ' credits x $399 = $' + sub.toLocaleString('en-US') + '. ' + (capped ? 'Over 12 credits, so the $8,000 cap applies and you save $' + (sub - total).toLocaleString('en-US') + '.' : over ? 'Over 12 credits, but the $8,000 cap does not bind until about 21 credits.' : 'At or under 12 credits you pay the plain total.');
+    }
+    d.addEventListener('input', upd); upd();
+  })();
 
   /* ================= contact ================= */
   $('#copyMail').addEventListener('click', () => {
