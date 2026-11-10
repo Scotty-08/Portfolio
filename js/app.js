@@ -186,7 +186,6 @@
     const hashTok = view === 'project' ? 'project-' + pid : (scroll ? 'learning' : view);
     if (!quiet) { try { history.replaceState(null, '', '#' + hashTok); } catch (e) { try { location.hash = hashTok; } catch (e2) {} } }
     if (scroll) { const el = $(scroll); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); } else window.scrollTo(0, 0);
-    if (view === 'home' && !scroll) heroVisible = true;
     if (view === 'project' && !quiet) playIntro(pid);
   }
   function tokenFromHash() {
@@ -207,7 +206,7 @@
   addEventListener('hashchange', () => go(tokenFromHash(), true));
 
   /* ================= hero maze ================= */
-  const R = 16, C = 24, N = R * C, S = 7 * C + 4, E = 7 * C + 19;
+  const R = 16, C = 24, N = R * C;
   function neighbors(cur) {
     const r = Math.floor(cur / C), c = cur % C, nb = [];
     if (r > 0) nb.push(cur - C); if (r < R - 1) nb.push(cur + C); if (c > 0) nb.push(cur - 1); if (c < C - 1) nb.push(cur + 1);
@@ -233,67 +232,6 @@
     }
     return { cells, els };
   }
-  const mazeEl = $('#maze'); const G = buildGrid(mazeEl);
-  G.els[S].classList.add('start'); G.els[S].textContent = 'S'; G.els[E].classList.add('end'); G.els[E].textContent = 'F';
-  let sim = null, auto = true, heroVisible = true, curFound = true;
-  function setCell(i, v) { if (G.cells[i] === v) return; G.cells[i] = v; if (i === S || i === E) return; G.els[i].className = 'cell' + KIND[v]; }
-  const wallFlags = () => { const w = new Uint8Array(N); for (let i = 0; i < N; i++) w[i] = G.cells[i] === 1 ? 1 : 0; return w; };
-  function status(t) { $('#mStatus').textContent = t + (auto ? '' : ' (paused)'); $('#mToggle').textContent = auto ? 'Pause' : 'Resume'; }
-  let phaseText = 'Placing walls';
-  function stage(t) { phaseText = t; status(t); }
-  const stats = (v, p) => { $('#mVisited').textContent = v; $('#mPath').textContent = p; };
-  function newMaze() {
-    let walls = [];
-    for (let tries = 0; tries < 40; tries++) {
-      walls = []; const f = new Uint8Array(N);
-      for (let i = 0; i < N; i++) if (i !== S && i !== E && Math.random() < 0.27) { walls.push(i); f[i] = 1; }
-      if (bfs(f, S, E).found) break;
-    }
-    for (let a = walls.length - 1; a > 0; a--) { const j = Math.floor(Math.random() * (a + 1)); [walls[a], walls[j]] = [walls[j], walls[a]]; }
-    for (let c = 0; c < N; c++) setCell(c, 0);
-    sim = { phase: 'build', walls, shown: 0, vi: 0, pi: 0, hold: 0, result: null };
-    stats(0, 0); stage('Placing walls');
-  }
-  function paintResult(res) { res.order.forEach((i) => { if (i !== S && i !== E) setCell(i, 2); }); res.path.forEach((i) => { if (i !== S && i !== E) setCell(i, 3); }); }
-  function finishNow() {
-    for (let c = 0; c < N; c++) setCell(c, 0);
-    sim.walls.forEach((i) => setCell(i, 1));
-    const res = bfs(wallFlags(), S, E); paintResult(res); sim.phase = 'idle'; stats(res.order.length, res.path.length);
-    stage(res.found ? 'Shortest path found' : 'No path. Remove a wall');
-  }
-  function tick() {
-    if (!auto || !sim || sim.phase === 'idle' || document.hidden || !heroVisible || current !== 'home') return;
-    if (sim.phase === 'build') {
-      for (let k = 0; k < 14 && sim.shown < sim.walls.length; k++) setCell(sim.walls[sim.shown++], 1);
-      if (sim.shown >= sim.walls.length) { sim.result = bfs(wallFlags(), S, E); sim.phase = 'test'; stage('Searching, one ring of cells at a time'); }
-    } else if (sim.phase === 'test') {
-      const o = sim.result.order;
-      for (let k = 0; k < 4 && sim.vi < o.length; k++) { const idx = o[sim.vi++]; if (idx !== S && idx !== E) setCell(idx, 2); }
-      stats(sim.vi, 0);
-      if (sim.vi >= o.length) { sim.phase = 'figure'; stage(sim.result.found ? 'Tracing the shortest path' : 'No path. Remove a wall'); }
-    } else if (sim.phase === 'figure') {
-      const p = sim.result.path;
-      if (sim.pi < p.length) { const pi = p[sim.pi++]; if (pi !== S && pi !== E) setCell(pi, 3); stats(sim.result.order.length, sim.pi); } else sim.phase = 'hold';
-    } else if (sim.phase === 'hold') { if (++sim.hold > 70) newMaze(); }
-  }
-  function userEdit(i, val) {
-    for (let c = 0; c < N; c++) if (G.cells[c] >= 2) setCell(c, 0);
-    setCell(i, val);
-    const res = bfs(wallFlags(), S, E); paintResult(res);
-    auto = false; if (sim) sim.phase = 'idle';
-    stats(res.order.length, res.path.length); stage(res.found ? 'Shortest path found' : 'No path. Remove a wall');
-  }
-  let painting = false, paintVal = 1;
-  mazeEl.addEventListener('pointerdown', (e) => { const b = e.target.closest('.cell'); if (!b) return; const i = +b.dataset.i; if (i === S || i === E) return; painting = true; paintVal = G.cells[i] === 1 ? 0 : 1; userEdit(i, paintVal); });
-  mazeEl.addEventListener('pointerover', (e) => { if (!painting) return; const b = e.target.closest('.cell'); if (!b) return; const i = +b.dataset.i; if (i === S || i === E || G.cells[i] === paintVal) return; userEdit(i, paintVal); });
-  mazeEl.addEventListener('click', (e) => { if (e.detail !== 0) return; const b = e.target.closest('.cell'); if (!b) return; const i = +b.dataset.i; if (i === S || i === E) return; userEdit(i, G.cells[i] === 1 ? 0 : 1); });
-  addEventListener('pointerup', () => { painting = false; }); addEventListener('pointercancel', () => { painting = false; });
-  function replay() { newMaze(); if (reduced) { finishNow(); auto = false; stage('Shortest path found'); return; } auto = true; stage(phaseText); }
-  $('#mNew').addEventListener('click', replay);
-  $('#mToggle').addEventListener('click', () => { if (auto) { auto = false; status(phaseText); return; } if (reduced || !sim || sim.phase === 'idle') { replay(); return; } auto = true; status(phaseText); });
-  if ('IntersectionObserver' in window) new IntersectionObserver((en) => { heroVisible = en[0].isIntersecting; }).observe($('#mazePanel'));
-  newMaze();
-  if (reduced) { finishNow(); auto = false; status(phaseText); } else setInterval(tick, 34);
 
   /* ================= project detail ================= */
   let tabState = null;
@@ -634,7 +572,6 @@
   ITEMS.push(
     { g: 'Actions', ic: 'S', label: 'View software resume', hint: '', k: 'resume cv software', run: () => openResume('software') },
     { g: 'Actions', ic: 'E', label: 'View embedded resume', hint: '', k: 'resume cv embedded firmware', run: () => openResume('embedded') },
-    { g: 'Actions', ic: 'N', label: 'New maze on the home page', hint: '', k: 'shuffle replay', run: () => { go('home'); replay(); } },
     { g: 'Actions', ic: '@', label: 'Copy email address', hint: '', k: 'email mail', run: () => $('#copyMail').click() },
     { g: 'Actions', ic: 'G', label: 'Open GitHub profile', hint: 'github.com', k: 'github code', href: 'https://github.com/Scotty-08' }
   );

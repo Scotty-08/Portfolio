@@ -28,22 +28,23 @@
 <main id="main">
   <!-- HOME -->
   <section class="view" id="v-home" aria-labelledby="h-home">
-    <p class="hello">Hi, I'm a junior at Iowa State studying computer engineering. I build apps, backends and small robots.</p>
-    <h1 class="name" id="h-home"><span>Scott</span><span>Gray</span></h1>
-    <p class="lede">This site is a working sample of what I make. Draw walls in the maze below and the search reroutes around them.</p>
-    <div class="hero-actions">
-      <button class="btn solid" type="button" data-go="projects">See my projects</button>
-      <button class="btn" type="button" data-resume="software">Read my resume</button>
-      <button class="btn quiet" type="button" data-go="contact">Contact me</button>
-    </div>
-    <div class="mazewrap" id="mazePanel">
-      <div class="maze" id="maze" role="group" aria-label="Maze. Click or drag cells to add or remove walls."></div>
-      <div class="mbar">
-        <span class="grow" id="mStatus" aria-live="polite">Placing walls</span>
-        <span>Cells searched <b id="mVisited">0</b></span>
-        <span>Path length <b id="mPath">0</b></span>
-        <button class="btn small" id="mNew" type="button">New maze</button>
-        <button class="btn small quiet" id="mToggle" type="button">Pause</button>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">// computer engineering · iowa state</p>
+        <h1 class="name" id="h-home">Scott <em>Gray</em></h1>
+        <p class="intro">I was adopted from Guatemala and grew up in Council Bluffs, Iowa. Engineering stopped being abstract for me when my dad fell from a zipline and spent months in rehabilitation.</p>
+        <p class="intro">At Madonna Rehabilitation Hospital I watched robotics-assisted therapy help him relearn to move. That is the work I want to do: hardware and software that give people some of their life back.</p>
+        <p class="intro last">Now I'm a junior at Iowa State. I build web apps, iOS apps and Android apps, and I'm looking for internships.</p>
+        <div class="hero-actions">
+          <button class="btn solid" type="button" data-go="projects">See my projects</button>
+          <button class="btn" type="button" data-resume="software">Read my resume</button>
+          <button class="btn quiet" type="button" data-go="contact">Contact me</button>
+        </div>
+      </div>
+      <div class="photo">
+        <img src="assets/scott-headshot.jpg" alt="Scott Gray in a navy suit with the Iowa State Campanile behind him" width="380" height="380">
+        <span class="open">open to internships</span>
+        <div class="term" aria-hidden="true"><b>$</b> whoami<br><span>scott gray, CprE junior</span><br><b>$</b> cat builds.txt<br><span>web · iOS · Android</span></div>
       </div>
     </div>
 
