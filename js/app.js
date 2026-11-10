@@ -138,11 +138,12 @@
   applyFilter(); renderTrail();
 
   /* ================= router ================= */
-  const VIEWS = ['home', 'projects', 'work', 'about', 'contact', 'project'];
+  const VIEWS = ['home', 'projects', 'work', 'contact', 'project'];
+  const SCROLL_TO = { learning: '#learning', skills: '#skills', build: '#build', featured: '#featured' };
   let current = 'home';
-  function show(view, projectId) {
+  function show(view, projectId, navHint) {
     VIEWS.forEach((v) => { $('#v-' + v).hidden = v !== view; });
-    const navKey = view === 'project' ? 'projects' : view;
+    const navKey = navHint || (view === 'project' ? 'projects' : view);
     $$('[data-nav]').forEach((a) => { if (a.closest('.nav')) { if (a.dataset.nav === navKey) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); } });
     current = view;
     if (view === 'project') renderProject(projectId);
@@ -179,11 +180,12 @@
   function go(token, quiet) {
     let view = token, pid = null, scroll = null;
     if (token.indexOf('p:') === 0) { view = 'project'; pid = token.slice(2); }
-    else if (token === 'learning') { view = 'home'; scroll = '#learning'; }
+    else if (SCROLL_TO[token]) { view = 'home'; scroll = SCROLL_TO[token]; }
+    else if (token === 'about') { view = 'home'; token = 'home'; }
     if (view === 'project' && !PBY[pid]) { view = 'projects'; pid = null; }
     if (VIEWS.indexOf(view) === -1) view = 'home';
-    show(view, pid);
-    const hashTok = view === 'project' ? 'project-' + pid : (scroll ? 'learning' : view);
+    show(view, pid, scroll && token === 'skills' ? 'skills' : null);
+    const hashTok = view === 'project' ? 'project-' + pid : (scroll ? token : view);
     if (!quiet) { try { history.replaceState(null, '', '#' + hashTok); } catch (e) { try { location.hash = hashTok; } catch (e2) {} } }
     if (scroll) { const el = $(scroll); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); } else window.scrollTo(0, 0);
     if (view === 'project' && !quiet) playIntro(pid);
@@ -560,11 +562,11 @@
   /* ================= palette ================= */
   const pal = $('#pal'), palQ = $('#palQ'), palList = $('#palList'); let palActive = 0, palItems = [];
   const ITEMS = [
-    { g: 'Pages', ic: 'H', label: 'Home', hint: '', k: 'home maze', run: () => go('home') },
+    { g: 'Pages', ic: 'H', label: 'Home', hint: 'My story', k: 'home about story bio guatemala', run: () => go('home') },
     { g: 'Pages', ic: 'P', label: 'Projects', hint: '', k: 'projects work', run: () => go('projects') },
+    { g: 'Pages', ic: 'S', label: 'Skills', hint: 'Home', k: 'skills languages tools', run: () => go('skills') },
     { g: 'Pages', ic: 'L', label: 'What I\'m learning', hint: 'Home', k: 'learning react', run: () => go('learning') },
     { g: 'Pages', ic: 'W', label: 'Work experience', hint: '', k: 'jobs menards mowing', run: () => go('work') },
-    { g: 'Pages', ic: 'A', label: 'About me', hint: '', k: 'about bio guatemala', run: () => go('about') },
     { g: 'Pages', ic: 'C', label: 'Contact', hint: '', k: 'email phone', run: () => go('contact') }
   ];
   const KEYS = { focusup: 'swiftui iphone ios quests screen time supabase canvas', timepiece: 'java spring boot mariadb jpa android watches websockets rest', jeopardy: 'json game javascript trivia', 'maze-solver': 'bfs algorithm demo search', 'tree-cutter': 'robot c hardware cpre 288 arm uart', 'react-cards': 'react props vite', 'react-cart': 'react shopping cart store hooks usestate useeffect bootstrap json', 'robot-gui': 'python matplotlib tkinter polar sensor' };
