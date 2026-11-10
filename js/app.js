@@ -24,12 +24,16 @@
       facts: [['Role', 'Backend developer'], ['Course', 'COM S 3090'], ['Stack', 'Spring Boot, MariaDB, JPA'], ['Live updates', 'WebSocket endpoints'], ['Process', 'SCRUM sprints, Figma, Git']],
       overview: ['timePiece is an Android app where people browse a watch catalog, save favorites and list their own watches for sale. A frontend teammate built the screens and I owned the backend.', 'My part was the catalog REST endpoints, the MariaDB model behind them, and WebSocket endpoints that push live price updates and sold-watch notifications to the app.'],
       mine: [['Catalog endpoints', 'Spring Boot REST endpoints for browsing and searching the catalog, deployed as a backend JAR on our team VM.'], ['Selling model', 'One catalog watch can have many individual listings, so a listing is its own record, separate from the catalog entry.'], ['Live updates', 'A WebSocket connection stays open so the server can send a price change or a "sold" notice the moment it happens.'], ['Teamwork', 'We ran SCRUM sprints and kept the catalog backend in step with the frontend developer building the catalog screen.']] },
+    { id: 'courseflow', cat: 'web', title: 'CourseFlow', kind: 'Web app, React', desc: 'A planner for Iowa State CPR E students. Add courses to a cart, place them in semesters, check prerequisites and see what each semester costs.', tags: ['React', 'Vite', 'JavaScript', 'GitHub Pages'],
+      facts: [['Live site', 'scotty-08.github.io/CourseFlow', 'https://scotty-08.github.io/CourseFlow/'], ['Source code', 'Scotty-08/CourseFlow on GitHub', 'https://github.com/Scotty-08/CourseFlow'], ['Role', 'Solo project'], ['Built with', 'React, Vite, JavaScript'], ['Hosting', 'GitHub Pages, deployed by GitHub Actions'], ['Payments', 'Demo checkout only, no real charges']],
+      overview: ['CourseFlow is a place for CPR E students to plan the semesters ahead. Add courses to a cart, move them into a semester, and see what that semester will cost before you pay.', 'It started as a class web app and grew into a full planner. Prerequisites show up as warnings, a suggested plan fills the semesters for you, and a small assistant answers questions about your plan.'],
+      mine: [['Cart and semester planner', 'Courses go into a cart, then into a semester with a year. One reducer holds the cart and the plan, so every page stays in step.'], ['Pricing rule', 'Each credit costs $399 and a semester over 12 credits is capped at $8,000. The numbers live in one config file and the pricing logic has unit tests.'], ['Advisory prerequisites', 'The planner warns when a course is placed before something it needs, but it never blocks you.'], ['Suggested plan', 'A generator fills semesters aiming for about 15 credits each and never goes past 17.'], ['Checkout and receipt', 'Each semester has a demo checkout and a receipt. No real payments are taken.'], ['Rule-based assistant', 'A small helper answers plan questions by matching keywords. It is not an AI model, and the page says so.'], ['Tests and deploy', 'Unit tests run on the logic, and GitHub Actions tests, builds and publishes the site to GitHub Pages on every push.']] },
     { id: 'jeopardy', cat: 'web', title: 'ISU Jeopardy', kind: 'COM S 3190, web game', desc: 'An Iowa State game with four categories, 16 questions and score tracking for two teams. It grew into a JSON-driven hub.', tags: ['JavaScript', 'JSON', 'localStorage'],
       facts: [['Role', 'Developer'], ['Course', 'COM S 3190'], ['Stack', 'HTML, CSS, JavaScript, JSON'], ['Saved data', 'Top 10 leaderboard in localStorage']],
       overview: ['A Jeopardy-style board for Iowa State trivia. Two teams take turns picking a category and a dollar value, and the score tracks as they play.', 'The game began as one board. I later moved the questions into JSON so a hub page could load different games by fetching their data and rendering it, and I kept a top 10 leaderboard in the browser.'],
       mine: [['Game logic', 'Turn order, scoring and which tiles are used are tracked in plain JavaScript objects.'], ['JSON-driven hub', 'The hub page fetches JSON and renders the available games and boards from it, so adding a game means adding data.'], ['Leaderboard', 'The top 10 scores are saved in localStorage and survive a page reload.']] },
     { id: 'maze-solver', cat: 'web', title: 'Maze Solver Visualizer', kind: 'HTML, CSS and JavaScript', desc: 'Build a maze, place the start and finish, and watch breadth-first search find the shortest route.', tags: ['Algorithms', 'BFS', 'Click events'],
-      facts: [['Role', 'Solo project'], ['Grid', '16 rows by 24 columns'], ['Algorithm', 'Breadth-first search'], ['Stack', 'HTML, CSS, JavaScript']],
+      facts: [['Live site', 'Open the visualizer', 'maze-solver-visualizer/'], ['Role', 'Solo project'], ['Grid', '16 rows by 24 columns'], ['Algorithm', 'Breadth-first search'], ['Stack', 'HTML, CSS, JavaScript']],
       overview: ['A grid you can edit with the mouse. Draw walls, move the start and finish, and the solver shows every cell it searched and the shortest path it found.', 'Breadth-first search explores outward one step at a time, so the first time it reaches the finish is guaranteed to be the shortest route. The home page maze uses the same idea.'],
       mine: [['Search', 'A queue holds the next cells to visit, and each cell remembers where it came from so the path can be traced back.'], ['Editing', 'Click and drag paint walls. Dragging the start or finish changes the route straight away.'], ['Stats', 'The page counts cells searched and path length so you can see what a wall costs.']] },
     { id: 'tree-cutter', cat: 'hardware', title: 'Autonomous Tree Cutter', kind: 'CPRE 288, embedded C', desc: 'A team robot where I configured sensors at the register level on an ARM Cortex-M4, wrote the C control logic and tested over UART.', tags: ['C', 'ARM Cortex-M4', 'UART', 'Sensors'],
@@ -81,6 +85,7 @@
   const PEEK = {
     'focusup': phoneShow([['focusup-concept-lock', 'Apps stay locked', 'FocusUp lock screen concept'], ['focusup-concept-quests', 'Every task is a quest', 'FocusUp quest list concept']], 444, 864, true),
     'timepiece': phoneShow([['timepiece-home', 'Home', 'timePiece home screen'], ['timepiece-catalog', 'Browse the catalog', 'timePiece watch catalog'], ['timepiece-details', 'Compare prices by condition', 'timePiece watch details']], 648, 1436),
+    'courseflow': '<div class="minibox"><div class="mini"><div class="pkbar"><i></i><i></i><i></i><span>scotty-08.github.io/CourseFlow</span></div><div class="cfview"><img src="assets/courseflow-planner.webp" width="1200" height="806" alt="CourseFlow semester planner"></div></div></div>',
     'jeopardy': '<div class="pa-board">' + Array.from({ length: 16 }, (_, i) => '<i style="animation-delay:' + (i * 0.19).toFixed(2) + 's">$' + (100 * (1 + (i >> 2))) + '</i>').join('') + '</div>',
     'maze-solver': (function () {
       const L = ['SppwEEEEwEEE', 'EwpwEwwEwEwE', 'EwppppwEEEwE', 'EwwwwpppppPF']; let o = '<div class="pa-grid">'; let n = 0;
@@ -358,6 +363,23 @@
     $('#wsReset', s).addEventListener('click', wsReset); wsReset();
   }
 
+  /* CourseFlow */
+  function cfScreens(s) {
+    const S = [['home', 'Home', 'Browse the CPR E catalog and add courses to your cart.', 'CourseFlow home page with the course catalog'], ['planner', 'Semester planner', 'Place courses in semesters and watch the credits and cost update.', 'CourseFlow semester planner with a credit meter and cost'], ['assistant', 'Assistant', 'A rule-based helper answers questions about your plan.', 'CourseFlow rule-based assistant open over the planner']];
+    s.innerHTML = '<p class="note" style="margin:0 0 16px">Screens from the live site. <a href="https://scotty-08.github.io/CourseFlow/" target="_blank" rel="noopener noreferrer">Open it yourself</a>.</p><div class="shots">' + S.map((x) => '<figure class="shot wide"><img src="assets/courseflow-' + x[0] + '.webp" width="1200" height="806" loading="lazy" alt="' + esc(x[3]) + '"><figcaption><b>' + esc(x[1]) + '</b>' + esc(x[2]) + '</figcaption></figure>').join('') + '</div>';
+  }
+  function cfPrice(s) {
+    s.innerHTML = '<p class="note" style="margin:0 0 12px">CourseFlow\'s pricing rule: $399 per credit. A semester over 12 credits never costs more than $8,000.</p><label class="field" for="cfC" style="max-width:360px">Credits this semester: <span id="cfV">15</span><input id="cfC" type="range" min="1" max="24" value="15"></label><div class="detail"><h4 id="cfT"></h4><p id="cfP"></p></div>';
+    const d = $('#cfC', s);
+    function upd() {
+      const c = +d.value, sub = c * 399, over = c > 12, total = over ? Math.min(sub, 8000) : sub, capped = over && total !== sub;
+      $('#cfV', s).textContent = c;
+      $('#cfT', s).textContent = '$' + total.toLocaleString('en-US');
+      $('#cfP', s).textContent = c + ' credits x $399 = $' + sub.toLocaleString('en-US') + '. ' + (capped ? 'Over 12 credits, so the $8,000 cap applies and you save $' + (sub - total).toLocaleString('en-US') + '.' : over ? 'Over 12 credits, but the $8,000 cap does not bind until about 21 credits.' : 'At or under 12 credits you pay the plain total.');
+    }
+    d.addEventListener('input', upd); upd();
+  }
+
   /* Jeopardy */
   function jeoDemo(s) {
     const CATS = ['Campus', 'Cyclones', 'STEM', 'Web'];
@@ -506,6 +528,7 @@
   const TABS = {
     'focusup': [{ label: 'Setup flow', render: fuSetup }, { label: 'Everyday screens', render: fuMain }, { label: 'Concept screens', render: fuConcept }],
     'timepiece': [{ label: 'Architecture', render: tpArch }, { label: 'Screens and roles', render: tpFlow }, { label: 'Live updates', render: tpLive }],
+    'courseflow': [{ label: 'Screens', render: cfScreens }, { label: 'Price a semester', render: cfPrice }],
     'jeopardy': [{ label: 'Play a sample board', render: jeoDemo }],
     'maze-solver': [{ label: 'Live demo', render: mazeDemo }],
     'tree-cutter': [{ label: 'Sensor decisions', render: cutterDemo }],
@@ -569,7 +592,7 @@
     { g: 'Pages', ic: 'W', label: 'Work experience', hint: '', k: 'jobs menards mowing', run: () => go('work') },
     { g: 'Pages', ic: 'C', label: 'Contact', hint: '', k: 'email phone', run: () => go('contact') }
   ];
-  const KEYS = { focusup: 'swiftui iphone ios quests screen time supabase canvas', timepiece: 'java spring boot mariadb jpa android watches websockets rest', jeopardy: 'json game javascript trivia', 'maze-solver': 'bfs algorithm demo search', 'tree-cutter': 'robot c hardware cpre 288 arm uart', 'react-cards': 'react props vite', 'react-cart': 'react shopping cart store hooks usestate useeffect bootstrap json', 'robot-gui': 'python matplotlib tkinter polar sensor' };
+  const KEYS = { courseflow: 'react vite planner courses semester prerequisites tuition live site github pages', focusup: 'swiftui iphone ios quests screen time supabase canvas', timepiece: 'java spring boot mariadb jpa android watches websockets rest', jeopardy: 'json game javascript trivia', 'maze-solver': 'bfs algorithm demo search', 'tree-cutter': 'robot c hardware cpre 288 arm uart', 'react-cards': 'react props vite', 'react-cart': 'react shopping cart store hooks usestate useeffect bootstrap json', 'robot-gui': 'python matplotlib tkinter polar sensor' };
   PROJECTS.forEach((p) => ITEMS.push({ g: 'Projects', ic: p.title[0], label: p.title, hint: p.kind.split(',')[0], k: KEYS[p.id], run: () => go('p:' + p.id) }));
   ITEMS.push(
     { g: 'Actions', ic: 'S', label: 'View software resume', hint: '', k: 'resume cv software', run: () => openResume('software') },
