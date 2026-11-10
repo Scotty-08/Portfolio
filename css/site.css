@@ -1,22 +1,15 @@
-/* Layout: fixed left rail + one wide left-aligned column. Iowa State red is the only loud color; gold marks "the answer" (maze path, current state). */
+/* Midnight Blue theme. Blue is the main accent (links, buttons, live sites); mint marks labels and "the answer" (maze path, current state). The old Iowa State red variable names are kept, now pointing at the blue. */
 :root{
-  --paper:#f1f2ef; --panel:#e8eae6; --ink:#16181d; --muted:#5a616b; --line:#cfd2cc;
-  --red:#a8142b; --red-ink:#8c1024; --on-red:#fff; --gold:#d99a14; --gold-soft:#f4e3b5;
-  --wall:#16181d; --seen:#d3d8e0; --ok:#2a7a4f; --scrim:rgba(14,16,20,.6);
-  --display:'Archivo','Arial Narrow','Helvetica Neue',Arial,sans-serif;
-  --body:'Public Sans','Segoe UI',system-ui,sans-serif;
-  --rail:248px;
+  --paper:#0b1020; --panel:#121a2e; --panel2:#1a2440; --ink:#e8eefc; --muted:#97a3bf; --line:#26324f;
+  --red:#5b9bff; --red-ink:#7fb1ff; --on-red:#08101f; --gold:#3ddc97; --gold-soft:#12302f;
+  --wall:#3a4a78; --seen:#1f3a73; --ok:#3ddc97; --scrim:rgba(4,7,16,.72);
+  --display:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  --body:'Inter','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  --rail:0px; color-scheme:dark;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#14161a; --panel:#1d2025; --ink:#eceae4; --muted:#9aa1ab; --line:#32363d;
-  --red:#e5475c; --red-ink:#ff8394; --on-red:#14161a; --gold:#eab33b; --gold-soft:#4a3a12;
-  --wall:#eceae4; --seen:#2d333c; --ok:#5fc08c; --scrim:rgba(0,0,0,.7); color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#14161a; --panel:#1d2025; --ink:#eceae4; --muted:#9aa1ab; --line:#32363d;
-  --red:#e5475c; --red-ink:#ff8394; --on-red:#14161a; --gold:#eab33b; --gold-soft:#4a3a12;
-  --wall:#eceae4; --seen:#2d333c; --ok:#5fc08c; --scrim:rgba(0,0,0,.7); color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;zoom:.88}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 a{color:inherit}
 button,input,select,textarea{font:inherit;color:inherit}
