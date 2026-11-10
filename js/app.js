@@ -146,7 +146,6 @@
     $$('[data-nav]').forEach((a) => { if (a.closest('.nav')) { if (a.dataset.nav === navKey) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); } });
     current = view;
     if (view === 'project') renderProject(projectId);
-    $('#rail').classList.remove('open'); $('#menuBtn').setAttribute('aria-expanded', 'false');
   }
   /* ================= project intro pop-up ================= */
   const INTRO = { focusup: true };
@@ -206,7 +205,6 @@
     }
   });
   addEventListener('hashchange', () => go(tokenFromHash(), true));
-  $('#menuBtn').addEventListener('click', () => { const o = $('#rail').classList.toggle('open'); $('#menuBtn').setAttribute('aria-expanded', String(o)); });
 
   /* ================= hero maze ================= */
   const R = 16, C = 24, N = R * C, S = 7 * C + 4, E = 7 * C + 19;

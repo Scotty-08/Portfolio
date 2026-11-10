@@ -12,23 +12,20 @@
 </head>
 <body>
 <a class="sr" href="#main">Skip to content</a>
-<aside class="rail" id="rail" aria-label="Site">
-  <a class="who" href="#home" data-nav="home"><img src="assets/scott-headshot.jpg" alt="Scott Gray" width="56" height="56"><span><b>Scott Gray</b><small>Computer engineering, Iowa State</small></span></a>
+<header class="site-nav" id="siteNav">
+  <a class="brand" href="#home" data-nav="home" aria-label="Scott Gray, home">scott<i>.</i>gray<i>_</i></a>
   <nav class="nav" aria-label="Pages">
-    <a href="#home" data-nav="home">Home</a>
-    <a href="#projects" data-nav="projects">Projects</a>
-    <a href="#work" data-nav="work">Work experience</a>
-    <a href="#about" data-nav="about">About me</a>
-    <a href="#contact" data-nav="contact">Contact</a>
+    <a href="#home" data-nav="home">home</a>
+    <a href="#projects" data-nav="projects">projects</a>
+    <a href="#skills" data-nav="skills">skills</a>
+    <a href="#contact" data-nav="contact">contact</a>
   </nav>
   <div class="tools">
-    <button class="btn small" id="openPal" type="button">Search <kbd>Ctrl K</kbd></button>
+    <button class="btn small quiet" id="openPal" type="button">Search <kbd>Ctrl K</kbd></button>
   </div>
-</aside>
+</header>
 
 <main id="main">
-  <div class="top"><img src="assets/scott-headshot.jpg" alt="" width="36" height="36"><b>Scott Gray</b><button class="btn small" id="menuBtn" type="button" aria-expanded="false" aria-controls="rail">Menu</button></div>
-
   <!-- HOME -->
   <section class="view" id="v-home" aria-labelledby="h-home">
     <p class="hello">Hi, I'm a junior at Iowa State studying computer engineering. I build apps, backends and small robots.</p>
