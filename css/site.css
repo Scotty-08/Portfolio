@@ -348,6 +348,17 @@ details p{margin:10px 0 0;color:var(--muted)}
 @media (max-width:900px){.shop{grid-template-columns:1fr}.shopcart{position:static}.shoprow{grid-template-columns:40px minmax(0,1fr) auto}.shoprow .sp{grid-column:2/-1;text-align:left}}
 /* tools in demos */
 .toolbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center}
+/* maze solver demo grid (project page) */
+.maze{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;touch-action:none;user-select:none;max-width:100%}
+.cell{aspect-ratio:1;border:0;padding:0;border-radius:3px;background:var(--panel2);font:800 clamp(8px,1.4vw,12px)/1 var(--body);color:var(--on-red)}
+.cell.wall{background:var(--wall)}
+.cell.visited{background:var(--seen)}
+.cell.path{background:var(--gold)}
+.cell.start{background:var(--red)}
+.cell.end{background:var(--ink);color:var(--paper)}
+.mbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:12px;font-size:14px;color:var(--muted)}
+.mbar b{color:var(--ink);font-variant-numeric:tabular-nums}
+.mbar .grow{flex:1;min-width:180px}
 .field{min-width:0;display:grid;gap:4px;font-size:14px;font-weight:600}
 .field input,.field select{width:100%;min-width:0;min-height:40px;border:1.5px solid var(--line);background:var(--paper);padding:0 10px;border-radius:3px;font-weight:400}
 .formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:12px}
