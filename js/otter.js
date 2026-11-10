@@ -55,7 +55,8 @@
     contact: { text: 'Email grayscott07@outlook.com or find Scott on GitHub as Scotty-08.', go: [['Go to contact', function () { api.go('contact'); }]] },
     learning: { text: 'Right now Scott is learning React. There are two demos on the home page: user cards and a shopping cart.', go: [['See what I’m learning', function () { api.go('learning'); }]] },
     bot: { text: 'I am an otter, not an AI. I match keywords and answer from what is already on this site, so I only know a few topics.' },
-    none: { text: 'I only know a few topics. Try projects, skills, story, iOS, Android or contact, or pick a chip below.' }
+    work: { text: 'Scott is a courtesy patrol and cashier at Menards in Council Bluffs, Iowa, and has been since April 2024. He runs the register and walks the lot and floor so customers get help without asking twice. Before that he was a landscaper on a crew at J&A Mowing, from March 2022 to June 2024, mowing, trimming and edging residential lawns. For his technical work, check out the projects.', go: [['See projects', function () { api.go('projects'); }]] },
+    none: { text: 'I only know a few topics. Try projects, skills, story, iOS, Android, work or contact, or pick a chip below.' }
   };
   function match(q) {
     var s = q.toLowerCase();
@@ -67,6 +68,7 @@
     if (has(['learning', 'react'])) return 'learning';
     if (has(['project', 'built', 'portfolio'])) return 'projects';
     if (has(['skill', 'java', 'python', 'tech', 'stack', 'language'])) return 'skills';
+    if (has(['job', 'work experience', 'experience', 'employ', 'menards', 'mowing', 'landscap', 'cashier', 'work history', 'you work', 'worked at', 'works at', 'part-time', 'part time'])) return 'work';
     if (has(['story', 'about', 'who', 'why', 'guatemala', 'heal', 'background'])) return 'story';
     if (has(['contact', 'hire', 'intern', 'email', 'reach', 'github', 'linkedin', 'phone'])) return 'contact';
     return 'none';
@@ -84,7 +86,7 @@
   }
   function ask(label, topic) { var a = A[topic] || A.none; say('me', label); say('bot', a.text, a.go); }
   say('bot', 'Hi, I am the portfolio otter. I am a small helper, not an AI. What are you interested in seeing?');
-  [['My projects', 'projects'], ['My skills', 'skills'], ['My story', 'story'], ['iOS app', 'ios'], ['Android app', 'android'], ['Live web apps', 'live'], ['Contact', 'contact']].forEach(function (d) {
+  [['My projects', 'projects'], ['My skills', 'skills'], ['My story', 'story'], ['iOS app', 'ios'], ['Android app', 'android'], ['Live web apps', 'live'], ['Work experience', 'work'], ['Contact', 'contact']].forEach(function (d) {
     var c = el('button', 'ot-chip', d[0]); c.type = 'button'; c.addEventListener('click', function () { ask(d[0], d[1]); }); chips.appendChild(c);
   });
   bar.addEventListener('submit', function (e) { e.preventDefault(); var q = input.value.trim(); if (!q) return; ask(q, match(q)); input.value = ''; });
