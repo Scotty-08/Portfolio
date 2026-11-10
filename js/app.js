@@ -117,8 +117,64 @@
     if (withPeek) { ['mouseenter', 'focus'].forEach((ev) => b.addEventListener(ev, () => showPeek(p.id))); }
     return li;
   }
-  const homeList = $('#homeList');
-  PROJECTS.slice(0, 3).forEach((p) => homeList.appendChild(rowEl(p, false)));
+  /* ================= featured project cards (home) ================= */
+  function ftSlides(slides) {
+    const n = slides.length, slot = 3, dur = n * slot;
+    const st = (i) => ' style="animation-duration:' + dur + 's;animation-delay:' + (i * slot) + 's"';
+    return '<div class="ft-cap" aria-hidden="true">' + slides.map((x, i) => '<span class="ft' + n + '"' + st(i) + '>' + esc(x[1]) + '</span>').join('') + '</div>' +
+      '<div class="ft-pvp">' + slides.map((x, i) => '<img class="ft' + n + '" src="assets/' + x[0] + '.webp" width="' + x[3] + '" height="' + x[4] + '" alt="' + esc(x[2]) + '"' + st(i) + '>').join('') + '</div>';
+  }
+  function ftMaze() {
+    const rows = ['S..#....#..', '##.#.##.#.#', '.....#.....', '.#####.###.', '.......#...', '######.#.##', '..........E'];
+    const H = rows.length, W = rows[0].length, key = (r, c) => r * W + c;
+    let start, end;
+    rows.forEach((row, r) => row.split('').forEach((ch, c) => { if (ch === 'S') start = [r, c]; if (ch === 'E') end = [r, c]; }));
+    const prev = {}, seen = {}, order = [], q = [start]; seen[key(start[0], start[1])] = true;
+    while (q.length) {
+      const cur = q.shift(); order.push(cur);
+      if (cur[0] === end[0] && cur[1] === end[1]) break;
+      [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach((d) => {
+        const nr = cur[0] + d[0], nc = cur[1] + d[1];
+        if (nr < 0 || nc < 0 || nr >= H || nc >= W || rows[nr][nc] === '#' || seen[key(nr, nc)]) return;
+        seen[key(nr, nc)] = true; prev[key(nr, nc)] = cur; q.push([nr, nc]);
+      });
+    }
+    const vi = {}; order.forEach((p, i) => { vi[key(p[0], p[1])] = i; });
+    const pi = {}; const path = []; let step = prev[key(end[0], end[1])];
+    while (step && !(step[0] === start[0] && step[1] === start[1])) { path.unshift(step); step = prev[key(step[0], step[1])]; }
+    path.forEach((p, i) => { pi[key(p[0], p[1])] = i; });
+    const span = order.length * 0.07; let out = '';
+    for (let r = 0; r < H; r++) for (let c = 0; c < W; c++) {
+      const ch = rows[r][c], k = key(r, c); let cls = '', sty = '';
+      if (ch === '#') cls = ' w'; else if (ch === 'S') cls = ' s'; else if (ch === 'E') cls = ' e';
+      else if (pi[k] !== undefined) { cls = ' p'; sty = ' style="animation-delay:' + (span + 0.3 + pi[k] * 0.12).toFixed(2) + 's"'; }
+      else if (vi[k] !== undefined) { cls = ' v'; sty = ' style="animation-delay:' + (vi[k] * 0.07).toFixed(2) + 's"'; }
+      out += '<i class="ft-cell' + cls + '"' + sty + '></i>';
+    }
+    return '<div class="ft-win"><div class="ft-bar"><i></i><i></i><i></i><span>maze solver, breadth-first search</span></div><div class="ft-maze">' + out + '</div></div>';
+  }
+  const FEATURED = {
+    focusup: { stage: () => ftSlides([['focusup-concept-lock', 'Apps stay locked', 'FocusUp lock screen', 444, 864], ['focusup-concept-quests', 'Every task is a quest', 'FocusUp quest log', 444, 864]]) },
+    timepiece: { stage: () => ftSlides([['timepiece-home', 'Home', 'timePiece home screen', 420, 931], ['timepiece-catalog', 'Browse the catalog', 'timePiece watch catalog', 420, 931], ['timepiece-details', 'Compare prices by condition', 'timePiece watch details', 420, 931]]) },
+    courseflow: { live: 'https://scotty-08.github.io/CourseFlow/', stage: () => '<div class="ft-win"><div class="ft-bar"><i></i><i></i><i></i><span>scotty-08.github.io/CourseFlow</span></div><div class="ft-pan"><img src="assets/courseflow-planner.webp" width="1200" height="806" alt="CourseFlow semester planner"></div></div>' },
+    'maze-solver': { live: 'maze-solver-visualizer/', stage: ftMaze }
+  };
+  (function buildFeatured() {
+    const host = $('#featList'); if (!host) return;
+    Object.keys(FEATURED).forEach((id) => {
+      const p = PBY[id], f = FEATURED[id], art = document.createElement('article'); art.className = 'ft-card';
+      art.innerHTML = (f.live ? '<span class="ft-live">live site</span>' : '') +
+        '<div class="ft-stage" role="img" aria-label="' + esc(p.title) + ' preview">' + f.stage() + '</div>' +
+        '<div class="ft-body"><span class="ft-kind">' + esc(p.kind) + '</span><h3>' + esc(p.title) + '</h3><p>' + esc(p.desc) + '</p>' +
+        '<div class="ft-tags">' + p.tags.slice(0, 3).map((t) => '<span class="tag">' + esc(t) + '</span>').join('') + '</div>' +
+        '<div class="ft-acts">' + (f.live ? '<a class="btn small solid" href="' + esc(f.live) + '" target="_blank" rel="noopener noreferrer">Live site &#8599;</a><button class="btn small" type="button" data-go="p:' + id + '">Details</button>' : '<button class="btn small solid" type="button" data-go="p:' + id + '">See details</button>') + '</div></div>';
+      host.appendChild(art);
+    });
+    const more = document.createElement('article'); more.className = 'ft-card ft-more';
+    more.innerHTML = '<span class="ft-kind">' + (N_PROJ - Object.keys(FEATURED).length) + ' more</span><h3>See more projects</h3><p>ISU Jeopardy, the React cards and shopping cart, plus the tree-cutter robot and its Python control GUI.</p><div class="ft-acts"><button class="btn solid" type="button" data-go="projects">All ' + N_PROJ + ' projects &rarr;</button></div>';
+    host.appendChild(more);
+  })();
+
   const projList = $('#projList'); let curFilter = 'all';
   PROJECTS.forEach((p) => projList.appendChild(rowEl(p, true)));
   ['focusup-concept-lock', 'focusup-concept-quests', 'timepiece-home', 'timepiece-catalog', 'timepiece-details'].forEach((f) => { new Image().src = 'assets/' + f + '.webp'; });
