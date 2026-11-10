@@ -242,11 +242,8 @@ main{max-width:1180px;margin:0 auto;padding:48px 32px 96px;min-width:0}
 .pa-flow span.w{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
 .pa-flow span.w::after{content:"";position:absolute;top:0;bottom:0;width:14px;background:var(--red);animation:pulse 1.4s linear infinite}
 @keyframes pulse{from{left:-14px}to{left:100%}}
-.pa-hub{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:100%}
-.pa-hub span{border:1.5px solid var(--ink);padding:9px 6px;font:700 11px var(--body);text-align:center;animation:lift 2.4s infinite}
-.pa-hub span:nth-child(2){animation-delay:.25s}.pa-hub span:nth-child(3){animation-delay:.5s}.pa-hub span:nth-child(4){animation-delay:.75s}.pa-hub span:nth-child(5){animation-delay:1s}
-.pa-hub em{grid-column:1/-1;height:7px;background:var(--line);border-radius:4px;overflow:hidden;display:block}
-.pa-hub em i{display:block;height:100%;width:0;background:var(--red);animation:fill 2.4s ease-in-out infinite}
+.hubview{height:0;padding-bottom:56.25%;position:relative;overflow:hidden;background:#0b0710}
+.hubview video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .pa-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:2px;width:100%}
 .pa-grid i{aspect-ratio:1;background:var(--paper)}
 .pa-grid i.w{background:var(--wall)}.pa-grid i.p{background:var(--gold);animation:pop 3s infinite both}
