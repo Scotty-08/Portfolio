@@ -1,0 +1,48 @@
+/* Otter guide: a small rule-based helper that sits bottom right and wanders the page. */
+.ot{position:fixed;z-index:40;width:104px;height:104px;padding:0;border:0;background:none;cursor:pointer;left:0;top:0;transition:left 1.5s cubic-bezier(.65,0,.3,1),top 1.5s cubic-bezier(.65,0,.3,1)}
+.ot:focus-visible{outline:3px solid var(--gold);outline-offset:4px;border-radius:14px}
+.ot-flip{display:block;width:100%;height:100%}
+.ot-bob{display:block;width:100%;height:100%;animation:otbob 3.2s ease-in-out infinite}
+.ot-fx{display:block;width:100%;height:100%;overflow:visible;animation:otglitch 4.2s steps(1,end) infinite}
+.ot.mv .ot-fx,.ot:hover .ot-fx{animation:otglitchfast .3s steps(1,end) infinite}
+@keyframes otbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes otglitch{
+0%,88%,100%{transform:none;filter:none;clip-path:none}
+89%{transform:translate(-5px,0) skewX(-8deg);filter:drop-shadow(4px 0 #ff3b6b) drop-shadow(-4px 0 #3ddc97)}
+90%{transform:translate(6px,-1px);clip-path:inset(28% 0 38% 0);filter:drop-shadow(-4px 0 #5b9bff)}
+91%{transform:translate(-3px,2px) skewX(9deg);clip-path:inset(0 0 58% 0);filter:drop-shadow(3px 0 #ff3b6b)}
+92%{transform:none;clip-path:inset(55% 0 0 0);filter:drop-shadow(-3px 0 #3ddc97)}
+93%{transform:translate(4px,0);clip-path:none;filter:drop-shadow(2px 0 #5b9bff)}
+94%{transform:none;filter:none}}
+@keyframes otglitchfast{
+0%{transform:translate(-5px,0) skewX(-8deg);filter:drop-shadow(4px 0 #ff3b6b) drop-shadow(-4px 0 #3ddc97);clip-path:none}
+25%{transform:translate(6px,-2px);clip-path:inset(20% 0 45% 0);filter:drop-shadow(-4px 0 #5b9bff)}
+50%{transform:translate(-3px,2px) skewX(10deg);clip-path:inset(0 0 60% 0);filter:drop-shadow(4px 0 #ff3b6b)}
+75%{transform:translate(4px,0);clip-path:inset(50% 0 0 0);filter:drop-shadow(-3px 0 #3ddc97)}
+100%{transform:none;clip-path:none;filter:none}}
+.ot-bub{position:fixed;z-index:39;width:212px;padding:10px 14px;border-radius:12px 12px 4px 12px;background:var(--panel);border:1px solid var(--red);font:400 13px/1.45 var(--mono);color:var(--ink);transition:opacity .3s}
+.ot-bub[hidden]{display:none}
+.ot-panel{position:fixed;z-index:41;right:24px;bottom:136px;width:min(380px,calc(100vw - 32px));height:min(520px,calc(100vh - 170px));display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+.ot-panel[hidden]{display:none}
+.ot-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--panel2)}
+.ot-dot{width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.ot-head b{font:700 14px var(--mono)}
+.ot-tag{margin-left:auto;font:400 11px var(--mono);color:var(--muted);padding:3px 9px;border:1px solid var(--line);border-radius:999px}
+.ot-x{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:transparent;font-size:18px;line-height:1}
+.ot-scroll{flex:1;min-height:0;display:flex;flex-direction:column-reverse;overflow-y:auto}
+.ot-msgs{display:flex;flex-direction:column;gap:10px;padding:16px}
+.ot-m{max-width:88%;padding:10px 14px;border-radius:12px;font-size:14px;line-height:1.5}
+.ot-m.bot{align-self:flex-start;background:var(--panel2);border:1px solid var(--line);border-top-left-radius:4px}
+.ot-m.me{align-self:flex-end;background:var(--red);color:var(--on-red);font-weight:500;border-top-right-radius:4px}
+.ot-go{display:block;margin:8px 0 0;padding:0;border:0;background:none;color:var(--red-ink);font:700 12px var(--mono);border-bottom:1px dashed var(--red);cursor:pointer;text-align:left}
+.ot-go+.ot-go{margin-top:6px}
+.ot-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px 4px}
+.ot-chip{min-height:36px;padding:0 12px;border-radius:8px;background:transparent;border:1px solid var(--red);color:var(--red-ink);font:500 12px var(--mono);cursor:pointer}
+.ot-chip:hover{background:var(--red);color:var(--on-red)}
+.ot-bar{display:flex;gap:8px;padding:10px 16px 8px}
+.ot-in{flex:1;min-width:0;min-height:42px;padding:0 12px;border-radius:8px;background:var(--paper);border:1px solid var(--line);color:var(--ink);font-size:14px}
+.ot-in::placeholder{color:var(--muted)}
+.ot-send{min-height:42px;padding:0 14px;border-radius:8px;border:0;background:var(--red);color:var(--on-red);font:700 13px var(--mono)}
+.ot-note{padding:0 16px 12px;font:400 11px var(--mono);color:var(--muted)}
+@media (max-width:700px){.ot{width:84px;height:84px}.ot-panel{right:12px;bottom:112px;height:min(500px,calc(100vh - 140px))}.ot-bub{display:none}}
+@media (prefers-reduced-motion:reduce){.ot,.ot-bub{transition:none}}
