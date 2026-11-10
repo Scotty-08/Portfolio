@@ -35,7 +35,6 @@
         <p class="intro last">Now I'm a junior at Iowa State. I build web apps, iOS apps and Android apps, and I'm looking for internships.</p>
         <div class="hero-actions">
           <button class="btn solid" type="button" data-go="projects">See my projects</button>
-          <button class="btn" type="button" data-resume="software">Read my resume</button>
           <button class="btn quiet" type="button" data-go="contact">Contact me</button>
         </div>
       </div>
@@ -148,11 +147,10 @@
     <section class="cta" aria-label="Contact">
       <div>
         <h2>Looking for an internship</h2>
-        <p>Web, iOS or Android. My resume is one click away.</p>
+        <p>Web, iOS or Android. Send me an email and we can talk.</p>
       </div>
       <div class="hero-actions" style="margin:0">
-        <button class="btn solid" type="button" data-resume="software">Read my resume</button>
-        <button class="btn" type="button" data-go="contact">Email me</button>
+        <button class="btn solid" type="button" data-go="contact">Email me</button>
         <a class="btn" href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
     </section>
@@ -205,11 +203,7 @@
       <div><div><small>Phone</small><b>402-990-3568</b></div></div>
       <div><div><small>GitHub</small><b>github.com/Scotty-08</b></div><a class="btn small" href="https://github.com/Scotty-08" target="_blank" rel="noopener noreferrer">Open GitHub</a></div>
     </div>
-    <p>Two resumes, so you get the one that fits the role. You can also read about <a href="#work" data-go="work">my work experience</a>.</p>
-    <div class="hero-actions" style="margin-top:0">
-      <button class="btn solid" type="button" data-resume="software">Software resume</button>
-      <button class="btn" type="button" data-resume="embedded">Embedded resume</button>
-    </div>
+    <p>You can also read about <a href="#work" data-go="work">my work experience</a>.</p>
   </section>
 </main>
 
@@ -222,15 +216,6 @@
 </dialog>
 
 
-<dialog id="res" aria-label="Resume">
-  <div class="rtop">
-    <button class="btn small rtab" type="button" data-rtab="software" aria-pressed="true">Software</button>
-    <button class="btn small rtab" type="button" data-rtab="embedded" aria-pressed="false">Embedded</button>
-    <span class="grow" id="resNote"></span>
-    <button class="btn small" id="resClose" type="button">Close</button>
-  </div>
-  <div class="rscroll"><img id="resImgSoftware" src="assets/resume-software.png" alt="Scott Gray software resume"><img id="resImgEmbedded" src="assets/resume-embedded.png" alt="Scott Gray embedded resume" hidden></div>
-</dialog>
 <div class="toast" id="toast" hidden role="status"></div>
 
 <script src="js/app.js?v=20261110a"></script>

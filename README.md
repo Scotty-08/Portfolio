@@ -16,7 +16,7 @@ Then open http://127.0.0.1:4173.
 - `css/site.css` holds the Midnight Blue styles and `css/otter.css` holds the otter guide.
 - `js/app.js` holds the router, the project data, the featured project cards and the interactive demos (maze solver, command palette, React props, WebSocket simulation, shopping cart).
 - `js/otter.js` is the otter guide: a rule-based helper (not AI) that wanders the page and answers from the site's own content.
-- `assets/` holds the headshot, the two resumes and the project screens.
+- `assets/` holds the headshot and the project screens.
 - `about.html` (now sends visitors to the home page, where the intro lives), `contact.html`, `projects.html`, `project.html`, `work.html` and `screen-flows.html` only redirect old links to the matching view in `index.html`.
 - `maze-solver-visualizer/` is the original standalone maze project.
 

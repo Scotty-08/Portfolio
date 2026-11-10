@@ -52,12 +52,11 @@
     live: { text: 'Two live web apps: CourseFlow, a CPR E course planner, and Maze Solver, a breadth-first search visualizer.', go: [['Open CourseFlow', function () { api.go('p:courseflow'); }], ['Open Maze Solver', function () { api.go('p:maze-solver'); }]] },
     ios: { text: 'FocusUp is an iOS app built with SwiftUI and the Screen Time API, with Supabase behind it. About 15 people tested it on TestFlight.', go: [['See FocusUp', function () { api.go('p:focusup'); }]] },
     android: { text: 'timePiece is an Android team app for browsing, favoriting and selling watches. Scott built the catalog backend and the WebSocket endpoints in Spring Boot.', go: [['See timePiece', function () { api.go('p:timepiece'); }]] },
-    resume: { text: 'There are two resumes, a software one and an embedded one. Both open right here on the site.', go: [['Software resume', function () { api.openResume('software'); }], ['Embedded resume', function () { api.openResume('embedded'); }]] },
     contact: { text: 'Email grayscott07@outlook.com or find Scott on GitHub as Scotty-08.', go: [['Go to contact', function () { api.go('contact'); }]] },
     learning: { text: 'Right now Scott is learning React. There are two demos on the home page: user cards and a shopping cart.', go: [['See what I’m learning', function () { api.go('learning'); }]] },
     work: { text: 'Scott works as a courtesy patrol and cashier at Menards, and mowed lawns at J&A Mowing before that.', go: [['Work experience', function () { api.go('work'); }]] },
     bot: { text: 'I am an otter, not an AI. I match keywords and answer from what is already on this site, so I only know a few topics.' },
-    none: { text: 'I only know a few topics. Try projects, skills, story, iOS, Android, resume or contact, or pick a chip below.' }
+    none: { text: 'I only know a few topics. Try projects, skills, story, iOS, Android or contact, or pick a chip below.' }
   };
   function match(q) {
     var s = q.toLowerCase();
@@ -71,8 +70,7 @@
     if (has(['skill', 'java', 'python', 'tech', 'stack', 'language'])) return 'skills';
     if (has(['job', 'menards', 'mowing', 'experience', 'work'])) return 'work';
     if (has(['story', 'about', 'who', 'why', 'guatemala', 'heal', 'background'])) return 'story';
-    if (has(['resume', 'cv', 'hire', 'intern'])) return 'resume';
-    if (has(['contact', 'email', 'reach', 'github', 'linkedin', 'phone'])) return 'contact';
+    if (has(['contact', 'hire', 'intern', 'email', 'reach', 'github', 'linkedin', 'phone'])) return 'contact';
     return 'none';
   }
 
@@ -88,7 +86,7 @@
   }
   function ask(label, topic) { var a = A[topic] || A.none; say('me', label); say('bot', a.text, a.go); }
   say('bot', 'Hi, I am the portfolio otter. I am a small helper, not an AI. What are you interested in seeing?');
-  [['My projects', 'projects'], ['My skills', 'skills'], ['My story', 'story'], ['iOS app', 'ios'], ['Android app', 'android'], ['Live web apps', 'live'], ['Resume', 'resume'], ['Contact', 'contact']].forEach(function (d) {
+  [['My projects', 'projects'], ['My skills', 'skills'], ['My story', 'story'], ['iOS app', 'ios'], ['Android app', 'android'], ['Live web apps', 'live'], ['Contact', 'contact']].forEach(function (d) {
     var c = el('button', 'ot-chip', d[0]); c.type = 'button'; c.addEventListener('click', function () { ask(d[0], d[1]); }); chips.appendChild(c);
   });
   bar.addEventListener('submit', function (e) { e.preventDefault(); var q = input.value.trim(); if (!q) return; ask(q, match(q)); input.value = ''; });

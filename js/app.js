@@ -48,7 +48,7 @@
       facts: [['Tools', 'React, Vite, Bootstrap'], ['Data', '20 products from a JSON file'], ['Hooks', 'useState and useEffect'], ['Source code', 'Scotty-08/Shopping-Cart on GitHub', 'https://github.com/Scotty-08/Shopping-Cart']],
       overview: ['A class activity where I built a store in React. Twenty products load from a JSON file, and each one has a plus and a minus button.', 'The cart groups repeated items into one line with a quantity, shows how many of each item is in the cart, and updates the order total whenever the cart changes. I started with a plain list and then rebuilt the layout with Bootstrap.'],
       mine: [['State with useState', 'The cart is one array in state. Adding an item copies the array and appends it, so React sees a new value and redraws.'], ['Total with useEffect', 'An effect runs whenever the cart changes and adds up the prices into the order total.'], ['Grouping with reduce', 'reduce turns the flat cart into one entry per product with a quantity, so two jackets show as one line, times 2.'], ['Removing one copy', 'The minus button finds the first matching item and splices out a single copy, so the rest stay in the cart.'], ['Two versions', 'shopping.jsx is the first plain version. ShoppingBootstrap.jsx is the finished store layout.']] },
-    { id: 'robot-gui', cat: 'hardware', title: 'Robot Sensor Visualizer', kind: 'Python, embedded resume project', desc: 'A live Python GUI for a robot: a 180 degree polar plot of what the sensors see, with a switch between autonomous and manual control.', tags: ['Python', 'Matplotlib', 'Tkinter'],
+    { id: 'robot-gui', cat: 'hardware', title: 'Robot Sensor Visualizer', kind: 'Python, robot project', desc: 'A live Python GUI for a robot: a 180 degree polar plot of what the sensors see, with a switch between autonomous and manual control.', tags: ['Python', 'Matplotlib', 'Tkinter'],
       facts: [['Language', 'Python'], ['Plot', 'Matplotlib polar, 180 degrees'], ['Interface', 'Tkinter'], ['Modes', 'Autonomous and manual']],
       overview: ['A desktop tool that shows a robot\'s sensor sweep as a live polar plot, so you can see obstacles around it as the data arrives.', 'A Tkinter switch changes the robot between autonomous driving and manual control from the same window.'],
       mine: [['Live plot', 'Matplotlib redraws the 180 degree sweep as new readings come in.'], ['Control interface', 'Tkinter buttons send manual commands, and a switch hands control back to the robot.']] }
@@ -623,21 +623,13 @@
   }
   ['#rName', '#rSalary', '#rMarital', '#rAddress'].forEach((q) => $(q).addEventListener('input', drawCard)); drawCard();
 
-  /* ================= resume, contact ================= */
-  const resDlg = $('#res');
-  const RES = { software: { note: 'Software resume. Projects: TimePiece, focusUp and ISU Feud.', img: '#resImgSoftware' }, embedded: { note: 'Embedded resume. Projects: Autonomous Tree Cutter, focusUp and Robot Sensor Visualizer & Control Interface.', img: '#resImgEmbedded' } };
-  function showResume(k) { Object.keys(RES).forEach((x) => { $(RES[x].img).hidden = x !== k; }); $$('.rtab').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.rtab === k))); $('#resNote').textContent = RES[k].note; $('.rscroll', resDlg).scrollTop = 0; }
-  function openResume(k) { showResume(k || 'software'); if (!resDlg.open) resDlg.showModal(); }
-  $$('[data-resume]').forEach((b) => b.addEventListener('click', () => openResume(b.dataset.resume)));
-  $$('.rtab').forEach((b) => b.addEventListener('click', () => showResume(b.dataset.rtab)));
-  $('#resClose').addEventListener('click', () => resDlg.close());
-  resDlg.addEventListener('click', (e) => { if (e.target === resDlg) resDlg.close(); });
+  /* ================= contact ================= */
   $('#copyMail').addEventListener('click', () => {
     const done = () => toast('Email address copied');
     const fail = () => { const r = document.createRange(); r.selectNodeContents($('.mail')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast('Press Ctrl+C to copy the selected address'); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText('grayscott07@outlook.com').then(done, fail); else fail();
   });
 
-  window.SiteApi = { go: go, openResume: openResume, PROJECTS: PROJECTS };
+  window.SiteApi = { go: go, PROJECTS: PROJECTS };
   go(tokenFromHash(), true);
 })();
