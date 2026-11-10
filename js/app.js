@@ -247,7 +247,11 @@
     if (VIEWS.indexOf(view) === -1) view = 'home';
     show(view, pid, scroll && token === 'skills' ? 'skills' : null);
     const hashTok = view === 'project' ? 'project-' + pid : (scroll ? token : view);
-    if (!quiet) { try { history.replaceState(null, '', '#' + hashTok); } catch (e) { try { location.hash = hashTok; } catch (e2) {} } }
+    if (!quiet) {
+      /* push a history entry per page so the browser back button and the swipe-back gesture return to the previous page */
+      const here = (location.hash || '').replace('#', '') || 'home';
+      try { history[here === hashTok ? 'replaceState' : 'pushState'](null, '', '#' + hashTok); } catch (e) { try { location.hash = hashTok; } catch (e2) {} }
+    }
     if (scroll) { const el = $(scroll); if (el) el.scrollIntoView({ behavior: 'auto', block: 'start' }); } else window.scrollTo(0, 0);
     if (view === 'project' && !quiet) playIntro(pid);
   }
@@ -267,6 +271,7 @@
     }
   });
   addEventListener('hashchange', () => go(tokenFromHash(), true));
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
 
   /* ================= hero maze ================= */
   const R = 16, C = 24, N = R * C;
